@@ -66,7 +66,8 @@ tailwind.config = {
 }
 </script>
 
-<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
+<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');
+function __toggleTheme(){var d=document.documentElement.classList.toggle('dark');localStorage.setItem('theme',d?'dark':'light');document.querySelectorAll('.theme-icon').forEach(function(e){e.textContent=d?'light_mode':'dark_mode';});}</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <style>
@@ -173,8 +174,7 @@ html.dark body {
 <body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
 
 <!-- NAV -->
-<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
-     x-init="dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
+<div x-data="{ open: false }">
 <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
   <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
     <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
@@ -184,10 +184,8 @@ html.dark body {
       <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
     </div>
     <div class="hidden md:flex items-center gap-5">
-      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')"
-              :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
-              class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
-        <span class="material-symbols-outlined text-xl" x-text="dark ? 'light_mode' : 'dark_mode'">light_mode</span>
+      <button onclick="__toggleTheme()" aria-label="Toggle dark mode" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl theme-icon">dark_mode</span>
       </button>
       <a href="assessment.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">Free Audit →</a>
       <a href="contact.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
@@ -478,5 +476,6 @@ html.dark body {
 })();
 </script>
 
+<script>if(document.documentElement.classList.contains('dark'))document.querySelectorAll('.theme-icon').forEach(function(e){e.textContent='light_mode';});</script>
 </body>
 </html>
