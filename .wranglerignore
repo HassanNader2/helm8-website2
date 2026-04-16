@@ -1,0 +1,7 @@
+node_modules/
+.github/
+.git/
+.impeccable.md
+wrangler.toml
+.wranglerignore
+*.log
