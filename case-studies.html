@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Case Studies — HELM8</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<title>helm8 | Case Studies</title>
 <meta name="description" content="Real automations running in real businesses. Document tracking, business snapshots, invoice processing, receivables, payroll — with the actual numbers."/>
 <link rel="canonical" href="https://helm8.co/case-studies.html"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Case Studies — HELM8"/>
+<meta property="og:title" content="helm8 | Case Studies"/>
 <meta property="og:url" content="https://helm8.co/case-studies.html"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -32,36 +35,38 @@ tailwind.config = {
         "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
       },
       borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
-      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"], "label": ["Inter","sans-serif"] }
+      fontFamily: { "headline": ["Schibsted Grotesk","sans-serif"], "body": ["Schibsted Grotesk","sans-serif"], "label": ["Schibsted Grotesk","sans-serif"] }
     }
   }
 }
 </script>
 
+<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <style>
 body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
 html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); transition-delay: calc(var(--i, 0) * 60ms); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 .btn-hover { position: relative; overflow: hidden; z-index: 1; }
-.btn-hover::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0; background-color: rgba(0,0,0,0.07); transition: height 0.3s ease; z-index: -1; }
+.btn-hover::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0; background-color: rgba(0,0,0,0.07); transition: height 0.3s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1; }
 .btn-hover:hover::after { height: 100%; }
 .wa-link { display: block; margin-top: 14px; font-size: 0.75rem; color: #807664; letter-spacing: 0.05em; }
 .wa-link a { color: #785a00; text-decoration: underline; }
-.wa-link a:hover { color: #b8902a; }
+.wa-link a:hover { color: #785a00; }
 /* Case study layout */
 .cs-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
 @media (min-width: 768px) { .cs-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
 .cs-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #d1c5b0; margin-top: 32px; }
 .cs-stat-box { background: #fafaf5; padding: 20px 24px; }
 html.dark .cs-stat-box { background: #1a1c19; }
-.cs-stat-n { font-family: Inter, sans-serif; font-size: 2.25rem; font-weight: 800; color: #785a00; line-height: 1; display: block; margin-bottom: 6px; }
+.cs-stat-n { font-family: 'Schibsted Grotesk', sans-serif; font-variant-numeric: tabular-nums; font-size: 2.25rem; font-weight: 800; color: #785a00; line-height: 1; display: block; margin-bottom: 6px; }
 .cs-stat-label { font-size: 0.75rem; color: #5f5e5c; line-height: 1.5; }
-.cs-stat-label em { font-size: 0.7rem; color: #807664; }
-.cs-quote { border-left: 2px solid #b8902a; padding-left: 20px; margin: 24px 0; }
+.cs-stat-label em { font-size: 0.75rem; color: #5f5e5c; }
+.cs-quote { padding: 20px 24px; background: #f4f4ef; margin: 24px 0; }
+html.dark .cs-quote { background: #1a1c19; }
 .cs-quote p { font-style: italic; color: #5f5e5c; font-size: 0.95rem; line-height: 1.7; }
 .cs-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .cs-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border: 1px solid #d1c5b0; color: #807664; }
@@ -69,6 +74,17 @@ html.dark .cs-stat-box { background: #1a1c19; }
 @media (min-width: 768px) { .cs-cards-grid { grid-template-columns: 1fr 1fr; } }
 .cs-card { padding: 48px; border-right: 1px solid #d1c5b0; }
 .cs-card:last-child { border-right: none; }
+/* Focus visible */
+:focus-visible { outline: 2px solid #785a00; outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 
@@ -76,33 +92,40 @@ html.dark .cs-stat-box { background: #1a1c19; }
 
 <!-- NAV -->
 <div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
-     x-init="dark && document.documentElement.classList.add('dark')">
+     x-init="dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
 <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
   <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
     <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
     <div class="hidden md:flex items-center space-x-10">
-      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
-      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
-      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold border-b border-primary text-primary">Case Studies</a>
+      <a href="how-it-works.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold border-b border-primary text-primary">Case Studies</a>
     </div>
     <div class="hidden md:flex items-center gap-5">
-      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
-        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'light_mode':'dark_mode'">light_mode</span>
       </button>
-      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
-      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+      <a href="assessment.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
     </div>
-    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open" :aria-expanded="open.toString()" aria-label="Toggle navigation">
       <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
     </button>
   </div>
-  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
-    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
-    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
-    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold text-primary py-2">Case Studies</a>
+  <div x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">How It Works</a>
+    <a href="services.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Services</a>
+    <a href="case-studies.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-bold text-primary py-3">Case Studies</a>
     <div class="pt-2 flex flex-col gap-3">
-      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
-      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+      <a href="assessment.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-4 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-4 bg-primary-container text-on-primary-container">Book a Call</a>
     </div>
   </div>
 </nav>
@@ -110,9 +133,9 @@ html.dark .cs-stat-box { background: #1a1c19; }
 
 <!-- HERO -->
 <section class="pt-48 pb-32 px-8 max-w-7xl mx-auto fade-up">
-  <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-6">The Proof</span>
+  <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-6">The Proof</span>
   <h1 class="text-[3.5rem] md:text-[5.5rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-8">
-    Real results in<br><span class="italic text-primary-container">real businesses.</span>
+    Real results in<br><span class="italic" style="color:#785a00">real businesses.</span>
   </h1>
   <p class="text-xl text-secondary max-w-2xl leading-relaxed">Not mockups. Not hypotheticals. Every automation here was built around a problem we kept seeing in the market.</p>
 </section>
@@ -121,7 +144,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
 <section class="border-t border-outline-variant py-32 px-8">
   <div class="max-w-7xl mx-auto cs-grid">
     <div class="cs-story fade-up">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 01 · General Trading</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 01 · General Trading</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">The establishment card that expired <em class="italic text-primary-container">quietly.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">A general trading company had 92 documents to track — three per employee plus company licences, insurance certificates, and vehicle registrations.</p>
       <p class="text-secondary leading-relaxed mb-4">They had a spreadsheet. Nobody owned it consistently. Renewals happened when someone remembered to check. Until the establishment card expired without anyone noticing and a ministry warning arrived.</p>
@@ -158,7 +181,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
       </div>
     </div>
     <div class="cs-story fade-up mt-12 md:mt-0">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 02 · General Trading</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 02 · General Trading</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">The Monday report nobody <em class="italic text-primary-container">wanted to prepare.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">Every Monday morning, the finance manager spent four to five hours pulling performance data from three separate systems — sales records, the accounting platform, and a customer tracking sheet.</p>
       <p class="text-secondary leading-relaxed mb-4">By the time the report landed on the owner's desk, it was early afternoon. The numbers were already Thursday's numbers. Decisions were being made on data that was four days old, every single week.</p>
@@ -179,7 +202,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
 <section class="border-t border-outline-variant py-32 px-8">
   <div class="max-w-7xl mx-auto cs-grid">
     <div class="cs-story fade-up">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 03 · Import Trading</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 03 · Import Trading</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">Eighty invoices a month, <em class="italic text-primary-container">entered by hand.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">An import trading company received over 80 supplier invoices every month — all as PDF attachments to email. One finance admin was responsible for opening each one, reading the details, and typing them into the accounting system. Eight minutes per invoice. Three full working days every single month.</p>
       <p class="text-secondary leading-relaxed mb-4">The work was accurate. It was also entirely pointless — every piece of data the admin was typing already existed in the PDF. They were just moving it from one place to another, by hand.</p>
@@ -216,7 +239,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
       </div>
     </div>
     <div class="cs-story fade-up mt-12 md:mt-0">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 04 · Logistics</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 04 · Logistics</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">AED 340,000 sitting in <em class="italic text-primary-container">overdue receivables.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">A freight and logistics company had a chronic cash flow problem that nobody had connected to its root cause. At any given point, AED 300,000–400,000 was outstanding in unpaid invoices — not because customers refused to pay, but because nobody was consistently asking them to.</p>
       <p class="text-secondary leading-relaxed mb-4">The finance manager chased payments between other tasks, when she had time, relying on memory. Customers who were not chased simply waited.</p>
@@ -237,7 +260,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
 <section class="border-t border-outline-variant py-32 px-8">
   <div class="max-w-7xl mx-auto cs-grid">
     <div class="cs-story fade-up">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 05 · Wholesale Distribution</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 05 · Wholesale Distribution</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">Twelve months of data.<br><em class="italic text-primary-container">Nobody had read it.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">A wholesale distribution company had twelve months of transaction data sitting in their accounting system — revenue by customer, payment patterns, product margins, seasonal trends. The accountant produced a P&amp;L every month. The owner read the bottom line and moved on.</p>
       <p class="text-secondary leading-relaxed mb-4">Nobody had ever looked at what the data was actually saying. Which customers were most profitable. Which products had deteriorating margins. The answers were all there — invisible inside a spreadsheet nobody analysed.</p>
@@ -267,7 +290,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
   <div class="max-w-7xl mx-auto">
     <div class="cs-cards-grid">
       <div class="cs-card border-b border-outline-variant fade-up">
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 06 · Contracting</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 06 · Contracting</span>
         <h3 class="text-2xl font-extrabold tracking-tighter text-on-background mb-6">The payroll file that took half a day to build.</h3>
         <p class="text-secondary leading-relaxed mb-4">A contracting company ran payroll manually every month. The PRO built the WPS Salary Information File by hand — copying salary data from spreadsheets and formatting it to Central Bank specifications line by line. Four hours minimum. They had received a MoHRE warning after a late submission.</p>
         <p class="text-secondary leading-relaxed mb-6">The file now generates automatically on the first of every month. The PRO reviews it, confirms it, and submits. Total time: under 20 minutes.</p>
@@ -279,10 +302,10 @@ html.dark .cs-stat-box { background: #1a1c19; }
           <span class="cs-tag">Contracting</span>
           <span class="cs-tag">HR &amp; Compliance</span>
         </div>
-        <a href="contact.html" class="mt-6 inline-flex items-center gap-2 font-['Inter'] uppercase tracking-widest text-[0.65rem] font-bold text-primary hover:underline">Discuss your payroll process →</a>
+        <a href="contact.html" class="mt-6 inline-flex items-center gap-2 uppercase tracking-[0.12em] text-[0.65rem] font-bold text-primary hover:underline">Discuss your payroll process →</a>
       </div>
       <div class="cs-card border-b border-outline-variant fade-up">
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 07 · Fit-Out Contracting</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 07 · Fit-Out Contracting</span>
         <h3 class="text-2xl font-extrabold tracking-tighter text-on-background mb-6">Timesheets via WhatsApp photos and voice notes.</h3>
         <p class="text-secondary leading-relaxed mb-4">A fit-out contracting company with site staff collected timesheets however staff sent them — photos, voice messages, typed WhatsApp texts. The admin team spent two full days every fortnight decoding, reconciling, and entering hours before payroll could run. Disputes were frequent. Payroll was late almost every cycle.</p>
         <p class="text-secondary leading-relaxed mb-6">Staff now submit through a structured channel. Submissions are consolidated, validated, and ready for payroll sign-off automatically. The two-day process became two hours.</p>
@@ -294,7 +317,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
           <span class="cs-tag">Fit-Out &amp; Contracting</span>
           <span class="cs-tag">HR &amp; Payroll</span>
         </div>
-        <a href="contact.html" class="mt-6 inline-flex items-center gap-2 font-['Inter'] uppercase tracking-widest text-[0.65rem] font-bold text-primary hover:underline">Discuss your timesheet process →</a>
+        <a href="contact.html" class="mt-6 inline-flex items-center gap-2 uppercase tracking-[0.12em] text-[0.65rem] font-bold text-primary hover:underline">Discuss your timesheet process →</a>
       </div>
     </div>
   </div>
@@ -312,7 +335,7 @@ html.dark .cs-stat-box { background: #1a1c19; }
       </div>
     </div>
     <div class="cs-story fade-up mt-12 md:mt-0">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-6">Case Study 08 · Healthcare</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-6">Case Study 08 · Healthcare</span>
       <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-background leading-tight mb-6">Twenty no-shows a week that <em class="italic text-primary-container">nobody was preventing.</em></h2>
       <p class="text-secondary leading-relaxed mb-4">A medical clinic was losing roughly one in four appointments to no-shows. The receptionist made reminder calls when she had time — which was rarely. Between check-ins, billing queries, and walk-in patients, the calls slipped.</p>
       <p class="text-secondary leading-relaxed mb-4">Every unfilled slot was lost revenue with no recovery path. The problem was not the patients — it was the absence of a consistent, timely prompt.</p>
@@ -336,10 +359,10 @@ html.dark .cs-stat-box { background: #1a1c19; }
   </h2>
   <p class="text-secondary text-lg max-w-2xl mx-auto mb-12 leading-relaxed">Every problem on this page started the same way. A conversation about what was being done by hand. 60 minutes to map what is costing the most. The rest followed.</p>
   <div class="flex flex-col md:flex-row justify-center gap-6">
-    <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-sm btn-hover">Book the conversation →</a>
-    <a href="assessment.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-widest text-sm btn-hover">Take the free audit first</a>
+    <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-sm btn-hover">Book the conversation →</a>
+    <a href="assessment.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-sm btn-hover">Take the free audit first</a>
   </div>
-  <p class="mt-6 text-[0.75rem] text-secondary uppercase tracking-widest">Free first session · No commitment · Based in the UAE</p>
+  <p class="mt-6 text-[0.75rem] text-secondary uppercase tracking-[0.12em]">Free first session · No commitment · Based in the UAE</p>
   <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
 </section>
 
@@ -348,35 +371,35 @@ html.dark .cs-stat-box { background: #1a1c19; }
   <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
     <div class="col-span-1">
       <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
-      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
-      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+      <p class="text-[0.75rem] leading-relaxed uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">Automation for businesses that still run on manual work.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Navigate</h5>
       <ul class="space-y-4">
-        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
-        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
-        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+        <li><a href="how-it-works.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Actions</h5>
       <ul class="space-y-4">
-        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
-        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
-        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+        <li><a href="assessment.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Legal</h5>
       <ul class="space-y-4">
-        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
-        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+        <li><a href="privacy.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
       </ul>
     </div>
   </div>
   <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
-    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+    <p class="text-[0.65rem] uppercase tracking-[0.12em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
   </div>
 </footer>
 
@@ -386,6 +409,60 @@ html.dark .cs-stat-box { background: #1a1c19; }
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+})();
+
+// Stat count-up
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function parseStat(text) {
+    text = text.trim();
+    // Match: optional non-digit prefix, digits (with commas), optional k/K suffix, optional rest
+    var m = text.match(/^([^0-9+\-]*)([+\-]?\d[\d,]*)([kK]?)(.*)$/);
+    if (!m) return null;
+    var raw = parseFloat(m[2].replace(/,/g, ''));
+    if (isNaN(raw) || raw === 0) return null;
+    var isK = m[3].toLowerCase() === 'k';
+    return {
+      prefix: m[1],
+      value: raw,
+      suffix: m[3] + m[4],
+      format: function(n) {
+        var rounded = Math.round(n);
+        if (!isK && raw >= 1000) return m[1] + rounded.toLocaleString() + m[4];
+        return m[1] + rounded + m[3] + m[4];
+      }
+    };
+  }
+
+  var statEls = document.querySelectorAll('.cs-stat-n');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var parsed = el._countData;
+      if (!parsed) return;
+      io.unobserve(el);
+      var duration = 1100;
+      var start = performance.now();
+      function tick(now) {
+        var t = Math.min((now - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - t, 4); // ease-out-quart
+        el.textContent = parsed.format(parsed.value * ease);
+        if (t < 1) { requestAnimationFrame(tick); }
+        else { el.textContent = parsed.format(parsed.value); }
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.4 });
+
+  statEls.forEach(function(el) {
+    var parsed = parseStat(el.textContent);
+    if (parsed) {
+      el._countData = parsed;
+      io.observe(el);
+    }
+  });
 })();
 </script>
 

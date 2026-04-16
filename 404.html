@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Page Not Found — HELM8</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<title>helm8 | Business Automation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -22,18 +25,30 @@ tailwind.config = {
         "primary-fixed": "#ffdf9b", "on-primary": "#ffffff", "on-primary-fixed": "#251a00",
       },
       borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
-      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"] }
+      fontFamily: { "headline": ["Schibsted Grotesk","sans-serif"], "body": ["Schibsted Grotesk","sans-serif"] }
     }
   }
 }
 </script>
 
+<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <style>
 body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
 html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+/* Focus visible */
+:focus-visible { outline: 2px solid #785a00; outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 
@@ -41,48 +56,69 @@ html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rg
 
 <!-- NAV -->
 <div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
-     x-init="dark && document.documentElement.classList.add('dark')">
+     x-init="dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
 <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
   <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
     <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
     <div class="hidden md:flex items-center space-x-10">
-      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
-      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
-      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+      <a href="how-it-works.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
     </div>
     <div class="hidden md:flex items-center gap-5">
-      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
-        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'light_mode':'dark_mode'">light_mode</span>
       </button>
-      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
-      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+      <a href="assessment.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
     </div>
-    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open" :aria-expanded="open.toString()" aria-label="Toggle navigation">
       <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
     </button>
   </div>
-  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
-    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
-    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
-    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+  <div x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">How It Works</a>
+    <a href="services.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Services</a>
+    <a href="case-studies.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Case Studies</a>
     <div class="pt-2 flex flex-col gap-3">
-      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
-      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+      <a href="assessment.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-4 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-4 bg-primary-container text-on-primary-container">Book a Call</a>
     </div>
   </div>
 </nav>
 </div>
 
 <main class="min-h-screen flex items-center justify-center px-8">
-  <div class="text-center max-w-md">
-    <p class="text-[0.7rem] font-bold uppercase tracking-widest text-outline mb-8">404</p>
+  <div class="max-w-lg">
+    <p class="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-outline mb-8">404</p>
     <h1 class="text-[2.5rem] md:text-[3.5rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-6">
       This page<br>doesn't exist.
     </h1>
     <p class="text-base text-secondary mb-10 leading-relaxed">The URL may have changed or the page was removed.</p>
-    <a href="index.html" class="inline-flex items-center gap-2 font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-8 py-4 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">
-      Back to homepage →
-    </a>
+    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+      <a href="index.html" class="inline-flex items-center justify-center gap-2 uppercase tracking-[0.12em] text-[0.75rem] font-bold px-8 py-4 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">
+        Back to homepage →
+      </a>
+      <a href="assessment.html" class="inline-flex items-center justify-center gap-2 uppercase tracking-[0.12em] text-[0.75rem] font-medium px-8 py-4 border border-primary text-primary hover:bg-zinc-50 transition-colors">
+        Free audit
+      </a>
+    </div>
+    <div class="border-t border-outline-variant pt-8">
+      <p class="text-[0.7rem] uppercase tracking-[0.12em] text-outline mb-4">Or go to</p>
+      <div class="flex flex-wrap gap-6">
+        <a href="services.html" class="text-sm text-secondary hover:text-on-surface transition-colors">Services</a>
+        <a href="case-studies.html" class="text-sm text-secondary hover:text-on-surface transition-colors">Case Studies</a>
+        <a href="how-it-works.html" class="text-sm text-secondary hover:text-on-surface transition-colors">How It Works</a>
+        <a href="contact.html" class="text-sm text-secondary hover:text-on-surface transition-colors">Contact</a>
+      </div>
+    </div>
   </div>
 </main>
 

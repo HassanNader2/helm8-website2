@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact — HELM8</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<title>helm8 | Contact</title>
 <meta name="description" content="Book a 30-minute call or send your details. We reply within one business day."/>
 <link rel="canonical" href="https://helm8.co/contact.html"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Contact — HELM8"/>
+<meta property="og:title" content="helm8 | Contact"/>
 <meta property="og:url" content="https://helm8.co/contact.html"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -32,31 +35,44 @@ tailwind.config = {
         "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
       },
       borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
-      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"], "label": ["Inter","sans-serif"] }
+      fontFamily: { "headline": ["Schibsted Grotesk","sans-serif"], "body": ["Schibsted Grotesk","sans-serif"], "label": ["Schibsted Grotesk","sans-serif"] }
     }
   }
 }
 </script>
 
+<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <style>
 body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
 html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); transition-delay: calc(var(--i, 0) * 60ms); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 /* Form inputs */
 .form-field { display: flex; flex-direction: column; gap: 6px; }
 .form-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #807664; }
-.form-input { background: #ffffff; border: 1px solid #d1c5b0; padding: 13px 16px; font-family: Inter, sans-serif; font-size: 0.875rem; color: #1a1c19; outline: none; transition: border-color 0.2s; width: 100%; }
+.form-input { background: #ffffff; border: 1px solid #d1c5b0; padding: 13px 16px; font-family: "Schibsted Grotesk", sans-serif; font-size: 0.875rem; color: #1a1c19; outline: none; transition: border-color 0.2s; width: 100%; }
 .form-input:focus { border-color: #785a00; }
 .form-input::placeholder { color: #c9c6c3; }
 html.dark .form-input { background: #1a1c19; color: #e8e8e0; border-color: rgba(232,232,224,0.15); }
-html.dark .form-input:focus { border-color: #b8902a; }
+html.dark .form-input:focus { border-color: #edc157; }
+html.dark .form-input::placeholder { color: #6e6e68; }
 /* Cal.com embed container */
 .cal-wrap { width: 100%; min-height: 600px; border: 1px solid #d1c5b0; background: #ffffff; overflow: hidden; }
 html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15); }
+/* Focus visible */
+:focus-visible { outline: 2px solid #785a00; outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 
@@ -64,33 +80,40 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
 
 <!-- NAV -->
 <div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
-     x-init="dark && document.documentElement.classList.add('dark')">
+     x-init="dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
 <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
   <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
     <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
     <div class="hidden md:flex items-center space-x-10">
-      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
-      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
-      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+      <a href="how-it-works.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
     </div>
     <div class="hidden md:flex items-center gap-5">
-      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
-        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'light_mode':'dark_mode'">light_mode</span>
       </button>
-      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
-      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+      <a href="assessment.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
     </div>
-    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open" :aria-expanded="open.toString()" aria-label="Toggle navigation">
       <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
     </button>
   </div>
-  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
-    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
-    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
-    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+  <div x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">How It Works</a>
+    <a href="services.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Services</a>
+    <a href="case-studies.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Case Studies</a>
     <div class="pt-2 flex flex-col gap-3">
-      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
-      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+      <a href="assessment.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-4 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-4 bg-primary-container text-on-primary-container">Book a Call</a>
     </div>
   </div>
 </nav>
@@ -100,9 +123,9 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
 
 <!-- PAGE HEADER -->
 <section class="px-8 md:px-24 pt-24 pb-16 border-b border-outline-variant fade-up">
-  <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-6">Get in Touch</span>
+  <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-6">Get in Touch</span>
   <h1 class="text-[3rem] md:text-[5rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-6">
-    The first conversation<br>costs <span class="italic text-primary-container">nothing.</span>
+    The first conversation<br>costs <span class="italic" style="color:#785a00">nothing.</span>
   </h1>
   <p class="text-xl text-secondary max-w-2xl leading-relaxed">Book a 30-minute call or send your details below. We reply within one business day.</p>
 </section>
@@ -113,7 +136,7 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
   <!-- LEFT: CALENDAR -->
   <div class="fade-up">
     <div class="mb-8">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-2">Preferred</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-2">Preferred</span>
       <h2 class="text-2xl font-extrabold tracking-tight text-on-surface mb-2">Book a 30-minute call.</h2>
       <p class="text-sm text-secondary">Pick a time that works. The call is free. No obligation.</p>
     </div>
@@ -125,20 +148,20 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
       Cal("inline", { elementOrSelector: "#cal-inline", calLink: "helm8/30min", layout: "month_view" });
       </script>
     </div>
-    <p class="mt-4 text-[0.7rem] text-secondary uppercase tracking-wider">Or message us on WhatsApp: <a href="https://wa.me/971541676707" class="text-primary underline hover:text-primary-container">+971 54 167 6707</a></p>
+    <p class="mt-4 text-[0.7rem] text-secondary uppercase tracking-[0.12em]">Or message us on WhatsApp: <a href="https://wa.me/971541676707" class="text-primary underline hover:text-primary-container">+971 54 167 6707</a></p>
   </div>
 
   <!-- RIGHT: FORM -->
   <div class="fade-up">
     <div class="mb-8">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-2">Alternative</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-2">Alternative</span>
       <h2 class="text-2xl font-extrabold tracking-tight text-on-surface mb-2">Send your details.</h2>
       <p class="text-sm text-secondary">Tell us what you're trying to fix. We'll come back with a clear answer.</p>
     </div>
 
     <!-- Result card -->
-    <div class="border-l-2 border-primary-container pl-6 mb-10 space-y-1">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block">Accounts receivable — Freight company, UAE</span>
+    <div class="mb-10 space-y-1 bg-surface-container-low px-6 py-5">
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block">Accounts receivable — Freight company, UAE</span>
       <p class="text-sm text-secondary leading-relaxed">52 days to collect. Now 19. AED 210,000 recovered in 90 days.</p>
     </div>
 
@@ -166,7 +189,7 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
           <textarea class="form-input" id="problem" name="problem" rows="5" placeholder="Describe the manual work that's costing you the most time or causing the most errors." required style="resize:vertical"></textarea>
         </div>
 
-        <button type="submit" class="w-full py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-[0.75rem] hover:bg-[#a37e22] transition-colors">
+        <button type="submit" class="w-full py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-[0.75rem] hover:bg-[#a37e22] transition-colors">
           Send My Details →
         </button>
         <p class="text-[0.7rem] text-secondary text-center leading-relaxed">We reply within one business day. No sales scripts.</p>
@@ -202,7 +225,7 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
 <!-- BOTTOM CTA STRIP -->
 <section class="bg-primary-container py-16 px-8 text-center fade-up">
   <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-on-primary-container mb-4">Not ready to talk? See what we've built.</h3>
-  <a href="case-studies.html" class="inline-block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold text-on-primary-container border border-on-primary-container px-8 py-3 hover:bg-on-primary-container hover:text-primary-container transition-all">View case studies →</a>
+  <a href="case-studies.html" class="inline-block uppercase tracking-[0.12em] text-[0.75rem] font-bold text-on-primary-container border border-on-primary-container px-8 py-3 hover:bg-on-primary-container hover:text-primary-container transition-all">View case studies →</a>
 </section>
 
 </main>
@@ -212,35 +235,35 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
   <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
     <div class="col-span-1">
       <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
-      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
-      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+      <p class="text-[0.75rem] leading-relaxed uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">Automation for businesses that still run on manual work.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Navigate</h5>
       <ul class="space-y-4">
-        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
-        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
-        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+        <li><a href="how-it-works.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Actions</h5>
       <ul class="space-y-4">
-        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
-        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
-        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+        <li><a href="assessment.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Legal</h5>
       <ul class="space-y-4">
-        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
-        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+        <li><a href="privacy.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
       </ul>
     </div>
   </div>
   <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
-    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+    <p class="text-[0.65rem] uppercase tracking-[0.12em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
   </div>
 </footer>
 

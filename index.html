@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>HELM8 — Business Automation for UAE SMEs</title>
-<meta name="description" content="Helm8 builds back-office automation systems for UAE SMEs. Invoice processing, document tracking, payroll, reporting. Live in 2–4 weeks."/>
+<title>helm8 | Business Automation</title>
+<meta name="description" content="Helm8 builds back-office automation systems for SMEs. Invoice processing, document tracking, payroll, reporting. Live in 2–4 weeks."/>
+<link rel="icon" type="image/png" href="favicon.png"/>
 <link rel="canonical" href="https://helm8.co/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="HELM8 — Business Automation for UAE SMEs"/>
+<meta property="og:title" content="helm8 | Business Automation"/>
 <meta property="og:description" content="Helm8 builds back-office automation systems for UAE SMEs. Live in 2–4 weeks."/>
 <meta property="og:url" content="https://helm8.co/"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -54,15 +57,16 @@ tailwind.config = {
         "full": "9999px"
       },
       fontFamily: {
-        "headline": ["Inter", "sans-serif"],
-        "body": ["Inter", "sans-serif"],
-        "label": ["Inter", "sans-serif"]
+        "headline": ["Schibsted Grotesk", "sans-serif"],
+        "body": ["Schibsted Grotesk", "sans-serif"],
+        "label": ["Schibsted Grotesk", "sans-serif"]
       }
     }
   }
 }
 </script>
 
+<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 
 <style>
@@ -99,7 +103,7 @@ html.dark body {
   display: block;
   opacity: 0;
   transform: translateY(16px);
-  animation: headline-up 0.6s ease forwards;
+  animation: headline-up 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 .headline-line:nth-child(1) { animation-delay: 0.1s; }
 .headline-line:nth-child(2) { animation-delay: 0.4s; }
@@ -111,7 +115,8 @@ html.dark body {
 .fade-up {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: calc(var(--i, 0) * 60ms);
 }
 .fade-up.visible {
   opacity: 1;
@@ -119,7 +124,7 @@ html.dark body {
 }
 /* Service card hover */
 .svc-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .svc-card:hover {
   transform: translateY(-4px);
@@ -137,7 +142,7 @@ html.dark body {
   bottom: 0; left: 0;
   width: 100%; height: 0;
   background-color: rgba(0,0,0,0.07);
-  transition: height 0.3s ease;
+  transition: height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: -1;
 }
 .btn-hover:hover::after { height: 100%; }
@@ -150,7 +155,18 @@ html.dark body {
   letter-spacing: 0.05em;
 }
 .wa-link a { color: #785a00; text-decoration: underline; }
-.wa-link a:hover { color: #b8902a; }
+.wa-link a:hover { color: #785a00; }
+/* Focus visible */
+:focus-visible { outline: 2px solid #785a00; outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 </style>
 </head>
 
@@ -158,34 +174,42 @@ html.dark body {
 
 <!-- NAV -->
 <div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
-     x-init="dark && document.documentElement.classList.add('dark')">
+     x-init="dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')">
 <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
   <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
     <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
     <div class="hidden md:flex items-center space-x-10">
-      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
-      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
-      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+      <a href="how-it-works.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
     </div>
     <div class="hidden md:flex items-center gap-5">
       <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')"
+              :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
               class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
-        <span class="material-symbols-outlined text-xl" x-text="dark ? 'dark_mode' : 'light_mode'">light_mode</span>
+        <span class="material-symbols-outlined text-xl" x-text="dark ? 'light_mode' : 'dark_mode'">light_mode</span>
       </button>
-      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">Free Audit →</a>
-      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+      <a href="assessment.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
     </div>
-    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open" :aria-expanded="open.toString()" aria-label="Toggle navigation">
       <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
     </button>
   </div>
-  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
-    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
-    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
-    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+  <div x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">How It Works</a>
+    <a href="services.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Services</a>
+    <a href="case-studies.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-3">Case Studies</a>
     <div class="pt-2 flex flex-col gap-3">
-      <a href="assessment.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary text-center">Free Audit →</a>
-      <a href="contact.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container text-center">Book a Call</a>
+      <a href="assessment.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-4 border border-primary text-primary text-center">Free Audit →</a>
+      <a href="contact.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-4 bg-primary-container text-on-primary-container text-center">Book a Call</a>
     </div>
   </div>
 </nav>
@@ -195,25 +219,25 @@ html.dark body {
 <header class="relative pt-40 pb-24 md:pt-64 md:pb-44 px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-12 overflow-visible">
   <div class="hero-blob"></div>
   <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
-    <span class="text-[0.65rem] font-medium uppercase tracking-[0.3em] text-outline" style="writing-mode:vertical-rl;transform:rotate(180deg)">Scroll to explore</span>
+    <span class="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-outline" style="writing-mode:vertical-rl;transform:rotate(180deg)">Scroll to explore</span>
     <div class="w-px h-24 bg-outline-variant"></div>
   </div>
   <div class="flex-1 lg:pl-12 relative z-10">
-    <span class="text-[0.75rem] font-medium uppercase tracking-widest text-primary block mb-6">Business Automation · UAE</span>
+    <span class="text-[0.75rem] font-medium uppercase tracking-[0.12em] text-primary block mb-6">Business Automation · UAE</span>
     <h1 class="text-[2.6rem] md:text-[4.8rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-12">
       <span class="headline-line">Your business runs on</span>
-      <span class="headline-line italic text-primary-container">manual work.</span>
+      <span class="headline-line italic" style="color:#785a00">manual work.</span>
       <span class="headline-line">It doesn't have to.</span>
     </h1>
     <div class="flex flex-wrap gap-4">
-      <a href="contact.html" class="px-8 py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-[0.75rem] btn-hover">Start the conversation →</a>
-      <a href="case-studies.html" class="px-8 py-4 border border-outline text-on-surface font-bold uppercase tracking-widest text-[0.75rem] btn-hover">See the work</a>
+      <a href="contact.html" class="px-8 py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">Start the conversation →</a>
+      <a href="case-studies.html" class="px-8 py-4 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">See the work</a>
     </div>
     <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
   </div>
   <div class="md:w-1/3 flex flex-col justify-end pt-12 md:pt-48 relative z-10">
-    <p class="text-lg leading-relaxed text-secondary font-light border-l-2 border-primary-container pl-6">
-      There is a smarter way to run your operations. We automate the repetitive, high-volume tasks that slow your team down. UAE based, globally scaled.
+    <p class="text-lg leading-relaxed text-secondary font-light pl-0">
+      There is a smarter way to run your operations. We automate the repetitive, high-volume tasks that slow your team down.
     </p>
   </div>
 </header>
@@ -222,17 +246,17 @@ html.dark body {
 <section class="w-full border-y border-outline-variant bg-surface-container-low fade-up">
   <div class="grid grid-cols-1 md:grid-cols-3 max-w-full">
     <div class="p-12 md:py-16 border-b md:border-b-0 md:border-r border-outline-variant">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">No new software</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">No new software</span>
       <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">Zero</div>
       <p class="text-sm text-secondary leading-relaxed">Every system runs on tools your business already uses. We integrate, we don't replace.</p>
     </div>
     <div class="p-12 md:py-16 border-b md:border-b-0 md:border-r border-outline-variant">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Time to go live</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Time to go live</span>
       <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">2–4 weeks</div>
       <p class="text-sm text-secondary leading-relaxed">From signed proposal to live automation. Rapid deployment is our structural mandate.</p>
     </div>
     <div class="p-12 md:py-16">
-      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Infrastructure</span>
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Infrastructure</span>
       <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">UAE built</div>
       <p class="text-sm text-secondary leading-relaxed">PDPL compliant. Locally based engineering. Data sovereignty is never an afterthought.</p>
     </div>
@@ -242,7 +266,7 @@ html.dark body {
 <!-- PROBLEM SECTION -->
 <section class="max-w-7xl mx-auto px-8 py-20 md:py-44 flex flex-col md:flex-row gap-16">
   <div class="md:w-1/3 md:sticky md:top-32 h-fit fade-up">
-    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">The problem</span>
+    <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-4">The problem</span>
     <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
       Expensive work that shouldn't need people.
     </h2>
@@ -272,47 +296,47 @@ html.dark body {
 <section class="bg-surface-container-low py-20 md:py-44 px-8">
   <div class="max-w-7xl mx-auto">
     <div class="mb-16 fade-up">
-      <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">What we build</span>
+      <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-4">What we build</span>
       <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
-        Systems that run <span class="italic text-primary-container">without you.</span>
+        Systems that run <span class="italic" style="color:#785a00">without you.</span>
       </h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant">
-      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up" style="--i:0">
         <div>
           <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">bolt</span>
           <h4 class="text-lg font-bold mb-4">Speed to Lead</h4>
           <p class="text-sm text-secondary leading-relaxed">Instantly qualify and route new leads the second they inquire. No lag, no lost deals.</p>
         </div>
-        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-[0.12em] text-primary mt-8 hover:underline">Learn more →</a>
       </div>
-      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up" style="--i:1">
         <div>
           <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">payments</span>
           <h4 class="text-lg font-bold mb-4">Accounts Receivable</h4>
           <p class="text-sm text-secondary leading-relaxed">Automatic follow-ups for unpaid invoices with escalations based on client profile and amount due.</p>
         </div>
-        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-[0.12em] text-primary mt-8 hover:underline">Learn more →</a>
       </div>
-      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up" style="--i:2">
         <div>
           <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">history_edu</span>
           <h4 class="text-lg font-bold mb-4">Document Expiry</h4>
           <p class="text-sm text-secondary leading-relaxed">Centralized tracking of all legal documents with automated alerts sent to the right person 90 days out.</p>
         </div>
-        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-[0.12em] text-primary mt-8 hover:underline">Learn more →</a>
       </div>
-      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up" style="--i:3">
         <div>
           <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">event_available</span>
           <h4 class="text-lg font-bold mb-4">Appointment Reminders</h4>
           <p class="text-sm text-secondary leading-relaxed">Reduce no-shows with WhatsApp sequences that allow one-click rescheduling or confirmation.</p>
         </div>
-        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-[0.12em] text-primary mt-8 hover:underline">Learn more →</a>
       </div>
     </div>
     <div class="mt-8 text-center fade-up">
-      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">View all 28+ automations →</a>
+      <a href="services.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">View all 28+ automations →</a>
     </div>
   </div>
 </section>
@@ -320,32 +344,32 @@ html.dark body {
 <!-- CASE STUDY PROOF STRIP -->
 <section class="py-16 md:py-32 px-8 max-w-7xl mx-auto">
   <div class="mb-12 fade-up">
-    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">The proof</span>
+    <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-4">The proof</span>
     <h2 class="text-[2rem] font-extrabold leading-tight tracking-tight text-on-surface">Real results in real businesses.</h2>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Import Trading" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4Cqe7fAPnbsXG_kw48TvNp7q5jEcKj-nvun8EWL96JxsTgt0XUAi7JHnwFPwywgBn8q0d34kQFNDU0ll3jL5bN-uxCpu9GP-sku3hnDe56ANQ-yjyIqwKOB0Or66Krxxjudxb6Fqo-dMdJJKFchWcdvyUizHFK6QAO209ix9SJbZgWm7TFZyW8SEDuQCh87-XXMMI-DUG5aGGnpOOqfCj1vRqjhJ4Hsd4wEAG57uHC6pIcAxT2jPRN16xFLH7BHWDAtcC9MweD8Z"/>
+      <img alt="Import Trading" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4Cqe7fAPnbsXG_kw48TvNp7q5jEcKj-nvun8EWL96JxsTgt0XUAi7JHnwFPwywgBn8q0d34kQFNDU0ll3jL5bN-uxCpu9GP-sku3hnDe56ANQ-yjyIqwKOB0Or66Krxxjudxb6Fqo-dMdJJKFchWcdvyUizHFK6QAO209ix9SJbZgWm7TFZyW8SEDuQCh87-XXMMI-DUG5aGGnpOOqfCj1vRqjhJ4Hsd4wEAG57uHC6pIcAxT2jPRN16xFLH7BHWDAtcC9MweD8Z"/ loading="lazy">
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Import Trading · CS03</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Import Trading · CS03</span>
         <div class="text-3xl font-black text-primary mb-2">3 Days</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">Recovered every month</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
     </div>
     <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Freight & Logistics" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQ7S5b-B9goAVbK5Nch2VKTp1stn0txmQdG4eK47EgcJo5cfW0CVwjOhKy4MY_RxP6dSLm8n1fPs0BW9ZZOwEjOpmcc7FwentdvNghjYVRCyE0w6ffN1bZsJcmmLdm5Wg2x7sAaHtTEZSf01MaUxtHsXXXpQhM1nZMR8IKVq85hzXNaqFXXxd-0rY6ueRcxAecmzXksIv86ssYwMDRiJTCWNmnGJXHIULQSdKC-gSXvmUNhuMLs3f3gTXXkbxcn4oQH9q3U5fTnkH"/>
+      <img alt="Freight & Logistics" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQ7S5b-B9goAVbK5Nch2VKTp1stn0txmQdG4eK47EgcJo5cfW0CVwjOhKy4MY_RxP6dSLm8n1fPs0BW9ZZOwEjOpmcc7FwentdvNghjYVRCyE0w6ffN1bZsJcmmLdm5Wg2x7sAaHtTEZSf01MaUxtHsXXXpQhM1nZMR8IKVq85hzXNaqFXXxd-0rY6ueRcxAecmzXksIv86ssYwMDRiJTCWNmnGJXHIULQSdKC-gSXvmUNhuMLs3f3gTXXkbxcn4oQH9q3U5fTnkH"/ loading="lazy">
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Freight & Logistics · CS04</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Freight & Logistics · CS04</span>
         <div class="text-3xl font-black text-primary mb-2">52 → 19</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">Days to collect payment</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
     </div>
     <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Healthcare" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRd_g0JPpqjUDN9-Vo5Az09D9itXp3ftNPF76fdrjYAphP85tzXUmH1Z6VOa_nlPGa5p_irSU2cN-2aOTqh2Ko1YV9UljQxX_iw0hC9JFtz4870PIb2VzqaDmvcvAmSF5HjOSE5jMMToyrrwFccBFAc2W1FvUMRfS6FZK-5aORsRQwDp_cxO08LOk0CGAGKDfFiqhc3ITgloGm-Ji5dWWslewZBj5UZGRVgPb_O4kwY3eBgFkKi0RDQJULzYPFWmIJ4EgoOpLeYMRq"/>
+      <img alt="Healthcare" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRd_g0JPpqjUDN9-Vo5Az09D9itXp3ftNPF76fdrjYAphP85tzXUmH1Z6VOa_nlPGa5p_irSU2cN-2aOTqh2Ko1YV9UljQxX_iw0hC9JFtz4870PIb2VzqaDmvcvAmSF5HjOSE5jMMToyrrwFccBFAc2W1FvUMRfS6FZK-5aORsRQwDp_cxO08LOk0CGAGKDfFiqhc3ITgloGm-Ji5dWWslewZBj5UZGRVgPb_O4kwY3eBgFkKi0RDQJULzYPFWmIJ4EgoOpLeYMRq"/ loading="lazy">
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Healthcare · CS08</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Healthcare · CS08</span>
         <div class="text-3xl font-black text-primary mb-2">22% → 8%</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">No-show rate</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
@@ -353,19 +377,19 @@ html.dark body {
     </div>
   </div>
   <div class="mt-10 text-center fade-up">
-    <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">See all 8 case studies →</a>
+    <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">See all 8 case studies →</a>
   </div>
 </section>
 
 <!-- HOW IT WORKS PREVIEW -->
 <section class="max-w-7xl mx-auto px-8 py-20 md:py-44 flex flex-col md:flex-row gap-16 border-t border-outline-variant">
   <div class="md:w-1/3 md:sticky md:top-32 h-fit fade-up">
-    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">How it works</span>
+    <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-4">How it works</span>
     <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
       From conversation to running system.
     </h2>
     <p class="mt-6 text-secondary text-sm leading-relaxed">We operate with the precision of a civil engineering firm. No fluff, just results.</p>
-    <a href="how-it-works.html" class="mt-8 inline-block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-primary hover:underline">See the full process →</a>
+    <a href="how-it-works.html" class="mt-8 inline-block uppercase tracking-[0.12em] text-[0.75rem] font-medium text-primary hover:underline">See the full process →</a>
   </div>
   <div class="md:w-2/3 flex flex-col gap-24 pl-12 border-l border-outline-variant">
     <div class="relative fade-up">
@@ -389,20 +413,22 @@ html.dark body {
 <!-- GOLD BANNER -->
 <section class="bg-primary-container p-12 md:p-32 text-on-primary-container text-center fade-up">
   <h2 class="text-2xl md:text-4xl font-extrabold mb-8 max-w-3xl mx-auto tracking-tight">Not sure where to start? Let us audit your operations for free.</h2>
-  <a href="assessment.html" class="inline-block px-10 py-5 bg-on-primary-container text-primary-container font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-all btn-hover">Take the free audit →</a>
-  <p class="wa-link mt-6" style="color:rgba(60,44,0,0.6)">Prefer WhatsApp? <a href="https://wa.me/971541676707" style="color:#3c2c00;text-decoration:underline">Message us directly.</a></p>
+  <a href="assessment.html" class="inline-block px-10 py-5 bg-on-primary-container text-primary-container font-black uppercase tracking-[0.12em] text-sm hover:bg-black hover:text-white transition-all btn-hover">Take the free audit →</a>
 </section>
 
 <!-- FINAL CTA -->
-<section class="py-20 md:py-44 px-8 max-w-5xl mx-auto text-center fade-up">
-  <h2 class="text-[2.4rem] md:text-[3.5rem] font-extrabold leading-[1.1] tracking-tighter text-on-background mb-16">
-    Ready to stop running your business on <span class="italic text-primary-container">manual work?</span>
-  </h2>
-  <div class="flex flex-col md:flex-row justify-center gap-6">
-    <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-sm btn-hover">Start the conversation →</a>
-    <a href="case-studies.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-widest text-sm btn-hover">See real results</a>
+<section class="py-20 md:py-44 px-8 md:px-24 fade-up">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+    <div class="md:col-span-8">
+      <h2 class="text-[2.4rem] md:text-[3.5rem] font-extrabold leading-[1.1] tracking-tighter text-on-background mb-12">
+        Ready to stop running your business on <span class="italic" style="color:#785a00">manual work?</span>
+      </h2>
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-sm btn-hover">Start the conversation →</a>
+        <a href="case-studies.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-sm btn-hover">See real results</a>
+      </div>
+    </div>
   </div>
-  <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
 </section>
 
 <!-- FOOTER -->
@@ -410,35 +436,35 @@ html.dark body {
   <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
     <div class="col-span-1">
       <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
-      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
-      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+      <p class="text-[0.75rem] leading-relaxed uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">Automation for businesses that still run on manual work.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Navigate</h5>
       <ul class="space-y-4">
-        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
-        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
-        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+        <li><a href="how-it-works.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Actions</h5>
       <ul class="space-y-4">
-        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
-        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
-        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+        <li><a href="assessment.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
       </ul>
     </div>
     <div>
-      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-[0.12em] mb-6 text-primary">Legal</h5>
       <ul class="space-y-4">
-        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
-        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+        <li><a href="privacy.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="text-[0.75rem] uppercase tracking-[0.12em] text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
       </ul>
     </div>
   </div>
   <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
-    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+    <p class="text-[0.65rem] uppercase tracking-[0.12em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
   </div>
 </footer>
 
