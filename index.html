@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HELM8 — Business Automation for UAE SMEs</title>
+<meta name="description" content="Helm8 builds back-office automation systems for UAE SMEs. Invoice processing, document tracking, payroll, reporting. Live in 2–4 weeks."/>
+<link rel="canonical" href="https://helm8.co/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="HELM8 — Business Automation for UAE SMEs"/>
+<meta property="og:description" content="Helm8 builds back-office automation systems for UAE SMEs. Live in 2–4 weeks."/>
+<meta property="og:url" content="https://helm8.co/"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5",
+        "surface-bright": "#fafaf5",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f4f4ef",
+        "surface-container": "#eeeee9",
+        "surface-container-high": "#e8e8e3",
+        "surface-container-highest": "#e3e3de",
+        "surface-dim": "#dadad5",
+        "on-surface": "#1a1c19",
+        "on-background": "#1a1c19",
+        "background": "#fafaf5",
+        "primary": "#785a00",
+        "primary-container": "#b8902a",
+        "primary-fixed": "#ffdf9b",
+        "on-primary": "#ffffff",
+        "on-primary-container": "#3c2c00",
+        "on-primary-fixed": "#251a00",
+        "secondary": "#5f5e5c",
+        "secondary-container": "#e5e2de",
+        "outline": "#807664",
+        "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e",
+        "inverse-primary": "#edc157",
+        "surface-variant": "#e3e3de",
+        "tertiary": "#5f5f59",
+        "on-tertiary": "#ffffff",
+      },
+      borderRadius: {
+        "DEFAULT": "0px",
+        "lg": "0px",
+        "xl": "0px",
+        "full": "9999px"
+      },
+      fontFamily: {
+        "headline": ["Inter", "sans-serif"],
+        "body": ["Inter", "sans-serif"],
+        "label": ["Inter", "sans-serif"]
+      }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+body {
+  background-color: #fafaf5;
+  background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px);
+  background-size: 12px 12px;
+}
+html.dark body {
+  background-color: #0d0d0d;
+  background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px);
+  background-size: 12px 12px;
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+/* Hero blob */
+.hero-blob {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(184,144,42,0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: blob-drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes blob-drift {
+  from { transform: translate(-10%, -10%); }
+  to   { transform: translate(30%, 20%); }
+}
+/* Hero headline stagger */
+.headline-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: headline-up 0.6s ease forwards;
+}
+.headline-line:nth-child(1) { animation-delay: 0.1s; }
+.headline-line:nth-child(2) { animation-delay: 0.4s; }
+.headline-line:nth-child(3) { animation-delay: 0.7s; }
+@keyframes headline-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Scroll reveals */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Service card hover */
+.svc-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+/* Button hover fill */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn-hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 0;
+  background-color: rgba(0,0,0,0.07);
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+.btn-hover:hover::after { height: 100%; }
+/* WhatsApp link */
+.wa-link {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.75rem;
+  color: #807664;
+  letter-spacing: 0.05em;
+}
+.wa-link a { color: #785a00; text-decoration: underline; }
+.wa-link a:hover { color: #b8902a; }
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')"
+              class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark ? 'dark_mode' : 'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary text-center">Free Audit →</a>
+      <a href="contact.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container text-center">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<!-- HERO -->
+<header class="relative pt-40 pb-24 md:pt-64 md:pb-44 px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-12 overflow-visible">
+  <div class="hero-blob"></div>
+  <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
+    <span class="text-[0.65rem] font-medium uppercase tracking-[0.3em] text-outline" style="writing-mode:vertical-rl;transform:rotate(180deg)">Scroll to explore</span>
+    <div class="w-px h-24 bg-outline-variant"></div>
+  </div>
+  <div class="flex-1 lg:pl-12 relative z-10">
+    <span class="text-[0.75rem] font-medium uppercase tracking-widest text-primary block mb-6">Business Automation · UAE</span>
+    <h1 class="text-[2.6rem] md:text-[4.8rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-12">
+      <span class="headline-line">Your business runs on</span>
+      <span class="headline-line italic text-primary-container">manual work.</span>
+      <span class="headline-line">It doesn't have to.</span>
+    </h1>
+    <div class="flex flex-wrap gap-4">
+      <a href="contact.html" class="px-8 py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-[0.75rem] btn-hover">Start the conversation →</a>
+      <a href="case-studies.html" class="px-8 py-4 border border-outline text-on-surface font-bold uppercase tracking-widest text-[0.75rem] btn-hover">See the work</a>
+    </div>
+    <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
+  </div>
+  <div class="md:w-1/3 flex flex-col justify-end pt-12 md:pt-48 relative z-10">
+    <p class="text-lg leading-relaxed text-secondary font-light border-l-2 border-primary-container pl-6">
+      There is a smarter way to run your operations. We automate the repetitive, high-volume tasks that slow your team down. UAE based, globally scaled.
+    </p>
+  </div>
+</header>
+
+<!-- PROOF STRIP -->
+<section class="w-full border-y border-outline-variant bg-surface-container-low fade-up">
+  <div class="grid grid-cols-1 md:grid-cols-3 max-w-full">
+    <div class="p-12 md:py-16 border-b md:border-b-0 md:border-r border-outline-variant">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">No new software</span>
+      <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">Zero</div>
+      <p class="text-sm text-secondary leading-relaxed">Every system runs on tools your business already uses. We integrate, we don't replace.</p>
+    </div>
+    <div class="p-12 md:py-16 border-b md:border-b-0 md:border-r border-outline-variant">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Time to go live</span>
+      <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">2–4 weeks</div>
+      <p class="text-sm text-secondary leading-relaxed">From signed proposal to live automation. Rapid deployment is our structural mandate.</p>
+    </div>
+    <div class="p-12 md:py-16">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Infrastructure</span>
+      <div class="text-5xl md:text-6xl font-extrabold text-on-surface mb-4">UAE built</div>
+      <p class="text-sm text-secondary leading-relaxed">PDPL compliant. Locally based engineering. Data sovereignty is never an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="max-w-7xl mx-auto px-8 py-20 md:py-44 flex flex-col md:flex-row gap-16">
+  <div class="md:w-1/3 md:sticky md:top-32 h-fit fade-up">
+    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">The problem</span>
+    <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
+      Expensive work that shouldn't need people.
+    </h2>
+    <div class="mt-8 w-12 h-1 bg-primary"></div>
+  </div>
+  <div class="md:w-2/3 flex flex-col gap-px bg-outline-variant">
+    <div class="bg-surface p-12 group hover:bg-surface-container-low transition-colors duration-500 fade-up">
+      <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Every Monday</h3>
+      <p class="text-secondary leading-relaxed max-w-xl">Hours lost manually compiling reports from fragmented spreadsheets and legacy databases for the executive summary.</p>
+    </div>
+    <div class="bg-surface p-12 group hover:bg-surface-container-low transition-colors duration-500 fade-up">
+      <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Document renewals</h3>
+      <p class="text-secondary leading-relaxed max-w-xl">Missing visa or trade license expiration dates because a reminder was buried in an inbox or a static calendar.</p>
+    </div>
+    <div class="bg-surface p-12 group hover:bg-surface-container-low transition-colors duration-500 fade-up">
+      <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Invoice processing</h3>
+      <p class="text-secondary leading-relaxed max-w-xl">Manual data entry of paper or PDF invoices into accounting software, risking human error and late payment penalties.</p>
+    </div>
+    <div class="bg-surface p-12 group hover:bg-surface-container-low transition-colors duration-500 fade-up">
+      <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Overdue payments</h3>
+      <p class="text-secondary leading-relaxed max-w-xl">Leaving revenue on the table because chasing clients for payment feels like a secondary task rather than a core system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="bg-surface-container-low py-20 md:py-44 px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16 fade-up">
+      <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">What we build</span>
+      <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
+        Systems that run <span class="italic text-primary-container">without you.</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant">
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">bolt</span>
+          <h4 class="text-lg font-bold mb-4">Speed to Lead</h4>
+          <p class="text-sm text-secondary leading-relaxed">Instantly qualify and route new leads the second they inquire. No lag, no lost deals.</p>
+        </div>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+      </div>
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">payments</span>
+          <h4 class="text-lg font-bold mb-4">Accounts Receivable</h4>
+          <p class="text-sm text-secondary leading-relaxed">Automatic follow-ups for unpaid invoices with escalations based on client profile and amount due.</p>
+        </div>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+      </div>
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">history_edu</span>
+          <h4 class="text-lg font-bold mb-4">Document Expiry</h4>
+          <p class="text-sm text-secondary leading-relaxed">Centralized tracking of all legal documents with automated alerts sent to the right person 90 days out.</p>
+        </div>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+      </div>
+      <div class="bg-surface-container-lowest p-8 flex flex-col justify-between min-h-[300px] svc-card fade-up">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-6" style="font-size:2rem">event_available</span>
+          <h4 class="text-lg font-bold mb-4">Appointment Reminders</h4>
+          <p class="text-sm text-secondary leading-relaxed">Reduce no-shows with WhatsApp sequences that allow one-click rescheduling or confirmation.</p>
+        </div>
+        <a href="services.html" class="text-[0.65rem] font-black uppercase tracking-widest text-primary-container mt-8 hover:underline">Learn more →</a>
+      </div>
+    </div>
+    <div class="mt-8 text-center fade-up">
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">View all 28+ automations →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY PROOF STRIP -->
+<section class="py-16 md:py-32 px-8 max-w-7xl mx-auto">
+  <div class="mb-12 fade-up">
+    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">The proof</span>
+    <h2 class="text-[2rem] font-extrabold leading-tight tracking-tight text-on-surface">Real results in real businesses.</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
+      <img alt="Import Trading" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4Cqe7fAPnbsXG_kw48TvNp7q5jEcKj-nvun8EWL96JxsTgt0XUAi7JHnwFPwywgBn8q0d34kQFNDU0ll3jL5bN-uxCpu9GP-sku3hnDe56ANQ-yjyIqwKOB0Or66Krxxjudxb6Fqo-dMdJJKFchWcdvyUizHFK6QAO209ix9SJbZgWm7TFZyW8SEDuQCh87-XXMMI-DUG5aGGnpOOqfCj1vRqjhJ4Hsd4wEAG57uHC6pIcAxT2jPRN16xFLH7BHWDAtcC9MweD8Z"/>
+      <div class="relative z-10">
+        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Import Trading · CS03</span>
+        <div class="text-3xl font-black text-primary mb-2">3 Days</div>
+        <p class="text-sm font-bold uppercase mb-6 tracking-tight">Recovered every month</p>
+        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+      </div>
+    </div>
+    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
+      <img alt="Freight & Logistics" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQ7S5b-B9goAVbK5Nch2VKTp1stn0txmQdG4eK47EgcJo5cfW0CVwjOhKy4MY_RxP6dSLm8n1fPs0BW9ZZOwEjOpmcc7FwentdvNghjYVRCyE0w6ffN1bZsJcmmLdm5Wg2x7sAaHtTEZSf01MaUxtHsXXXpQhM1nZMR8IKVq85hzXNaqFXXxd-0rY6ueRcxAecmzXksIv86ssYwMDRiJTCWNmnGJXHIULQSdKC-gSXvmUNhuMLs3f3gTXXkbxcn4oQH9q3U5fTnkH"/>
+      <div class="relative z-10">
+        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Freight & Logistics · CS04</span>
+        <div class="text-3xl font-black text-primary mb-2">52 → 19</div>
+        <p class="text-sm font-bold uppercase mb-6 tracking-tight">Days to collect payment</p>
+        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+      </div>
+    </div>
+    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
+      <img alt="Healthcare" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRd_g0JPpqjUDN9-Vo5Az09D9itXp3ftNPF76fdrjYAphP85tzXUmH1Z6VOa_nlPGa5p_irSU2cN-2aOTqh2Ko1YV9UljQxX_iw0hC9JFtz4870PIb2VzqaDmvcvAmSF5HjOSE5jMMToyrrwFccBFAc2W1FvUMRfS6FZK-5aORsRQwDp_cxO08LOk0CGAGKDfFiqhc3ITgloGm-Ji5dWWslewZBj5UZGRVgPb_O4kwY3eBgFkKi0RDQJULzYPFWmIJ4EgoOpLeYMRq"/>
+      <div class="relative z-10">
+        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-4">Healthcare · CS08</span>
+        <div class="text-3xl font-black text-primary mb-2">22% → 8%</div>
+        <p class="text-sm font-bold uppercase mb-6 tracking-tight">No-show rate</p>
+        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+      </div>
+    </div>
+  </div>
+  <div class="mt-10 text-center fade-up">
+    <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">See all 8 case studies →</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS PREVIEW -->
+<section class="max-w-7xl mx-auto px-8 py-20 md:py-44 flex flex-col md:flex-row gap-16 border-t border-outline-variant">
+  <div class="md:w-1/3 md:sticky md:top-32 h-fit fade-up">
+    <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-4">How it works</span>
+    <h2 class="text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">
+      From conversation to running system.
+    </h2>
+    <p class="mt-6 text-secondary text-sm leading-relaxed">We operate with the precision of a civil engineering firm. No fluff, just results.</p>
+    <a href="how-it-works.html" class="mt-8 inline-block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-primary hover:underline">See the full process →</a>
+  </div>
+  <div class="md:w-2/3 flex flex-col gap-24 pl-12 border-l border-outline-variant">
+    <div class="relative fade-up">
+      <div class="absolute -left-[53px] top-0 w-10 h-10 bg-primary flex items-center justify-center text-on-primary font-black">01</div>
+      <h3 class="text-xl font-bold mb-4 uppercase">The Conversation</h3>
+      <p class="text-secondary leading-relaxed mb-6">We map your existing manual workflows in a 30-minute technical audit. We find the friction points that are costing you time and capital.</p>
+    </div>
+    <div class="relative fade-up">
+      <div class="absolute -left-[53px] top-0 w-10 h-10 bg-surface-container-high flex items-center justify-center text-on-surface font-black border border-outline-variant">02</div>
+      <h3 class="text-xl font-bold mb-4 uppercase">The Proposal</h3>
+      <p class="text-secondary leading-relaxed mb-6">You receive a fixed-fee blueprint. It outlines exactly which systems we will automate and the projected ROI in hours saved.</p>
+    </div>
+    <div class="relative fade-up">
+      <div class="absolute -left-[53px] top-0 w-10 h-10 bg-surface-container-high flex items-center justify-center text-on-surface font-black border border-outline-variant">03</div>
+      <h3 class="text-xl font-bold mb-4 uppercase">The Build</h3>
+      <p class="text-secondary leading-relaxed mb-6">Our engineers build the integrations. We test, we deploy, and we provide your team with a simple dashboard to monitor the machine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GOLD BANNER -->
+<section class="bg-primary-container p-12 md:p-32 text-on-primary-container text-center fade-up">
+  <h2 class="text-2xl md:text-4xl font-extrabold mb-8 max-w-3xl mx-auto tracking-tight">Not sure where to start? Let us audit your operations for free.</h2>
+  <a href="assessment.html" class="inline-block px-10 py-5 bg-on-primary-container text-primary-container font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-all btn-hover">Take the free audit →</a>
+  <p class="wa-link mt-6" style="color:rgba(60,44,0,0.6)">Prefer WhatsApp? <a href="https://wa.me/971541676707" style="color:#3c2c00;text-decoration:underline">Message us directly.</a></p>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-20 md:py-44 px-8 max-w-5xl mx-auto text-center fade-up">
+  <h2 class="text-[2.4rem] md:text-[3.5rem] font-extrabold leading-[1.1] tracking-tighter text-on-background mb-16">
+    Ready to stop running your business on <span class="italic text-primary-container">manual work?</span>
+  </h2>
+  <div class="flex flex-col md:flex-row justify-center gap-6">
+    <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-sm btn-hover">Start the conversation →</a>
+    <a href="case-studies.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-widest text-sm btn-hover">See real results</a>
+  </div>
+  <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
+    <div class="col-span-1">
+      <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
+      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <ul class="space-y-4">
+        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <ul class="space-y-4">
+        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <ul class="space-y-4">
+        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
+    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveals
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>

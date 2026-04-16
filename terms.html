@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — HELM8</title>
+<meta name="description" content="Terms governing Helm8's automation consulting services. UAE law applies."/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5", "on-surface": "#1a1c19", "background": "#fafaf5",
+        "primary": "#785a00", "primary-container": "#b8902a",
+        "on-primary-container": "#3c2c00",
+        "secondary": "#5f5e5c", "outline": "#807664", "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
+        "primary-fixed": "#ffdf9b", "on-primary": "#ffffff", "on-primary-fixed": "#251a00",
+      },
+      borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"] }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
+html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.prose h2 { font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 0.75rem; color: #785a00; }
+.prose p, .prose li { font-size: 0.925rem; line-height: 1.75; color: #5f5e5c; margin-bottom: 0.75rem; }
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+html.dark .prose p, html.dark .prose li { color: #a0a09a; }
+html.dark .prose h2 { color: #edc157; }
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<main class="pt-32 pb-24 px-8 md:px-24 max-w-3xl mx-auto">
+  <p class="text-[0.7rem] font-bold uppercase tracking-widest text-outline mb-4">Legal</p>
+  <h1 class="text-[2rem] md:text-[2.8rem] font-extrabold leading-tight tracking-tighter text-on-background mb-4">Terms of Service</h1>
+  <p class="text-sm text-secondary mb-12">Last updated: April 2026</p>
+
+  <div class="prose">
+
+    <h2>Who these terms apply to</h2>
+    <p>These terms govern the relationship between Helm8 (trading as Hassan Nader, UAE) and any individual or company that engages Helm8 for automation consulting services or uses the helm8.co website. By submitting a contact form, booking a call, or signing a service agreement, you accept these terms.</p>
+
+    <h2>Services</h2>
+    <p>Helm8 provides business automation consulting and implementation services, including but not limited to workflow automation design, n8n configuration, document processing automations, and associated advisory work. The specific scope of any engagement is defined in a written proposal signed by both parties.</p>
+    <p>Services described on this website are illustrative. Final scope, pricing, and timeline are agreed in a signed proposal. Nothing on the website constitutes a binding offer.</p>
+
+    <h2>Enquiries and discovery calls</h2>
+    <p>Booking a discovery call or submitting a contact form does not create a contractual obligation on either side. No work begins and no fees are owed until a written proposal has been signed and a deposit received.</p>
+
+    <h2>Free audit tool</h2>
+    <p>The free operations assessment tool available on this website produces an estimate of manual work costs based on inputs you provide. The output is indicative only. It does not constitute a formal audit, a binding quotation, or professional advice. Actual costs and savings will depend on the specifics of your business.</p>
+
+    <h2>Payment</h2>
+    <p>Unless otherwise stated in a proposal, payment terms are: 50% deposit before work starts, 50% on delivery. Retainer engagements begin on the 1st of the month following go-live. Invoices are due within 7 days of issue.</p>
+
+    <h2>Intellectual property</h2>
+    <p>On receipt of final payment, the client owns all automation workflows, documentation, and materials built for their specific engagement. Helm8 retains the right to use methodologies, frameworks, and general approaches in future work.</p>
+    <p>Helm8 retains all intellectual property in materials not specifically created for a client engagement, including website content, templates, and assessment tools.</p>
+
+    <h2>Client responsibilities</h2>
+    <p>Clients are responsible for providing accurate information during scoping, granting necessary access to systems and tools, and ensuring a named contact is available for questions during the build period. Delays caused by unavailability of access or information may affect the agreed timeline.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>Helm8's liability in connection with any engagement is limited to the fees paid by the client for the specific engagement giving rise to the claim. Helm8 is not liable for any indirect, consequential, or business losses including lost revenue or data loss arising from the use or failure of automation systems.</p>
+    <p>Helm8 builds and tests automations with real data before go-live. The client is responsible for maintaining backups of business data independently of any automation Helm8 delivers.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of the United Arab Emirates. Any dispute arising will be subject to the jurisdiction of the courts of the UAE.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about these terms: <a href="mailto:hello@helm8.co" class="text-primary underline">hello@helm8.co</a></p>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-outline-variant">
+  <div class="max-w-7xl mx-auto px-8 md:px-24 py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+    <div>
+      <span class="block mb-2"><img src="logo.png" alt="Helm8" class="h-7 w-auto dark:invert"/></span>
+      <p class="text-sm text-secondary">Business automation for UAE SMEs.</p>
+    </div>
+    <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-secondary">
+      <a href="how-it-works.html" class="hover:text-on-surface transition-colors">How It Works</a>
+      <a href="services.html" class="hover:text-on-surface transition-colors">Services</a>
+      <a href="case-studies.html" class="hover:text-on-surface transition-colors">Case Studies</a>
+      <a href="contact.html" class="hover:text-on-surface transition-colors">Contact</a>
+    </div>
+    <p class="text-xs text-outline">&copy; 2026 Helm8. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

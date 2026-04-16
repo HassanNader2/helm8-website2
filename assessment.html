@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free Operations Audit — HELM8</title>
+<meta name="description" content="Find out how much manual work is costing your business. 3-minute assessment. Instant results in AED."/>
+<link rel="canonical" href="https://helm8.co/assessment.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Free Operations Audit — HELM8"/>
+<meta property="og:url" content="https://helm8.co/assessment.html"/>
+<meta property="og:description" content="Find out how much manual work is costing your business. 3-minute assessment. Instant results in AED."/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5", "surface-bright": "#fafaf5",
+        "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f4ef",
+        "surface-container": "#eeeee9", "surface-container-high": "#e8e8e3",
+        "surface-container-highest": "#e3e3de", "surface-dim": "#dadad5",
+        "on-surface": "#1a1c19", "on-background": "#1a1c19", "background": "#fafaf5",
+        "primary": "#785a00", "primary-container": "#b8902a",
+        "primary-fixed": "#ffdf9b", "on-primary": "#ffffff",
+        "on-primary-container": "#3c2c00", "on-primary-fixed": "#251a00",
+        "secondary": "#5f5e5c", "secondary-container": "#e5e2de",
+        "outline": "#807664", "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
+      },
+      borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"], "label": ["Inter","sans-serif"] }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --gold:     #b8902a;
+  --gold-bg:  rgba(184,144,42,0.06);
+  --gold-ln:  #d1c5b0;
+  --text:     #1a1c19;
+  --muted:    #5f5e5c;
+  --faint:    #807664;
+  --bg:       #fafaf5;
+  --bg2:      #f4f4ef;
+  --border:   #d1c5b0;
+  --border2:  #e8e8e3;
+  --pad:      24px;
+  --font-d:   'Inter', sans-serif;
+  --font-b:   'Inter', sans-serif;
+}
+
+/* ── GLOBAL ─────────────────────────────────────── */
+body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; color: var(--text); font-family: var(--font-b); }
+html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
+html.dark { --gold: #edc157; --gold-bg: rgba(237,193,87,0.08); --gold-ln: rgba(237,193,87,0.3); --text: #e8e8e0; --muted: #a0a09a; --faint: #6e6e68; --bg: #0d0d0d; --bg2: #161616; --border: rgba(232,232,224,0.18); --border2: rgba(232,232,224,0.10); }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── SHARED BUTTON CLASSES ──────────────────────── */
+.btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-b); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.18s; text-decoration: none; padding: 12px 28px; border: 1px solid transparent; }
+.btn-solid { background: var(--gold); color: #fff; border-color: var(--gold); }
+.btn-solid:hover { opacity: 0.88; }
+.btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--gold-ln); background: var(--bg2); }
+
+/* ── BASE ───────────────────────────────────────── */
+.audit-wrap { min-height: calc(100vh - 68px); padding: 68px 0 0; }
+
+/* ── PROGRESS BAR ───────────────────────────────── */
+.audit-progress { position:fixed; top:68px; left:0; right:0; height:3px; background:var(--border); z-index:150; }
+.audit-progress-fill { height:100%; background:var(--gold); transition:width 0.5s cubic-bezier(0.4,0,0.2,1); width:0%; }
+
+/* ── INTRO SCREEN ───────────────────────────────── */
+.audit-intro { min-height:calc(100vh - 68px); display:flex; align-items:center; justify-content:center; padding:48px var(--pad); }
+.audit-intro-inner { max-width:580px; text-align:center; }
+.audit-badge { display:inline-flex; align-items:center; gap:8px; background:var(--gold-bg); border:1px solid var(--gold-ln); border-radius:20px; padding:6px 16px; font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:28px; }
+.audit-intro-inner h1 { font-family:var(--font-d); font-size:clamp(38px,6vw,64px); font-weight:700; line-height:0.95; letter-spacing:-0.025em; margin-bottom:20px; }
+.audit-intro-inner h1 em { font-style:italic; color:var(--gold); }
+.audit-intro-inner > p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:36px; max-width:440px; margin-left:auto; margin-right:auto; }
+.audit-meta { display:flex; justify-content:center; gap:28px; margin-bottom:40px; flex-wrap:wrap; }
+.audit-meta-item { text-align:center; }
+.audit-meta-item .n { font-family:var(--font-d); font-size:26px; font-weight:600; color:var(--text); display:block; line-height:1; margin-bottom:4px; }
+.audit-meta-item .l { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--faint); }
+
+/* ── QUESTION SCREENS ───────────────────────────── */
+.q-screen { display:none; min-height:calc(100vh - 70px); align-items:center; justify-content:center; padding:40px var(--pad) 100px; }
+.q-screen.active { display:flex; animation:auditFadeUp 0.35s cubic-bezier(0.4,0,0.2,1); }
+@keyframes auditFadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.q-inner { max-width:680px; width:100%; }
+.q-step-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.q-step-label { font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--gold); white-space:nowrap; }
+.q-step-line { flex:1; height:1px; background:var(--border); max-width:100px; }
+.q-title { font-family:var(--font-d); font-size:clamp(22px,3.5vw,36px); font-weight:700; line-height:1.1; letter-spacing:-0.02em; margin-bottom:8px; }
+.q-sub { font-size:13px; color:var(--muted); margin-bottom:22px; line-height:1.7; max-width:520px; }
+
+/* ── OPTION CARDS ───────────────────────────────── */
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opts-2col { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.opt { background:var(--bg); border:1px solid var(--border2); padding:14px 16px; cursor:pointer; transition:border-color 0.15s, background 0.15s; display:flex; align-items:flex-start; gap:14px; text-align:left; }
+.opt:hover { border-color:var(--gold-ln); background:var(--bg2); }
+.opt.selected { border-color:var(--gold); background:var(--gold-bg); }
+.opt-radio { width:18px; height:18px; min-width:18px; border-radius:50%; border:1.5px solid var(--border2); position:relative; transition:border-color 0.15s; margin-top:1px; }
+.opt.selected .opt-radio { border-color:var(--gold); }
+.opt.selected .opt-radio::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:8px; height:8px; border-radius:50%; background:var(--gold); }
+.opt-label { font-size:14px; font-weight:500; color:var(--text); display:block; line-height:1.35; margin-bottom:2px; }
+.opt-desc { font-size:12px; color:var(--muted); line-height:1.55; }
+
+/* ── CATEGORY CARDS ─────────────────────────────── */
+.cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.cat-opt { background:var(--bg); border:1px solid var(--border2); padding:20px 18px; cursor:pointer; transition:all 0.18s; text-align:left; position:relative; }
+.cat-opt:hover { border-color:var(--gold-ln); background:var(--bg2); }
+.cat-opt.selected { border-color:var(--gold); background:var(--gold-bg); }
+.cat-opt.selected::after { content:'✓'; position:absolute; top:12px; right:14px; font-size:13px; color:var(--gold); font-weight:700; }
+.cat-icon { font-size:22px; line-height:1; margin-bottom:10px; display:block; }
+.cat-name { font-family:var(--font-d); font-size:17px; font-weight:600; color:var(--text); line-height:1.1; margin-bottom:6px; }
+.cat-desc { font-size:11px; color:var(--muted); line-height:1.6; }
+
+/* ── SEVERITY + ROLE BLOCKS ─────────────────────── */
+.sev-block { margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--border); }
+.sev-block:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.sev-block-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.sev-block-icon { font-size:18px; }
+.sev-block-title { font-family:var(--font-d); font-size:19px; font-weight:600; line-height:1.1; }
+.sev-question { font-size:12px; color:var(--muted); margin-bottom:10px; font-weight:500; letter-spacing:0.3px; }
+.sev-opts { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.sev-opt { background:var(--bg); border:1px solid var(--border2); padding:11px 14px; cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:12px; }
+.sev-opt:hover { border-color:var(--gold-ln); }
+.sev-opt.selected { border-color:var(--gold); background:var(--gold-bg); }
+.sev-opt-radio { width:16px; height:16px; min-width:16px; border-radius:50%; border:1.5px solid var(--border2); position:relative; transition:all 0.15s; }
+.sev-opt.selected .sev-opt-radio { border-color:var(--gold); }
+.sev-opt.selected .sev-opt-radio::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; border-radius:50%; background:var(--gold); }
+.sev-opt-text { font-size:13px; color:var(--text); font-weight:400; line-height:1.4; }
+.role-section { margin-top:10px; }
+.role-label { font-size:10px; color:var(--muted); letter-spacing:1.2px; text-transform:uppercase; margin-bottom:8px; display:block; }
+.role-btns { display:flex; gap:6px; flex-wrap:wrap; }
+.role-btn { font-size:11px; padding:6px 13px; border:1px solid var(--border2); background:var(--bg); cursor:pointer; transition:all 0.15s; color:var(--muted); font-family:var(--font-b); line-height:1.3; text-align:left; }
+.role-btn:hover { border-color:var(--gold-ln); color:var(--text); }
+.role-btn.selected { border-color:var(--gold); background:var(--gold-bg); color:var(--text); }
+.role-rate { display:block; font-size:10px; opacity:0.6; margin-top:1px; }
+
+/* ── EMAIL GATE ─────────────────────────────────── */
+.email-fields { display:flex; flex-direction:column; gap:12px; }
+.e-field { display:flex; flex-direction:column; gap:7px; }
+.e-field label { font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+.e-field input { background:var(--bg); border:1px solid var(--border2); padding:13px 16px; font-family:var(--font-b); font-size:14px; color:var(--text); outline:none; transition:border-color 0.2s; width:100%; box-sizing:border-box; }
+.e-field input:focus { border-color:var(--gold); }
+.e-field input::placeholder { color:var(--faint); }
+.privacy-note { font-size:11px; color:var(--faint); line-height:1.7; margin-top:6px; }
+
+/* ── NAV BUTTONS ─────────────────────────────────── */
+.q-nav { display:flex; align-items:center; justify-content:space-between; margin-top:24px; gap:12px; }
+.q-nav-left { display:flex; align-items:center; gap:14px; min-width:0; }
+.btn-back-q { background:transparent; border:1px solid var(--border2); color:var(--muted); padding:10px 18px; font-family:var(--font-b); font-size:12px; cursor:pointer; transition:all 0.18s; white-space:nowrap; flex-shrink:0; }
+.btn-back-q:hover { color:var(--text); border-color:var(--border); }
+.btn-next-q { background:var(--gold); border:1px solid var(--gold); color:#fff; padding:12px 28px; font-family:var(--font-b); font-size:13px; font-weight:500; cursor:pointer; transition:all 0.18s; display:flex; align-items:center; gap:8px; white-space:nowrap; flex-shrink:0; }
+.btn-next-q:hover { opacity:0.9; }
+.btn-next-q:disabled { opacity:0.35; cursor:not-allowed; }
+.q-err { font-size:12px; color:#c05050; display:none; }
+
+/* ── STAGE 1 RESULTS ────────────────────────────── */
+.results-screen { display:none; padding:72px var(--pad) 100px; animation:auditFadeUp 0.4s ease; }
+.results-screen.active { display:block; }
+.results-max { max-width:760px; margin:0 auto; }
+.r-greeting { font-size:13px; color:var(--muted); margin-bottom:8px; font-style:italic; }
+.r-headline { font-family:var(--font-d); font-size:clamp(28px,4.5vw,52px); font-weight:700; line-height:1; letter-spacing:-0.025em; margin-bottom:32px; }
+.r-headline em { color:var(--gold); font-style:italic; }
+.cost-hero { padding:28px 32px; background:linear-gradient(135deg, var(--gold-bg) 0%, transparent 70%); border:1px solid var(--gold-ln); margin-bottom:6px; }
+.cost-hero-main { margin-bottom:16px; }
+.cost-hero-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:8px; }
+.cost-hero-amount { font-family:var(--font-d); font-size:clamp(52px,8vw,88px); font-weight:700; line-height:1; color:var(--text); letter-spacing:-0.03em; }
+.cost-hero-unit { font-family:var(--font-d); font-size:clamp(18px,2.5vw,26px); font-weight:400; color:var(--muted); margin-left:4px; }
+.cost-hero-period { font-size:14px; color:var(--muted); margin-top:6px; display:block; }
+.cost-hero-period strong { color:var(--text); font-weight:600; font-family:var(--font-d); font-size:16px; }
+.cost-hero-money { margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.cost-hero-money-label { font-size:12px; color:var(--muted); }
+.cost-hero-money-aed { font-family:var(--font-d); font-size:clamp(22px,3vw,32px); font-weight:600; color:var(--text); }
+.cost-hero-money-note { font-size:11px; color:var(--faint); }
+.methodology-note { padding:14px 18px; background:var(--bg2); border-left:2px solid var(--border2); font-size:12px; color:var(--muted); line-height:1.75; margin-bottom:32px; }
+.methodology-note strong { color:var(--text); font-weight:500; }
+.cat-breakdown { margin-bottom:32px; }
+.breakdown-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; background:none; border:none; cursor:pointer; padding:0 0 12px; text-align:left; }
+.breakdown-toggle:hover .breakdown-toggle-cta { color:var(--text); }
+.breakdown-toggle-left { display:flex; align-items:center; gap:12px; flex:1; }
+.breakdown-toggle-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); white-space:nowrap; }
+.breakdown-toggle-line { flex:1; height:1px; background:var(--border); }
+.breakdown-toggle-cta { font-size:11px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap; transition:color 0.15s; font-family:var(--font-b); }
+.breakdown-toggle-chevron { display:inline-block; transition:transform 0.25s cubic-bezier(0.4,0,0.2,1); font-size:10px; }
+.breakdown-toggle.open .breakdown-toggle-chevron { transform:rotate(90deg); }
+.breakdown-toggle.open .breakdown-toggle-cta { color:var(--text); }
+.breakdown-body { display:none; }
+.breakdown-body.open { display:block; animation:auditFadeUp 0.25s ease; }
+.breakdown-row { background:var(--bg); border-bottom:1px solid var(--border); padding:14px 16px; }
+.breakdown-row:first-child { border-top:1px solid var(--border); }
+.br-top { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:6px; }
+.br-left { flex:1; min-width:0; }
+.br-name { font-size:13px; font-weight:500; color:var(--text); display:block; }
+.br-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.br-hrs { font-size:10px; color:var(--gold); font-weight:500; white-space:nowrap; background:var(--gold-bg); border:1px solid var(--gold-ln); padding:2px 7px; }
+.br-cost { font-family:var(--font-d); font-size:17px; font-weight:600; color:var(--text); white-space:nowrap; }
+.br-cost.risk { color:#b04040; }
+.br-calc-detail { font-size:11px; color:var(--faint); line-height:1.65; padding-left:0; }
+.br-calc-detail strong { color:var(--muted); font-weight:500; }
+.fine-detail { margin-top:8px; font-size:11px; color:var(--muted); line-height:1.8; }
+.fine-detail strong { color:var(--text); font-weight:500; }
+.methodology-footnote { font-size:10px; color:var(--faint); line-height:1.7; margin:-8px 0 20px; letter-spacing:0.2px; }
+.urgency-box { padding:20px 24px; border-left:3px solid var(--gold); background:var(--gold-bg); margin-bottom:44px; }
+.urgency-box p { font-family:var(--font-d); font-size:clamp(15px,2vw,19px); font-weight:400; line-height:1.65; color:var(--text); font-style:italic; }
+
+/* ── STAGE 2 BRIDGE ─────────────────────────────── */
+.s2-bridge { text-align:center; padding:44px 0 32px; border-top:1px solid var(--border); }
+.s2-bridge h3 { font-family:var(--font-d); font-size:clamp(22px,3.5vw,36px); font-weight:700; line-height:1.1; letter-spacing:-0.02em; margin-bottom:12px; }
+.s2-bridge h3 em { font-style:italic; color:var(--gold); }
+.s2-bridge > p { font-size:14px; color:var(--muted); line-height:1.8; max-width:420px; margin:0 auto 20px; }
+.s2-what { display:flex; justify-content:center; gap:20px; margin-bottom:22px; flex-wrap:wrap; }
+.s2-what-item { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+.s2-what-item::before { content:'✓'; color:var(--gold); font-size:11px; }
+.s2-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.skip-note { font-size:11px; color:var(--faint); margin-top:14px; }
+
+/* ── STAGE 2 SECTION ────────────────────────────── */
+.s2-section { display:none; max-width:760px; margin:0 auto; padding-top:44px; border-top:1px solid var(--border); animation:auditFadeUp 0.4s ease; }
+.s2-section.active { display:block; }
+.s2-header { margin-bottom:32px; }
+.s2-header h2 { font-family:var(--font-d); font-size:clamp(24px,3.5vw,38px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin-bottom:10px; }
+.s2-header h2 em { font-style:italic; color:var(--gold); }
+.s2-header p { font-size:13px; color:var(--muted); line-height:1.75; }
+.s2-qblock { margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--border); }
+.s2-qblock:last-of-type { border-bottom:none; }
+.s2-qlabel { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; display:block; }
+.s2-qtitle { font-family:var(--font-d); font-size:clamp(15px,2.2vw,20px); font-weight:600; line-height:1.2; margin-bottom:5px; }
+.s2-qsub { font-size:12px; color:var(--muted); margin-bottom:14px; line-height:1.65; }
+.sector-avg-note { font-size:11px; color:var(--gold); font-style:italic; margin-top:4px; display:block; }
+.s2-id-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.s2-id-field { display:flex; flex-direction:column; gap:7px; }
+.s2-id-field label { font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+.s2-id-field input,
+.s2-id-field select { background:var(--bg); border:1px solid var(--border2); padding:12px 14px; font-family:var(--font-b); font-size:14px; color:var(--text); outline:none; transition:border-color 0.18s; width:100%; box-sizing:border-box; }
+.s2-id-field input:focus,
+.s2-id-field select:focus { border-color:var(--gold); }
+.s2-id-field input::placeholder { color:var(--faint); }
+.s2-id-field select { appearance:none; cursor:pointer; }
+.s2-submit-area { text-align:center; padding-top:12px; }
+.s2-submit-area p { font-size:12px; color:var(--faint); margin-top:12px; line-height:1.6; }
+
+/* ── FINAL RESULTS ──────────────────────────────── */
+.final-results { display:none; max-width:760px; margin:0 auto; padding-top:44px; border-top:1px solid var(--border); animation:auditFadeUp 0.45s ease; }
+.final-results.active { display:block; }
+.final-hero { margin-bottom:28px; }
+.final-hero .fh-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:10px; }
+.final-hero h2 { font-family:var(--font-d); font-size:clamp(24px,3.8vw,40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin-bottom:8px; }
+.final-hero h2 em { font-style:italic; color:var(--gold); }
+.final-hero p { font-size:13px; color:var(--muted); line-height:1.7; }
+.final-table { width:100%; border-collapse:collapse; margin-bottom:6px; }
+.final-table td { background:var(--bg); padding:12px 16px; font-size:13px; border-bottom:1px solid var(--border); vertical-align:top; }
+.td-label { color:var(--text); font-weight:500; }
+.td-calc-note { color:var(--faint); font-size:10px; line-height:1.6; margin-top:3px; display:block; }
+.td-cost { text-align:right; font-family:var(--font-d); font-size:17px; font-weight:600; color:var(--text); white-space:nowrap; vertical-align:middle !important; }
+.td-cost.risk { color:#b04040; }
+.total-row td { background:var(--text); color:var(--bg); font-weight:600; border-bottom:none; }
+.total-row .td-label { color:rgba(237,236,234,0.75); font-size:12px; }
+.total-row .td-cost { color:var(--gold); font-size:22px; }
+.total-row .td-calc-note { color:rgba(237,236,234,0.45); }
+.final-table-note { font-size:11px; color:var(--faint); margin-bottom:32px; margin-top:6px; line-height:1.65; }
+.decision-delay-box { padding:20px 24px; margin:24px 0; border-left:3px solid var(--gold); background:var(--gold-bg); }
+.decision-delay-box .dd-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:8px; }
+.decision-delay-box p { font-size:13px; color:var(--text); line-height:1.8; margin:0; }
+.decision-delay-box p + p { margin-top:10px; }
+.decision-delay-box em { font-style:italic; color:var(--muted); }
+.auto-recs { margin:32px 0; }
+.auto-recs-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+.auto-recs-title::after { content:''; flex:1; height:1px; background:var(--border); }
+.auto-rec { display:grid; grid-template-columns:36px 1fr; gap:16px; align-items:start; padding:18px 0; border-bottom:1px solid var(--border); }
+.auto-rec:last-child { border-bottom:none; }
+.arc-rank { font-family:var(--font-d); font-size:32px; font-weight:400; color:var(--gold); opacity:0.22; line-height:1; }
+.arc-title { font-family:var(--font-d); font-size:19px; font-weight:600; margin-bottom:4px; line-height:1.15; }
+.arc-desc { font-size:12px; color:var(--muted); line-height:1.7; margin-bottom:8px; }
+.arc-tag { font-size:10px; color:var(--muted); padding:3px 8px; border:1px solid var(--border2); display:inline-block; }
+.final-cta { background:var(--bg2); border:1px solid var(--border); padding:36px 32px; text-align:center; margin-top:8px; }
+.final-cta h3 { font-family:var(--font-d); font-size:clamp(22px,3.2vw,34px); font-weight:700; line-height:1.1; letter-spacing:-0.02em; margin-bottom:10px; }
+.final-cta h3 em { font-style:italic; color:var(--gold); }
+.final-cta p { font-size:14px; color:var(--muted); line-height:1.8; max-width:400px; margin:0 auto 22px; }
+.final-cta .cta-note { font-size:11px; color:var(--faint); margin-top:12px; }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width:640px) {
+  .cat-grid { grid-template-columns:1fr; }
+  .opts-2col { grid-template-columns:1fr; }
+  .s2-id-grid { grid-template-columns:1fr; }
+  .cost-hero { padding:20px; }
+  .cost-hero-sub { gap:16px; }
+  .q-nav { flex-wrap:wrap; }
+  .q-nav-left { width:100%; }
+  .btn-next-q { width:100%; justify-content:center; }
+  .s2-btns { flex-direction:column; align-items:center; }
+  .final-cta { padding:24px 18px; }
+  .auto-rec { grid-template-columns:28px 1fr; gap:12px; }
+  .role-btns { gap:5px; }
+  .role-btn { font-size:10px; padding:5px 10px; }
+}
+@media (max-width:420px) {
+  .audit-meta { gap:16px; }
+  .cost-hero-sub { flex-direction:column; gap:12px; }
+}
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-[#b8902a] text-[#785a00] dark:text-[#edc157] dark:border-[#edc157] hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors font-bold">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-[#b8902a] text-white hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-4 py-3 border border-[#b8902a] text-[#785a00] dark:text-[#edc157]">Free Audit →</a>
+      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-[#b8902a] text-white">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<div class="audit-progress"><div class="audit-progress-fill" id="prog"></div></div>
+
+<div class="audit-wrap">
+
+<!-- INTRO -->
+<div class="audit-intro" id="screen-intro">
+  <div class="audit-intro-inner">
+    <div class="audit-badge">Free &nbsp;·&nbsp; 5 Minutes Tops &nbsp;·&nbsp; Instant Results</div>
+    <h1>How much is manual work<br><em>costing you?</em></h1>
+    <p>Tell us where your operation relies on people doing things that should run themselves. We calculate exactly how many hours are lost — and what that costs — every month.</p>
+    <div class="audit-meta">
+      <div class="audit-meta-item"><span class="n">4</span><span class="l">Areas assessed</span></div>
+      <div class="audit-meta-item"><span class="n">5 min</span><span class="l">5 minutes tops</span></div>
+      <div class="audit-meta-item"><span class="n">Free</span><span class="l">No obligation</span></div>
+    </div>
+    <button class="btn btn-solid" onclick="startAudit()" style="padding:14px 36px;font-size:14px">Start the Audit →</button>
+    <p style="font-size:11px;color:var(--faint);margin-top:14px">Results appear immediately on screen.</p>
+  </div>
+</div>
+
+<!-- Q1 — SECTOR -->
+<div class="q-screen" id="screen-q1">
+  <div class="q-inner">
+    <div class="q-step-row"><span class="q-step-label">Question 1 of 4</span><div class="q-step-line"></div></div>
+    <h2 class="q-title">What sector is your business in?</h2>
+    <p class="q-sub">This calibrates the benchmarks and fine-exposure rates to your industry.</p>
+    <div class="opts opts-2col" id="q1-opts">
+      <div class="opt" data-val="trading" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">General Trading</span><span class="opt-desc">Import, export, wholesale, distribution</span></div></div>
+      <div class="opt" data-val="logistics" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">Logistics & Freight</span><span class="opt-desc">Shipping, warehousing, last-mile delivery</span></div></div>
+      <div class="opt" data-val="medical" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">Medical & Healthcare</span><span class="opt-desc">Clinics, pharmacies, health services</span></div></div>
+      <div class="opt" data-val="realestate" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">Real Estate</span><span class="opt-desc">Property management, leasing, brokerage</span></div></div>
+      <div class="opt" data-val="contracting" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">Contracting & Construction</span><span class="opt-desc">Civil, MEP, fit-out, maintenance</span></div></div>
+      <div class="opt" data-val="other" onclick="selectOpt(this,'q1')"><div class="opt-radio"></div><div><span class="opt-label">Other</span><span class="opt-desc">Manufacturing, retail, professional services</span></div></div>
+    </div>
+    <div class="q-nav">
+      <div class="q-nav-left"><span class="q-err" id="err-q1">Please select your sector</span></div>
+      <button class="btn-next-q" onclick="goNext(1)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 — STAFF -->
+<div class="q-screen" id="screen-q2">
+  <div class="q-inner">
+    <div class="q-step-row"><span class="q-step-label">Question 2 of 4</span><div class="q-step-line"></div></div>
+    <h2 class="q-title">How many people work in your business?</h2>
+    <p class="q-sub">Staff count determines the scale of compliance, payroll, and HR processes.</p>
+    <div class="opts" id="q2-opts">
+      <div class="opt" data-val="17" onclick="selectOpt(this,'q2')"><div class="opt-radio"></div><div><span class="opt-label">10 – 25 people</span></div></div>
+      <div class="opt" data-val="35" onclick="selectOpt(this,'q2')"><div class="opt-radio"></div><div><span class="opt-label">26 – 50 people</span></div></div>
+      <div class="opt" data-val="70" onclick="selectOpt(this,'q2')"><div class="opt-radio"></div><div><span class="opt-label">51 – 100 people</span></div></div>
+      <div class="opt" data-val="120" onclick="selectOpt(this,'q2')"><div class="opt-radio"></div><div><span class="opt-label">Over 100 people</span></div></div>
+    </div>
+    <div class="q-nav">
+      <div class="q-nav-left"><button class="btn-back-q" onclick="goBack(2)">← Back</button><span class="q-err" id="err-q2">Please select a staff size</span></div>
+      <button class="btn-next-q" onclick="goNext(2)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 — CATEGORIES -->
+<div class="q-screen" id="screen-q3">
+  <div class="q-inner" style="max-width:720px">
+    <div class="q-step-row"><span class="q-step-label">Question 3 of 4</span><div class="q-step-line"></div></div>
+    <h2 class="q-title">Where does your operation rely on manual work?</h2>
+    <p class="q-sub">Select every area that applies. The more accurate you are, the more useful your results.</p>
+    <div class="cat-grid">
+      <div class="cat-opt" id="cat-finance" onclick="toggleCat('finance')">
+        <span class="cat-icon">🧾</span>
+        <div class="cat-name">Finance & Admin</div>
+        <div class="cat-desc">Invoices entered manually, expenses claimed on paper, data copied between systems, payment follow-ups, purchase order approvals</div>
+      </div>
+      <div class="cat-opt" id="cat-compliance" onclick="toggleCat('compliance')">
+        <span class="cat-icon">📋</span>
+        <div class="cat-name">Compliance & HR</div>
+        <div class="cat-desc">Visa and licence renewals tracked manually or not at all, WPS payroll file built by hand, onboarding paperwork, leave tracking</div>
+      </div>
+      <div class="cat-opt" id="cat-reporting" onclick="toggleCat('reporting')">
+        <span class="cat-icon">📊</span>
+        <div class="cat-name">Reporting & Decisions</div>
+        <div class="cat-desc">Business reports prepared manually, dashboards updated by hand, leadership waiting on numbers before decisions can be made</div>
+      </div>
+      <div class="cat-opt" id="cat-comms" onclick="toggleCat('comms')">
+        <span class="cat-icon">💬</span>
+        <div class="cat-name">Customer & Supplier Communication</div>
+        <div class="cat-desc">Repetitive status queries answered manually, overdue invoices chased by memory, supplier follow-ups, delivery updates</div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <div class="q-nav-left"><button class="btn-back-q" onclick="goBack(3)">← Back</button><span class="q-err" id="err-q3">Select at least one area</span></div>
+      <button class="btn-next-q" onclick="goNext(3)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 — SEVERITY + ROLE (built by JS) -->
+<div class="q-screen" id="screen-q4">
+  <div class="q-inner" style="max-width:700px">
+    <div class="q-step-row"><span class="q-step-label">Question 4 of 4</span><div class="q-step-line"></div></div>
+    <h2 class="q-title">Tell us more about each area.</h2>
+    <p class="q-sub">How severe is the manual work — and who handles it? This is what turns a rough estimate into a real number.</p>
+    <div id="sev-blocks"></div>
+    <div class="q-nav">
+      <div class="q-nav-left"><button class="btn-back-q" onclick="goBack(4)">← Back</button><span class="q-err" id="err-q4">Please answer each area above</span></div>
+      <button class="btn-next-q" onclick="goNext(4)">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Q5 — EMAIL GATE -->
+<div class="q-screen" id="screen-q5">
+  <div class="q-inner">
+    <div class="q-step-row"><span class="q-step-label">Almost there</span><div class="q-step-line"></div></div>
+    <h2 class="q-title">Where should we send your results?</h2>
+    <p class="q-sub">Your estimate appears immediately on screen. We will also follow up personally — not with an automated sequence.</p>
+    <div class="email-fields">
+      <div class="e-field"><label>First Name *</label><input type="text" id="f-fname" placeholder="Your name" autocomplete="given-name"/></div>
+      <div class="e-field"><label>Work Email *</label><input type="email" id="f-email" placeholder="email@yourcompany.com" autocomplete="email"/></div>
+    </div>
+    <p class="privacy-note" style="margin-top:14px">We review your results personally and follow up within one business day — if the numbers suggest there is something worth discussing. No automated sequences, ever.</p>
+    <div class="q-nav">
+      <div class="q-nav-left"><button class="btn-back-q" onclick="goBack(5)">← Back</button><span class="q-err" id="err-q5">Please enter your name and a valid email</span></div>
+      <button class="btn-next-q" onclick="submitStage1()">See My Results →</button>
+    </div>
+  </div>
+</div>
+
+<!-- STAGE 1 RESULTS -->
+<div class="results-screen" id="screen-results">
+  <div class="results-max">
+    <p class="r-greeting" id="r-greeting">Your Operations Audit — Stage 1 Estimate</p>
+    <h2 class="r-headline">Here's where your team's time is going<br>— and what it's <em>costing you.</em></h2>
+    <div class="cost-hero">
+      <div class="cost-hero-main">
+        <span class="cost-hero-label">Hours lost to manual work</span>
+        <div>
+          <span class="cost-hero-amount" id="r-cost-main">0</span><span class="cost-hero-unit">hrs</span>
+        </div>
+        <span class="cost-hero-period">every month — <strong>your team will not get back</strong></span>
+      </div>
+      <div class="cost-hero-money">
+        <span class="cost-hero-money-label">In staff cost, that's</span>
+        <span class="cost-hero-money-aed" id="r-hours-sub">AED 0</span>
+        <span class="cost-hero-money-note">per month &nbsp;·&nbsp; <span id="r-annual">AED 0</span> per year</span>
+      </div>
+    </div>
+
+    <div class="cat-breakdown">
+      <button class="breakdown-toggle open" id="breakdown-toggle" onclick="toggleBreakdown()">
+        <div class="breakdown-toggle-left">
+          <span class="breakdown-toggle-label">What is driving this</span>
+          <div class="breakdown-toggle-line"></div>
+        </div>
+        <span class="breakdown-toggle-cta">
+          Hide breakdown <span class="breakdown-toggle-chevron" style="transform:rotate(90deg)">▸</span>
+        </span>
+      </button>
+      <div class="breakdown-body open" id="breakdown-body">
+        <div id="r-breakdown"></div>
+      </div>
+    </div>
+
+    <p class="methodology-footnote">Based on industry hours benchmarks × fully-loaded staff cost (salary, visa, insurance, gratuity). Stage 2 replaces these with your actual numbers.</p>
+
+    <div class="urgency-box">
+      <p id="r-urgency-text"></p>
+    </div>
+
+    <!-- STAGE 2 BRIDGE -->
+    <div class="s2-bridge">
+      <h3>Which automation recovers<br><em>the most time — and how fast?</em></h3>
+      <p id="bridge-body">A few more questions, specific to what you flagged. We identify the single highest-impact automation for your operation and show you exactly what it addresses.</p>
+      <div class="s2-what">
+        <div class="s2-what-item">Your highest-impact automation identified</div>
+        <div class="s2-what-item">Hours recovered per automation shown</div>
+        <div class="s2-what-item">How quickly each can be running</div>
+      </div>
+      <div class="s2-btns">
+        <button class="btn btn-solid" onclick="startStage2()" style="padding:13px 32px" id="bridge-btn">Show me where to start →</button>
+        <a href="contact.html" class="btn btn-outline" style="padding:13px 32px">Book a call instead</a>
+      </div>
+      <p class="skip-note" id="bridge-skip-note">Free. Takes 2–3 minutes. No obligation.</p>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="s2-section" id="s2-section">
+      <div class="s2-header">
+        <h2>Building your <em>exact number.</em></h2>
+        <p>These questions build directly on what you told us in Stage 1. Only the areas you flagged appear below.</p>
+      </div>
+
+      <!-- Finance deep-dive -->
+      <div class="s2-qblock" id="s2-finance" style="display:none">
+        <span class="s2-qlabel">Finance & Admin — Refine</span>
+        <div class="s2-qtitle">How many supplier invoices does your business process per month?</div>
+        <p class="s2-qsub">This calculates your invoice entry cost precisely, based on 12 minutes of manual handling per invoice — the documented average for UAE businesses processing invoices without automation.</p>
+        <div class="opts" id="s2-inv-opts">
+          <div class="opt" data-val="12"  onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">Fewer than 20 invoices</span></div></div>
+          <div class="opt" data-val="35"  onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">20 – 50 invoices</span></div></div>
+          <div class="opt" data-val="75"  onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">50 – 100 invoices</span></div></div>
+          <div class="opt" data-val="150" onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">100 – 200 invoices</span></div></div>
+          <div class="opt" data-val="350" onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">200 – 500 invoices</span></div></div>
+          <div class="opt" data-val="550" onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">More than 500 invoices</span></div></div>
+          <div class="opt" data-val="avg" onclick="selectOpt(this,'s2inv')"><div class="opt-radio"></div><div><span class="opt-label">Not sure — use my sector average</span><span class="sector-avg-note" id="sector-avg-label"></span></div></div>
+        </div>
+      </div>
+
+      <!-- Compliance deep-dive -->
+      <div class="s2-qblock" id="s2-compliance" style="display:none">
+        <span class="s2-qlabel">Compliance & HR — Refine</span>
+        <div class="s2-qtitle">Right now — do you know which documents expire in the next 60 days?</div>
+        <p class="s2-qsub">This determines both the staff time cost of compliance management and the annualised fine exposure. Most businesses with manual tracking cannot answer this confidently.</p>
+        <div class="opts" id="s2-doc-opts">
+          <div class="opt" data-val="none" onclick="selectOpt(this,'s2doc')"><div class="opt-radio"></div><div><span class="opt-label">Honestly no — I would have to check</span><span class="opt-desc">The exposure is real and currently unquantified</span></div></div>
+          <div class="opt" data-val="some" onclick="selectOpt(this,'s2doc')"><div class="opt-radio"></div><div><span class="opt-label">Some — I know the obvious ones but not all</span><span class="opt-desc">Partial visibility; edge cases get missed</span></div></div>
+          <div class="opt" data-val="most" onclick="selectOpt(this,'s2doc')"><div class="opt-radio"></div><div><span class="opt-label">Mostly yes — we are usually on top of it</span><span class="opt-desc">Low but not zero risk — manual systems have gaps</span></div></div>
+        </div>
+      </div>
+
+      <!-- Reporting deep-dive -->
+      <div class="s2-qblock" id="s2-reporting" style="display:none">
+        <span class="s2-qlabel">Reporting & Decisions — Refine</span>
+        <div class="s2-qtitle">How many hours per week does report preparation take in total?</div>
+        <p class="s2-qsub">Include the time spent preparing the report and the time the decision maker waits before they have numbers to act on.</p>
+        <div class="opts" id="s2-rep-opts">
+          <div class="opt" data-val="9"  onclick="selectOpt(this,'s2rep')"><div class="opt-radio"></div><div><span class="opt-label">Under 2 hours per week</span><span class="opt-desc">Approximately 9 hours per month</span></div></div>
+          <div class="opt" data-val="13" onclick="selectOpt(this,'s2rep')"><div class="opt-radio"></div><div><span class="opt-label">2 – 4 hours per week</span><span class="opt-desc">Approximately 13 hours per month</span></div></div>
+          <div class="opt" data-val="26" onclick="selectOpt(this,'s2rep')"><div class="opt-radio"></div><div><span class="opt-label">4 – 8 hours per week</span><span class="opt-desc">Approximately 26 hours per month</span></div></div>
+          <div class="opt" data-val="43" onclick="selectOpt(this,'s2rep')"><div class="opt-radio"></div><div><span class="opt-label">More than 8 hours per week</span><span class="opt-desc">Over 43 hours per month — close to a full working week</span></div></div>
+        </div>
+      </div>
+
+      <!-- Comms deep-dive -->
+      <div class="s2-qblock" id="s2-comms" style="display:none">
+        <span class="s2-qlabel">Customer & Supplier Communication — Refine</span>
+        <div class="s2-qtitle">How are overdue customer payments followed up?</div>
+        <p class="s2-qsub">Late payments have a cash cost even when they eventually arrive — your capital is sitting in someone else's account.</p>
+        <div class="opts" id="s2-chase-opts">
+          <div class="opt" data-val="none" onclick="selectOpt(this,'s2chase')"><div class="opt-radio"></div><div><span class="opt-label">Manually — when someone remembers</span><span class="opt-desc">No systematic process; collection depends on individual memory</span></div></div>
+          <div class="opt" data-val="some" onclick="selectOpt(this,'s2chase')"><div class="opt-radio"></div><div><span class="opt-label">We have a process but it depends on one person</span><span class="opt-desc">Works when they are present; stops when they are not</span></div></div>
+          <div class="opt" data-val="bad" onclick="selectOpt(this,'s2chase')"><div class="opt-radio"></div><div><span class="opt-label">Payments regularly go 30+ days overdue without follow-up</span><span class="opt-desc">A structural cash flow problem, not just an admin issue</span></div></div>
+          <div class="opt" data-val="auto" onclick="selectOpt(this,'s2chase')"><div class="opt-radio"></div><div><span class="opt-label">Followed up automatically — this is handled</span><span class="opt-desc">No additional cost here; this area is addressed</span></div></div>
+        </div>
+      </div>
+
+      <!-- Identity -->
+      <div class="s2-qblock" id="s2-identity">
+        <span class="s2-qlabel">About You</span>
+        <div class="s2-qtitle">A little context for when we follow up.</div>
+        <p class="s2-qsub">Helps us have the right conversation when we reach out — not a generic call.</p>
+        <div class="s2-id-grid">
+          <div class="s2-id-field">
+            <label>Company Name</label>
+            <input type="text" id="s2-company" placeholder="Your Company LLC"/>
+          </div>
+          <div class="s2-id-field">
+            <label>Your Role</label>
+            <select id="s2-role">
+              <option value="" disabled selected>Select your role</option>
+              <option value="owner">Business Owner / Partner</option>
+              <option value="gm">General Manager</option>
+              <option value="ops">Operations Manager</option>
+              <option value="finance">Finance Manager</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="s2-submit-area">
+        <button class="btn btn-solid" onclick="submitStage2()" id="s2-submit-btn" style="padding:14px 40px;font-size:14px">Calculate My Precise Breakdown →</button>
+        <p>Your full breakdown appears immediately below.</p>
+      </div>
+    </div>
+
+    <!-- FINAL RESULTS -->
+    <div class="final-results" id="final-results">
+      <div class="final-hero">
+        <span class="fh-label">Stage 2 — Precise Breakdown</span>
+        <h2>Your exact cost — <em id="final-total-hrs">0 hrs</em> and <em id="final-total-aed">AED 0</em> per month.</h2>
+        <p>Every line shows the calculation. Every number comes from your answers.</p>
+      </div>
+
+      <button class="breakdown-toggle" id="final-table-toggle" onclick="toggleFinalTable()">
+        <div class="breakdown-toggle-left">
+          <span class="breakdown-toggle-label">Full cost breakdown</span>
+          <div class="breakdown-toggle-line"></div>
+        </div>
+        <span class="breakdown-toggle-cta">
+          Show all lines <span class="breakdown-toggle-chevron">▸</span>
+        </span>
+      </button>
+      <div class="breakdown-body" id="final-table-body">
+        <table class="final-table"><tbody id="final-tbody"></tbody></table>
+        <p class="final-table-note">Role costs are fully loaded — salary plus visa, Emirates ID, medical insurance, and end-of-service gratuity. Risk costs are annualised and divided by 12.</p>
+      </div>
+
+      <div id="decision-delay-callout"></div>
+
+      <div class="auto-recs">
+        <div class="auto-recs-title">Your Automation Recommendations — Ranked by Impact</div>
+        <div id="auto-list"></div>
+      </div>
+
+      <div class="final-cta">
+        <h3>See what this looks like<br><em>in your business.</em></h3>
+        <p>60 minutes. We go through your results together, show you exactly what the first automation looks like, and give you a written scope with a price — no commitment required.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="contact.html" class="btn btn-solid" style="padding:13px 32px">Book the free session →</a>
+          <a href="case-studies.html" class="btn btn-outline" style="padding:13px 32px">See real examples first</a>
+        </div>
+        <p class="cta-note">Free &nbsp;·&nbsp; 60 minutes &nbsp;·&nbsp; No obligation &nbsp;·&nbsp; UAE-based</p>
+      </div>
+    </div>
+
+  </div><!-- /results-max -->
+</div><!-- /results-screen -->
+
+</div><!-- /audit-wrap -->
+
+<script>
+'use strict';
+
+const FORMSPREE = 'https://formspree.io/f/xreonqjw';
+
+const ROLES = {
+  30:  'Admin / PRO / Data Entry',
+  45:  'Finance / HR Officer',
+  75:  'Operations / Department Manager',
+  115: 'Senior Manager / Director'
+};
+
+const SECTOR_INVOICE_AVG = {
+  trading:     80,
+  logistics:   60,
+  medical:     50,
+  realestate:  25,
+  contracting: 120,
+  other:       50
+};
+
+const SECTOR_FINE_MULT = {
+  trading:     1.0,
+  logistics:   1.2,
+  medical:     1.5,
+  realestate:  0.9,
+  contracting: 1.3,
+  other:       1.0
+};
+
+const SECTOR_LABELS = {
+  trading:     'General Trading',
+  logistics:   'Logistics & Freight',
+  medical:     'Medical & Healthcare',
+  realestate:  'Real Estate',
+  contracting: 'Contracting & Construction',
+  other:       'Other'
+};
+
+const CAT_CONFIG = {
+  finance: {
+    label: 'Finance & Admin', icon: '🧾',
+    sevOptions: [
+      { val: 'high',  text: 'Mostly manual — invoices, payments, and data re-entry all done by hand',       hrs: 38 },
+      { val: 'med',   text: 'Mix of manual and some automation — significant gaps remain',                   hrs: 22 },
+      { val: 'low',   text: 'Mostly handled — a few manual steps we have not yet fixed',                    hrs: 10 }
+    ],
+    roles: [[30,'Admin / PRO'],[45,'Finance / HR Officer'],[75,'Operations Manager']],
+    defaultRate: 45
+  },
+  compliance: {
+    label: 'Compliance & HR', icon: '📋',
+    sevOptions: [
+      { val: 'high',   text: 'No consistent system — renewals happen when someone remembers',  hrs: null },
+      { val: 'warned', text: 'We have received a ministry warning or paid a fine before',       hrs: null },
+      { val: 'low',    text: 'Spreadsheet exists but is not watched consistently',              hrs: null }
+    ],
+    roles: [[30,'Admin / PRO'],[45,'Finance / HR Officer'],[75,'Operations Manager']],
+    defaultRate: 30,
+    riskCost: true
+  },
+  reporting: {
+    label: 'Reporting & Decisions', icon: '📊',
+    sevOptions: [
+      { val: 'high',  text: 'Reports prepared manually — takes hours every week, always delayed',    hrs: 22 },
+      { val: 'med',   text: 'Someone pulls numbers manually — cannot easily delegate this',           hrs: 14 },
+      { val: 'low',   text: 'Dashboard exists but requires manual updating',                          hrs: 7  }
+    ],
+    roles: [[45,'Finance / HR Officer'],[75,'Operations Manager'],[115,'Senior Manager / Director']],
+    defaultRate: 75
+  },
+  comms: {
+    label: 'Customer & Supplier Communication', icon: '💬',
+    sevOptions: [
+      { val: 'high',  text: 'High volume of repetitive queries and follow-ups — significant daily time consumed',  hrs: 32 },
+      { val: 'med',   text: 'Moderate — some repetitive communication we still handle manually',                   hrs: 16 },
+      { val: 'low',   text: 'Low volume — mostly unique interactions, some chasing',                               hrs: 8  }
+    ],
+    roles: [[30,'Admin / PRO'],[45,'Finance / HR Officer'],[75,'Operations Manager']],
+    defaultRate: 30
+  }
+};
+
+const A = {
+  q1: null, q2: null,
+  cats: new Set(),
+  sev: {}, role: {},
+  fname: '', email: '',
+  s2inv: null, s2doc: null, s2rep: null, s2chase: null,
+  company: '', s2role: '',
+  s1Total: 0
+};
+
+let currentScreen = 'intro';
+
+function showScreen(id) {
+  document.querySelectorAll('.q-screen, .audit-intro, .results-screen').forEach(el => {
+    el.classList.remove('active');
+    el.style.display = 'none';
+  });
+  const el = document.getElementById('screen-' + id);
+  if (!el) return;
+  el.style.display = (id === 'results') ? 'block' : 'flex';
+  setTimeout(() => el.classList.add('active'), 10);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentScreen = id;
+}
+
+function setProgress(pct) {
+  document.getElementById('prog').style.width = pct + '%';
+}
+
+function startAudit() { showScreen('q1'); setProgress(8); }
+
+function goNext(qNum) {
+  if (qNum === 1) {
+    if (!A.q1) { showErr('err-q1'); return; }
+    showScreen('q2'); setProgress(22);
+  } else if (qNum === 2) {
+    if (!A.q2) { showErr('err-q2'); return; }
+    showScreen('q3'); setProgress(40);
+  } else if (qNum === 3) {
+    if (A.cats.size === 0) { showErr('err-q3'); return; }
+    buildSevBlocks();
+    showScreen('q4'); setProgress(58);
+  } else if (qNum === 4) {
+    if (!validateSev()) { showErr('err-q4'); return; }
+    showScreen('q5'); setProgress(78);
+  }
+}
+
+function goBack(qNum) {
+  const map = { 2:'q1', 3:'q2', 4:'q3', 5:'q4' };
+  const prev = map[qNum] || 'intro';
+  showScreen(prev);
+  const pctMap = { 2:8, 3:22, 4:40, 5:58 };
+  setProgress(pctMap[qNum] || 0);
+}
+
+function showErr(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'inline';
+  setTimeout(() => el.style.display = 'none', 3500);
+}
+
+function toggleCat(cat) {
+  const el = document.getElementById('cat-' + cat);
+  if (A.cats.has(cat)) {
+    A.cats.delete(cat);
+    el.classList.remove('selected');
+  } else {
+    A.cats.add(cat);
+    el.classList.add('selected');
+  }
+}
+
+function buildSevBlocks() {
+  const container = document.getElementById('sev-blocks');
+  container.innerHTML = '';
+  A.cats.forEach(cat => {
+    const cfg = CAT_CONFIG[cat];
+    const sevHTML = cfg.sevOptions.map(o =>
+      `<div class="sev-opt" data-val="${o.val}" onclick="selectSev(this,'${cat}')">
+        <div class="sev-opt-radio"></div>
+        <span class="sev-opt-text">${o.text}</span>
+      </div>`
+    ).join('');
+    const roleHTML = cfg.roles.map(([rate, name]) =>
+      `<button class="role-btn" data-rate="${rate}" onclick="selectRoleBtn(this,'${cat}')">
+        ${name}
+        <span class="role-rate" style="display:none">AED ${rate}/hr loaded</span>
+      </button>`
+    ).join('');
+    const block = document.createElement('div');
+    block.className = 'sev-block';
+    block.id = 'sevblock-' + cat;
+    block.innerHTML = `
+      <div class="sev-block-header">
+        <span class="sev-block-icon">${cfg.icon}</span>
+        <span class="sev-block-title">${cfg.label}</span>
+      </div>
+      <div class="sev-question">How severe is the manual work in this area?</div>
+      <div class="sev-opts" id="sev-opts-${cat}">${sevHTML}</div>
+      <div class="role-section">
+        <span class="role-label">Who handles this work?</span>
+        <div class="role-btns" id="role-btns-${cat}">${roleHTML}</div>
+      </div>`;
+    container.appendChild(block);
+  });
+}
+
+function selectSev(el, cat) {
+  el.closest('.sev-opts').querySelectorAll('.sev-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  A.sev[cat] = el.dataset.val;
+}
+
+function selectRoleBtn(el, cat) {
+  el.closest('.role-btns').querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  A.role[cat] = parseInt(el.dataset.rate);
+}
+
+function validateSev() {
+  let valid = true;
+  A.cats.forEach(cat => {
+    if (!A.sev[cat]) valid = false;
+    if (!A.role[cat]) A.role[cat] = CAT_CONFIG[cat].defaultRate;
+  });
+  return valid;
+}
+
+function selectOpt(el, key) {
+  el.closest('.opts').querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  A[key] = el.dataset.val;
+}
+
+function calcStage1() {
+  const staff = parseInt(A.q2) || 35;
+  const rows = [];
+  let totalHrs = 0;
+  let totalCost = 0;
+
+  A.cats.forEach(cat => {
+    const cfg = CAT_CONFIG[cat];
+    const sev  = A.sev[cat];
+    const rate = A.role[cat] || cfg.defaultRate;
+    const roleName = ROLES[rate] || '';
+
+    if (cat === 'finance') {
+      const hrsMap = { high: 38, med: 22, low: 10 };
+      const hrs = hrsMap[sev] || 22;
+      const cost = Math.round(hrs * rate);
+      totalHrs += hrs; totalCost += cost;
+      rows.push({ name: 'Finance & Admin', detail: `Invoices, payments, data re-entry — ${roleName}`, calc: `~${hrs} hrs/month × AED ${rate}/hr`, hrs, cost, risk: false });
+    }
+
+    if (cat === 'compliance') {
+      const multMap = { high: 0.22, warned: 0.20, low: 0.13 };
+      const mult = multMap[sev] || 0.20;
+      const baseHrs = Math.round(staff * mult * 4);
+      const cost = Math.round(baseHrs * rate);
+      const fineBaseMap  = { high: 900,  warned: 2000, low: 500 };
+      const fineMultMap  = { high: 22,   warned: 45,   low: 12 };
+      const riskCost = (fineBaseMap[sev] || 600) + Math.round(staff * (fineMultMap[sev] || 22));
+      totalHrs += baseHrs; totalCost += cost + riskCost;
+      rows.push({ name: 'Compliance & HR — staff time', detail: `Visa renewals, payroll prep, document tracking — ${roleName}`, calc: `~${baseHrs} hrs/month × AED ${rate}/hr`, hrs: baseHrs, cost, risk: false });
+      rows.push({ name: 'Compliance & HR — fine exposure', detail: 'Annualised ministry fine risk ÷ 12 months', calc: `Based on ${staff} staff — ${sev === 'high' ? 'no tracking system' : sev === 'warned' ? 'previous fine history' : 'inconsistent tracking'}`, hrs: 0, cost: riskCost, risk: true, hasExpand: true, expandKey: sev });
+    }
+
+    if (cat === 'reporting') {
+      const hrsMap = { high: 22, med: 14, low: 7 };
+      const hrs = hrsMap[sev] || 14;
+      const cost = Math.round(hrs * rate);
+      totalHrs += hrs; totalCost += cost;
+      rows.push({ name: 'Reporting & Decisions', detail: `Manual report preparation, leadership waiting on numbers — ${roleName}`, calc: `~${hrs} hrs/month × AED ${rate}/hr`, hrs, cost, risk: false });
+    }
+
+    if (cat === 'comms') {
+      const hrsMap = { high: 32, med: 16, low: 8 };
+      const hrs = hrsMap[sev] || 16;
+      const cost = Math.round(hrs * rate);
+      totalHrs += hrs; totalCost += cost;
+      rows.push({ name: 'Customer & Supplier Communication', detail: `Repetitive queries, payment chasing — ${roleName}`, calc: `~${hrs} hrs/month × AED ${rate}/hr`, hrs, cost, risk: false });
+    }
+  });
+
+  return { rows, totalHrs, totalCost };
+}
+
+function submitStage1() {
+  const fname = document.getElementById('f-fname').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!fname || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showErr('err-q5'); return;
+  }
+  A.fname = fname; A.email = email;
+  setProgress(100);
+
+  const { rows, totalHrs, totalCost } = calcStage1();
+  A.s1Total = totalCost;
+
+  const annual = Math.round(totalCost * 12 / 1000) * 1000;
+
+  document.getElementById('r-greeting').textContent = 'Your Operations Audit \u2014 Stage 1 Estimate';
+  document.getElementById('r-cost-main').textContent = totalHrs;
+  document.getElementById('r-hours-sub').textContent = fmtAED(totalCost);
+  document.getElementById('r-annual').textContent = fmtAED(annual);
+
+  document.getElementById('r-breakdown').innerHTML = rows.map((r) => {
+    const fineHTML = r.hasExpand ? buildFineExpandHTML(r.expandKey) : '';
+    return `<div class="breakdown-row">
+      <div class="br-top">
+        <div class="br-left"><span class="br-name">${r.name}</span></div>
+        <div class="br-right">
+          ${r.hrs > 0 ? `<span class="br-hrs">${r.hrs} hrs</span>` : ''}
+          <span class="br-cost${r.risk ? ' risk' : ''}">${fmtAED(r.cost)}</span>
+        </div>
+      </div>
+      <div class="br-calc-detail">${r.detail} — ${r.calc}${fineHTML}</div>
+    </div>`;
+  }).join('');
+
+  const cats     = A.cats;
+  const sev      = A.sev;
+  const hasF     = cats.has('finance');
+  const hasC     = cats.has('compliance');
+  const hasR     = cats.has('reporting');
+  const hasX     = cats.has('comms');
+  const sevF     = sev.finance    || '';
+  const sevC     = sev.compliance || '';
+  const sevR     = sev.reporting  || '';
+  const sevX     = sev.comms      || '';
+  const highCount = [hasF && sevF==='high', hasC && (sevC==='high'||sevC==='warned'), hasR && sevR==='high', hasX && sevX==='high'].filter(Boolean).length;
+
+  let baseText = '';
+  if (cats.size === 1) {
+    if (hasF) {
+      if (sevF === 'high') baseText = 'Invoice entry and financial admin tend to be the first thing that breaks as a business grows. The process that worked when the team was smaller is now consuming hours it should not be consuming.';
+      else if (sevF === 'med') baseText = 'A mix of manual and automated finance processes usually means the manual parts are carrying more weight than they look like — especially at month end when everything arrives at once.';
+      else baseText = 'Even at low severity, manual finance steps accumulate. A few unconnected tools, a few hours a week — it adds up faster than it appears on any single day.';
+    }
+    if (hasC) {
+      if (sevC === 'warned') baseText = 'A previous fine is the clearest signal the tracking system has a gap. Manual processes do not get more reliable over time — the next gap costs the same as the last one.';
+      else if (sevC === 'high') baseText = 'With no tracking system in place, document renewals happen when someone remembers — which means they happen late, or not at all. One lapsed visa is enough to make that cost very visible.';
+      else baseText = 'A spreadsheet watched inconsistently is almost the same as no system. The documents you miss are always the ones nobody was actively watching that week.';
+    }
+    if (hasR) {
+      if (sevR === 'high') baseText = 'When reports are built manually, decisions get made on data that is already several days old. Nobody realises the cost of that gap until a decision gets made on the wrong number.';
+      else if (sevR === 'med') baseText = 'A reporting process that cannot easily be delegated is a single point of failure. When the person who knows how to build it is unavailable, the numbers are unavailable too.';
+      else baseText = 'A dashboard that needs manual updating is an early sign of a process that is about to break. As transaction volume grows, the update time grows with it.';
+    }
+    if (hasX) {
+      if (sevX === 'high') baseText = 'When follow-ups depend on memory rather than a system, the volume you can handle is capped by what one person can hold in their head. That cap does not grow with the business.';
+      else if (sevX === 'med') baseText = 'A communication process tied to one person is a process that stops working when that person is not available. The risk is not the volume — it is the single point of failure.';
+      else baseText = 'Low-volume manual follow-up still creates a pattern: things get chased when someone gets to them, not when they need to be chased. Cash flow tends to reflect that.';
+    }
+  } else if (cats.size === 2) {
+    if (hasF && hasC) baseText = 'Invoice processing and document tracking both have hard deadlines — and when both are handled manually, the pressure usually falls on the same person. When one slips, it creates noise that makes the other harder to stay on top of.';
+    else if (hasF && hasR) baseText = 'When invoices are entered manually, the data feeding your reports is always behind. The person building the report is waiting on numbers that are still being keyed in somewhere else — which means leadership is waiting too.';
+    else if (hasF && hasX) baseText = 'Invoice entry and payment follow-ups are both high-volume and repetitive — and they are the two manual processes with the most direct effect on cash flow. Delays in one compound delays in the other.';
+    else if (hasC && hasR) baseText = 'Document tracking and manual reporting share the same root problem: information that should surface automatically is only surfacing when someone goes looking for it. Both are reactive processes that look manageable until they are not.';
+    else if (hasC && hasX) baseText = 'Document renewals and customer follow-ups both depend on someone remembering to act at the right time. When memory is the system, what gets missed is always the thing nobody was watching that week.';
+    else if (hasR && hasX) baseText = 'Manual reporting and reactive communication tend to keep the operation in catch-up mode — always responding to what happened, rarely ahead of what is about to happen.';
+  } else if (cats.size === 3) {
+    if (hasF && hasC && hasR) baseText = 'Three areas flagged at once usually points to one pattern: a core person — or a small group — who has become the connective tissue of the operation. Invoice entry, compliance tracking, and report preparation tend to concentrate in the same hands. That person cannot scale, and neither can the business while they are the system.';
+    else if (hasF && hasC && hasX) baseText = 'When invoices, documents, and customer follow-ups are all handled manually, most of the administrative load sits in the same place. The hours above are distributed across tasks — but the fragility is concentrated. The operation depends on a few people remembering the right things at the right time.';
+    else if (hasF && hasR && hasX) baseText = 'Three areas flagged across finance, reporting, and communication means the manual work is not isolated to one corner of the business — it is embedded in how the operation runs day to day. The hours above are spread out, but they compound on each other.';
+    else if (hasC && hasR && hasX) baseText = 'Two of the three areas you flagged are primarily about timing — documents expire, reports go stale, follow-ups get forgotten. When timing depends on memory rather than a system, the operation is always running slightly behind where it should be.';
+  } else if (cats.size === 4) {
+    baseText = 'Four areas flagged means a significant part of every working week is spent keeping things running rather than moving them forward. That is not a single problem to fix — it is a pattern. And it tends to get harder to manage as the business grows, not easier.';
+  }
+
+  let severityLine = '';
+  if (highCount >= 2) severityLine = ' Most of what is driving this is already affecting the business regularly — not occasionally.';
+  else if (sevC === 'warned') severityLine = ' The compliance fine history makes that line more concrete than a risk estimate — it is a cost that has already materialised once.';
+
+  let hrsKicker = '';
+  if (totalHrs >= 100) hrsKicker = ' ' + totalHrs + ' hours a month is the equivalent of a full-time role spent entirely on maintenance.';
+  else if (totalHrs >= 60) hrsKicker = ' Added up, ' + totalHrs + ' hours is more than a full working week — every single month.';
+  else if (totalHrs >= 30) hrsKicker = ' Across a year, ' + totalHrs + ' hours a month becomes ' + Math.round(totalHrs * 12) + ' hours — over six working weeks.';
+  else hrsKicker = ' ' + totalHrs + ' hours sounds manageable month to month. Across a year it is ' + Math.round(totalHrs * 12) + ' hours of work that could be running itself.';
+
+  document.getElementById('r-urgency-text').textContent = (baseText + severityLine + hrsKicker).trim();
+
+  if (A.cats.has('finance'))    document.getElementById('s2-finance').style.display    = 'block';
+  if (A.cats.has('compliance')) document.getElementById('s2-compliance').style.display = 'block';
+  if (A.cats.has('reporting'))  document.getElementById('s2-reporting').style.display  = 'block';
+  if (A.cats.has('comms'))      document.getElementById('s2-comms').style.display      = 'block';
+
+  const avgVol = SECTOR_INVOICE_AVG[A.q1] || 50;
+  const avgLabel = document.getElementById('sector-avg-label');
+  if (avgLabel) avgLabel.textContent = 'We\u2019ll use the ' + (SECTOR_LABELS[A.q1] || '') + ' average: ~' + avgVol + ' invoices/month';
+
+  showScreen('results');
+
+  const SEV_LABELS_MAP = {
+    finance:    { high:'Mostly manual', med:'Mix of manual and automated', low:'Mostly handled' },
+    compliance: { high:'No consistent system', warned:'Previous fine history', low:'Inconsistent tracking' },
+    reporting:  { high:'Manually — always delayed', med:'Manual, cannot delegate', low:'Dashboard needs updating' },
+    comms:      { high:'High volume — daily time consumed', med:'Moderate manual comms', low:'Low volume, some chasing' }
+  };
+  const catLines = [...A.cats].map(cat => {
+    const s = SEV_LABELS_MAP[cat][A.sev[cat]] || A.sev[cat];
+    const r = ROLES[A.role[cat]] || 'Not selected';
+    return CAT_CONFIG[cat].label + '\n  Severity: ' + s + '\n  Handled by: ' + r;
+  }).join('\n\n');
+
+  sendFormspree({
+    _subject: 'Helm8 Audit — Stage 1 — ' + fname + ' (' + (SECTOR_LABELS[A.q1] || '') + ')',
+    'Name': fname, 'Email': email,
+    'Sector': SECTOR_LABELS[A.q1] || A.q1,
+    'Staff band': A.q2 + ' (midpoint)',
+    'Areas flagged': catLines,
+    'Hours lost / month': totalHrs + ' hrs',
+    'Monthly cost estimate': fmtAED(totalCost),
+    'Annual cost estimate': fmtAED(annual)
+  });
+}
+
+function toggleBreakdown() {
+  const btn  = document.getElementById('breakdown-toggle');
+  const body = document.getElementById('breakdown-body');
+  if (!btn || !body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const cta = btn.querySelector('.breakdown-toggle-cta');
+  if (cta) {
+    const chev = cta.querySelector('.breakdown-toggle-chevron');
+    cta.childNodes[0].textContent = isOpen ? 'Show breakdown ' : 'Hide breakdown ';
+    if (chev) chev.style.transform = isOpen ? '' : 'rotate(90deg)';
+  }
+}
+
+function toggleFinalTable() {
+  const btn  = document.getElementById('final-table-toggle');
+  const body = document.getElementById('final-table-body');
+  if (!btn || !body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const cta = btn.querySelector('.breakdown-toggle-cta');
+  if (cta) {
+    const chev = cta.querySelector('.breakdown-toggle-chevron');
+    cta.childNodes[0].textContent = isOpen ? 'Show all lines ' : 'Hide breakdown ';
+    if (chev) chev.style.transform = isOpen ? '' : 'rotate(90deg)';
+  }
+}
+
+function buildFineExpandHTML(sev) {
+  const msgs = {
+    high: '<br><br><strong>Fine exposure basis:</strong> Under UAE Federal Decree-Law No. 33 of 2021, employing a worker with an expired work permit carries a fine of AED 5,000 per worker. GDRFA visa overstays start at AED 125 on day one and AED 25/day thereafter. For a business with no tracking system, at least one such event per year is a realistic expectation. This figure is the annualised expected cost divided by 12.',
+    warned: '<br><br><strong>Fine exposure basis:</strong> Your business has already experienced a compliance fine or warning, indicating the risk is not theoretical. This figure accounts for a higher probability of recurrence based on the documented fine schedule from the Ministry of Human Resources and GDRFA.',
+    low: '<br><br><strong>Fine exposure basis:</strong> Even with a spreadsheet, manual tracking has gaps — renewals that fall during busy periods, staff who join between review cycles. This figure reflects a lower but non-zero probability of a fine event based on typical spreadsheet-managed operations.'
+  };
+  return msgs[sev] || msgs.high;
+}
+
+function startStage2() {
+  document.getElementById('s2-section').classList.add('active');
+  setTimeout(() => document.getElementById('s2-section').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+function calcStage2() {
+  const staff = parseInt(A.q2) || 35;
+  const rows  = [];
+  let totalHrs  = 0;
+  let totalCost = 0;
+
+  if (A.cats.has('finance')) {
+    const s1HrsMap = { high: 38, med: 22, low: 10 };
+    const s1FinHrs = s1HrsMap[A.sev.finance] || 22;
+    const rate = A.role.finance || CAT_CONFIG.finance.defaultRate;
+    if (A.s2inv) {
+      const rawVol = A.s2inv === 'avg' ? (SECTOR_INVOICE_AVG[A.q1] || 50) : parseInt(A.s2inv);
+      const invoiceHrs   = Math.round((rawVol * 12) / 60);
+      const remainingHrs = Math.max(s1FinHrs - invoiceHrs, Math.round(s1FinHrs * 0.45));
+      const invoiceCost  = Math.round(invoiceHrs * rate);
+      const remainCost   = Math.round(remainingHrs * rate);
+      totalHrs += invoiceHrs + remainingHrs;
+      totalCost += invoiceCost + remainCost;
+      rows.push({ label: 'Invoice data entry', calc: rawVol + ' invoices \u00d7 12 min \u00d7 AED ' + rate + '/hr (' + ROLES[rate] + ')', hrs: invoiceHrs, cost: invoiceCost, risk: false });
+      rows.push({ label: 'Other finance manual work', calc: 'Payments, reconciliation, expense processing \u2014 ~' + remainingHrs + ' hrs/month \u00d7 AED ' + rate + '/hr', hrs: remainingHrs, cost: remainCost, risk: false });
+      const errRateMap = { high: 0.03, med: 0.015, low: 0.005 };
+      const errRate    = errRateMap[A.sev.finance] || 0.03;
+      const errCount   = rawVol * errRate;
+      const errHrs     = Math.round(errCount * 2);
+      const errCost    = Math.round(errHrs * rate);
+      if (errCost > 50) {
+        totalHrs  += errHrs;
+        totalCost += errCost;
+        rows.push({ label: 'Invoice errors & rework', calc: rawVol + ' invoices \u00d7 ' + (errRate * 100).toFixed(1) + '% error rate \u00d7 2 hrs to resolve \u00d7 AED ' + rate + '/hr', hrs: errHrs, cost: errCost, risk: false });
+      }
+    } else {
+      const cost = Math.round(s1FinHrs * rate);
+      totalHrs += s1FinHrs; totalCost += cost;
+      rows.push({ label: 'Finance & Admin (manual work)', calc: '~' + s1FinHrs + ' hrs/month \u00d7 AED ' + rate + '/hr (' + ROLES[rate] + ')', hrs: s1FinHrs, cost, risk: false });
+    }
+  }
+
+  if (A.cats.has('compliance')) {
+    const docAnswer = A.s2doc || 'none';
+    const staffMultMap = { none: 0.22, some: 0.16, most: 0.10 };
+    const baseHrs = Math.round(staff * (staffMultMap[docAnswer] || 0.22) * 4);
+    const rate    = A.role.compliance || CAT_CONFIG.compliance.defaultRate;
+    const cost    = Math.round(baseHrs * rate);
+    const secMult = SECTOR_FINE_MULT[A.q1] || 1.0;
+    let annualFine;
+    if (docAnswer === 'none') annualFine = 18000 + Math.max(staff - 10, 0) * 500 * secMult;
+    else if (docAnswer === 'some') annualFine = 8000 + Math.max(staff - 10, 0) * 220 * secMult;
+    else annualFine = 3000 + Math.max(staff - 10, 0) * 80 * secMult;
+    const monthlyFine = Math.round(annualFine / 12);
+    const fineDocLabels = { none: 'no tracking system — exposure unquantified', some: 'partial visibility — edge cases missed', most: 'mostly tracked — residual risk remains' };
+    totalHrs  += baseHrs;
+    totalCost += cost + monthlyFine;
+    rows.push({ label: 'Document & visa tracking', calc: '~' + baseHrs + ' hrs/month \u00d7 AED ' + rate + '/hr (' + ROLES[rate] + ')', hrs: baseHrs, cost, risk: false });
+    rows.push({ label: 'Compliance fine exposure', calc: 'AED ' + Math.round(annualFine).toLocaleString('en-AE') + ' annual risk \u00f7 12 \u2014 ' + (fineDocLabels[docAnswer] || ''), hrs: 0, cost: monthlyFine, risk: true });
+  }
+
+  if (A.cats.has('reporting')) {
+    const monthlyHrs = A.s2rep ? parseInt(A.s2rep) : (() => { const m = { high: 22, med: 14, low: 7 }; return m[A.sev.reporting] || 14; })();
+    const rate = A.role.reporting || CAT_CONFIG.reporting.defaultRate;
+    const cost = Math.round(monthlyHrs * rate);
+    totalHrs  += monthlyHrs;
+    totalCost += cost;
+    rows.push({ label: 'Report preparation & distribution', calc: '~' + monthlyHrs + ' hrs/month \u00d7 AED ' + rate + '/hr (' + ROLES[rate] + ')', hrs: monthlyHrs, cost, risk: false, isReporting: true });
+  }
+
+  if (A.cats.has('comms')) {
+    const hrsMap = { high: 32, med: 16, low: 8 };
+    const hrs    = hrsMap[A.sev.comms] || 16;
+    const rate   = A.role.comms || CAT_CONFIG.comms.defaultRate;
+    const cost   = Math.round(hrs * rate);
+    totalHrs  += hrs;
+    totalCost += cost;
+    rows.push({ label: 'Customer & supplier communication', calc: '~' + hrs + ' hrs/month \u00d7 AED ' + rate + '/hr (' + ROLES[rate] + ')', hrs, cost, risk: false });
+    const chaseAnswer = A.s2chase || null;
+    if (chaseAnswer && chaseAnswer !== 'auto') {
+      const monthlyRevenue   = staff * 15000;
+      const floatMultMap     = { none: 0.5, some: 0.23, bad: 1.0 };
+      const excessFloat      = monthlyRevenue * (floatMultMap[chaseAnswer] || 0.5);
+      const monthlyDrag      = Math.round(excessFloat * 0.08 / 12);
+      const chaseCalcLabels  = { none: 'Manual collection — ~45-day avg debtor days vs 30-day target', some: 'Single point of failure — ~37-day avg debtor days', bad: 'Systematic delay — ~60-day avg debtor days; double the target' };
+      if (monthlyDrag > 0) {
+        totalCost += monthlyDrag;
+        rows.push({ label: 'Late payment — cash flow drag', calc: (chaseCalcLabels[chaseAnswer] || '') + ' \u2014 financing cost at 8% p.a. on excess receivables', hrs: 0, cost: monthlyDrag, risk: true });
+      }
+    } else if (chaseAnswer === 'auto') {
+      rows.push({ label: 'Late payment follow-up', calc: 'Automated \u2014 no additional cost here. This area is handled.', hrs: 0, cost: 0, risk: false, isZero: true });
+    }
+  }
+
+  if (totalCost < A.s1Total) {
+    const gap = A.s1Total - totalCost;
+    rows.push({ label: 'Additional manual work (estimated)', calc: 'Stage 1 industry estimate exceeded Stage 2 precise calculation \u2014 Stage 1 floor applied', hrs: 0, cost: gap, risk: false });
+    totalCost = A.s1Total;
+  }
+
+  return { rows, totalHrs, totalCost };
+}
+
+function getAutomations(rows) {
+  const costMap = {};
+  rows.forEach(r => {
+    if (r.label.includes('Invoice data entry'))               costMap.invoices    = (costMap.invoices    || 0) + r.cost;
+    if (r.label.includes('Document') || r.label.includes('Compliance')) costMap.documents = (costMap.documents || 0) + r.cost;
+    if (r.label.includes('Report preparation'))               costMap.reports     = (costMap.reports     || 0) + r.cost;
+    if (r.label.includes('Late payment') || r.label.includes('communication')) costMap.receivables = (costMap.receivables || 0) + r.cost;
+  });
+  const all = [
+    { id:'invoices',     title:'Invoice Capture Automation',    desc:'PDF invoices arrive by email, key data extracted automatically, logged to your accounting system. Manual data entry eliminated. Exceptions flagged for review.',                                                             time:'2\u20134 weeks', cost: costMap.invoices    || 0, relevant: A.cats.has('finance')                                      },
+    { id:'documents',    title:'Document Expiry Tracker',       desc:'Every visa, Emirates ID, trade licence, and insurance certificate tracked automatically. WhatsApp alerts at 90, 60, 30, and 7 days before expiry. No more discovery surprises.',                                               time:'1\u20132 weeks', cost: costMap.documents   || 0, relevant: A.cats.has('compliance')                                   },
+    { id:'reports',      title:'Weekly Business Snapshot',      desc:'Revenue, top customers, outstanding invoices \u2014 delivered to WhatsApp every Monday morning. No report preparation by anyone. Numbers are always current.',                                                                 time:'1\u20133 weeks', cost: costMap.reports     || 0, relevant: A.cats.has('reporting')                                    },
+    { id:'receivables',  title:'Accounts Receivable Chaser',    desc:'Overdue invoices followed up automatically \u2014 a polite message at 3 days, firmer at 7, escalation at 14. Consistent follow-up without relying on any one person to remember.',                                            time:'2\u20133 weeks', cost: costMap.receivables || 0, relevant: A.cats.has('comms')                                       },
+    { id:'wps',          title:'WPS Payroll File Generator',     desc:'Monthly SIF file generated automatically from your salary data in Google Sheets. Validated before submission. WPS deadline never missed.',                                                                                     time:'1\u20132 weeks', cost: 0, relevant: A.cats.has('compliance') && parseInt(A.q2) >= 26                                  },
+    { id:'intelligence', title:'Monthly Intelligence Report',    desc:'Plain-language analysis of your business data \u2014 patterns, risks, and findings delivered each month. Not a spreadsheet. Actual sentences explaining what changed and what it means.',                                      time:'2\u20133 weeks', cost: 0, relevant: A.cats.has('reporting')                                                           }
+  ];
+  const seen = new Set();
+  return all.filter(a => { if (!a.relevant || seen.has(a.id)) return false; seen.add(a.id); return true; }).sort((a, b) => b.cost - a.cost).slice(0, 4);
+}
+
+function submitStage2() {
+  const btn = document.getElementById('s2-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Calculating\u2026';
+
+  A.company = document.getElementById('s2-company').value.trim();
+  A.s2role  = document.getElementById('s2-role').value;
+
+  const { rows, totalHrs, totalCost } = calcStage2();
+  const annual      = Math.round(totalCost * 12 / 1000) * 1000;
+  const automations = getAutomations(rows);
+
+  document.getElementById('final-total-hrs').textContent = totalHrs + ' hrs';
+  document.getElementById('final-total-aed').textContent = fmtAED(totalCost);
+
+  const tbodyRows = rows.filter(r => !r.isZero).map((r) =>
+    `<tr>
+      <td class="td-label">${r.label}<span class="td-calc-note">${r.calc}${r.hrs > 0 ? ' &nbsp;\u00b7\u00a0 ' + r.hrs + ' hrs/mo' : ''}</span></td>
+      <td class="td-cost${r.risk ? ' risk' : ''}" style="vertical-align:middle">${r.cost === 0 ? '\u2014' : fmtAED(r.cost)}</td>
+    </tr>`
+  ).join('');
+
+  const zeroRows = rows.filter(r => r.isZero).map(r =>
+    `<tr>
+      <td class="td-label" style="opacity:0.6">${r.label}<span class="td-calc-note">${r.calc}</span></td>
+      <td class="td-cost" style="font-size:14px;opacity:0.5">AED 0</td>
+    </tr>`
+  ).join('');
+
+  document.getElementById('final-tbody').innerHTML =
+    tbodyRows + zeroRows +
+    `<tr class="total-row">
+      <td class="td-label">Total monthly cost<span class="td-calc-note">${totalHrs} hrs/month &nbsp;\u00b7\u00a0 ${fmtAED(annual)} per year</span></td>
+      <td class="td-cost">${fmtAED(totalCost)}</td>
+    </tr>`;
+
+  const showDelay = A.cats.has('reporting') && (A.s2rep === '26' || A.s2rep === '43');
+  const delayContainer = document.getElementById('decision-delay-callout');
+  if (showDelay) {
+    delayContainer.innerHTML = `
+      <div class="decision-delay-box">
+        <span class="dd-label">A cost this tool cannot calculate</span>
+        <p>Every number above is a cost your business is definitely paying. But there is another cost that cannot be calculated without knowing your specific business: <strong>the decisions that were made this month on data that was already 3–7 days old.</strong></p>
+        <p>Manual reporting creates a gap between when something happens and when the right person knows about it. Automating it doesn't just save preparation time — it means whoever needs the numbers has them when they need them, not when someone finishes building the report.</p>
+      </div>`;
+  } else {
+    delayContainer.innerHTML = '';
+  }
+
+  if (automations.length === 0) {
+    document.getElementById('auto-list').innerHTML =
+      `<div style="padding:24px;background:var(--bg2);border:1px solid var(--border);text-align:center">
+        <div style="font-size:20px;margin-bottom:10px">✓</div>
+        <div style="font-family:var(--font-d);font-size:18px;font-weight:600;margin-bottom:8px">Your operation appears well-automated.</div>
+        <p style="font-size:13px;color:var(--muted);max-width:360px;margin:0 auto;line-height:1.7">If you want a second opinion or want to explore more advanced data and intelligence tools, book a free session.</p>
+      </div>`;
+  } else {
+    document.getElementById('auto-list').innerHTML = automations.map((a, i) =>
+      `<div class="auto-rec">
+        <div class="arc-rank">${i + 1}</div>
+        <div>
+          <div class="arc-title">${a.title}</div>
+          <div class="arc-desc">${a.desc}</div>
+          <span class="arc-tag">Build time: ${a.time}</span>
+        </div>
+      </div>`
+    ).join('') +
+    `<p style="font-size:13px;color:var(--muted);line-height:1.75;margin-top:18px;padding-top:18px;border-top:1px solid var(--border)">Book a free session to see exactly what your operation looks like with these running.</p>`;
+  }
+
+  document.getElementById('final-results').classList.add('active');
+  setTimeout(() => document.getElementById('final-results').scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+
+  const INV_LABELS   = { '12':'<20/month','35':'20\u201350/month','75':'50\u2013100/month','150':'100\u2013200/month','350':'200\u2013500/month','550':'500+/month','avg':'Sector average' };
+  const DOC_LABELS   = { none:'No \u2014 would have to check', some:'Some visibility', most:'Mostly yes' };
+  const REP_LABELS   = { '9':'<2 hrs/week (9 hrs/mo)','13':'2\u20134 hrs/week (13 hrs/mo)','26':'4\u20138 hrs/week (26 hrs/mo)','43':'8+ hrs/week (43 hrs/mo)' };
+  const CHASE_LABELS = { none:'Manual \u2014 when someone remembers', some:'Process but single person', bad:'30+ days overdue regularly', auto:'Automated \u2014 handled' };
+  const ROLE_LABELS  = { owner:'Business Owner', gm:'General Manager', ops:'Operations Manager', finance:'Finance Manager', other:'Other' };
+
+  const s2Lines = [
+    A.cats.has('finance')    ? 'Finance: '              + (INV_LABELS[A.s2inv]     || A.s2inv     || 'not answered') : null,
+    A.cats.has('compliance') ? 'Compliance visibility: ' + (DOC_LABELS[A.s2doc]     || 'not answered') : null,
+    A.cats.has('reporting')  ? 'Report prep time: '     + (REP_LABELS[A.s2rep]     || 'not answered') : null,
+    A.cats.has('comms')      ? 'Payment chasing: '      + (CHASE_LABELS[A.s2chase] || 'not answered') : null
+  ].filter(Boolean).join('\n');
+
+  sendFormspree({
+    _subject: 'Helm8 Audit \u2014 Stage 2 \u2014 ' + A.fname + ' (' + (SECTOR_LABELS[A.q1] || '') + ')',
+    'Name': A.fname, 'Email': A.email,
+    'Company': A.company || 'Not provided',
+    'Their role': ROLE_LABELS[A.s2role] || 'Not provided',
+    'Sector': SECTOR_LABELS[A.q1] || A.q1,
+    'Staff band': A.q2 + ' (midpoint)',
+    'Stage 2 detail': s2Lines,
+    'Precise hours / month': totalHrs + ' hrs',
+    'Precise monthly cost': fmtAED(totalCost),
+    'Annual cost': fmtAED(annual),
+    'Top automation': automations[0]?.title || 'None identified',
+    'Second automation': automations[1]?.title || '',
+    'Decision delay callout shown': showDelay ? 'Yes' : 'No'
+  });
+}
+
+function fmtAED(n) {
+  return 'AED\u00a0' + Math.round(n).toLocaleString('en-AE');
+}
+
+async function sendFormspree(data) {
+  try {
+    const fd = new FormData();
+    Object.entries(data).forEach(([k, v]) => fd.append(k, String(v)));
+    await fetch(FORMSPREE, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+  } catch (e) {
+    console.error('Formspree error:', e);
+  }
+}
+
+// Scroll reveals
+document.addEventListener('DOMContentLoaded', () => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+});
+</script>
+</body>
+</html>

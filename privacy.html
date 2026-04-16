@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — HELM8</title>
+<meta name="description" content="How Helm8 collects, uses, and protects your data. UAE PDPL compliant."/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5", "on-surface": "#1a1c19", "background": "#fafaf5",
+        "primary": "#785a00", "primary-container": "#b8902a",
+        "on-primary-container": "#3c2c00",
+        "secondary": "#5f5e5c", "outline": "#807664", "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
+        "primary-fixed": "#ffdf9b", "on-primary": "#ffffff", "on-primary-fixed": "#251a00",
+      },
+      borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"] }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
+html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.prose h2 { font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 0.75rem; color: #785a00; }
+.prose p, .prose li { font-size: 0.925rem; line-height: 1.75; color: #5f5e5c; margin-bottom: 0.75rem; }
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+html.dark .prose p, html.dark .prose li { color: #a0a09a; }
+html.dark .prose h2 { color: #edc157; }
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<main class="pt-32 pb-24 px-8 md:px-24 max-w-3xl mx-auto">
+  <p class="text-[0.7rem] font-bold uppercase tracking-widest text-outline mb-4">Legal</p>
+  <h1 class="text-[2rem] md:text-[2.8rem] font-extrabold leading-tight tracking-tighter text-on-background mb-4">Privacy Policy</h1>
+  <p class="text-sm text-secondary mb-12">Last updated: April 2026</p>
+
+  <div class="prose">
+
+    <h2>Who we are</h2>
+    <p>Helm8 is a business automation consultancy operating in the United Arab Emirates, trading as Hassan Nader. Our website is helm8.co. For privacy matters, contact us at hello@helm8.co.</p>
+
+    <h2>What data we collect</h2>
+    <p>We collect personal data only when you choose to provide it. This includes:</p>
+    <ul>
+      <li>Your name and business email address when you submit the contact form or free audit tool.</li>
+      <li>Your company name and a description of the business challenge you provide in the form.</li>
+      <li>Audit responses you complete in the free operations assessment tool.</li>
+      <li>Booking details when you schedule a call through our calendar (processed by Cal.com).</li>
+    </ul>
+    <p>We do not use cookies for tracking or advertising. We do not run analytics that identify individual visitors.</p>
+
+    <h2>How we use your data</h2>
+    <p>Data you submit is used solely to respond to your enquiry or to follow up on an assessment you have requested. We do not sell, share, or rent your data to third parties. We do not add you to any mailing list without explicit consent.</p>
+
+    <h2>Third-party processors</h2>
+    <p>We use the following services to process form submissions and bookings on our behalf:</p>
+    <ul>
+      <li><strong>Formspree</strong> — receives contact form submissions and forwards them to us. Data is stored on Formspree servers in accordance with their privacy policy.</li>
+      <li><strong>Cal.com</strong> — manages calendar bookings. When you book a call, your name, email, and selected time are processed by Cal.com in accordance with their privacy policy.</li>
+    </ul>
+    <p>We do not control how these processors store or handle data beyond what their respective policies describe.</p>
+
+    <h2>Data retention</h2>
+    <p>Enquiry data is retained for as long as is necessary to complete the relevant sales or service conversation, and no longer than 24 months. You may request deletion at any time.</p>
+
+    <h2>Your rights under UAE PDPL</h2>
+    <p>Under Federal Decree-Law No. 45 of 2021 (UAE Personal Data Protection Law), you have the right to:</p>
+    <ul>
+      <li>Request access to the personal data we hold about you.</li>
+      <li>Request correction of inaccurate data.</li>
+      <li>Request deletion of your data.</li>
+      <li>Withdraw consent at any time where processing is based on consent.</li>
+    </ul>
+    <p>To exercise any of these rights, email us at hello@helm8.co. We will respond within 30 days.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy: <a href="mailto:hello@helm8.co" class="text-primary underline">hello@helm8.co</a></p>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-outline-variant">
+  <div class="max-w-7xl mx-auto px-8 md:px-24 py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+    <div>
+      <span class="block mb-2"><img src="logo.png" alt="Helm8" class="h-7 w-auto dark:invert"/></span>
+      <p class="text-sm text-secondary">Business automation for UAE SMEs.</p>
+    </div>
+    <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-secondary">
+      <a href="how-it-works.html" class="hover:text-on-surface transition-colors">How It Works</a>
+      <a href="services.html" class="hover:text-on-surface transition-colors">Services</a>
+      <a href="case-studies.html" class="hover:text-on-surface transition-colors">Case Studies</a>
+      <a href="contact.html" class="hover:text-on-surface transition-colors">Contact</a>
+    </div>
+    <p class="text-xs text-outline">&copy; 2026 Helm8. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

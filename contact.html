@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — HELM8</title>
+<meta name="description" content="Book a 30-minute call or send your details. We reply within one business day."/>
+<link rel="canonical" href="https://helm8.co/contact.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Contact — HELM8"/>
+<meta property="og:url" content="https://helm8.co/contact.html"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5", "surface-bright": "#fafaf5",
+        "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f4ef",
+        "surface-container": "#eeeee9", "surface-container-high": "#e8e8e3",
+        "surface-container-highest": "#e3e3de", "surface-dim": "#dadad5",
+        "on-surface": "#1a1c19", "on-background": "#1a1c19", "background": "#fafaf5",
+        "primary": "#785a00", "primary-container": "#b8902a",
+        "primary-fixed": "#ffdf9b", "on-primary": "#ffffff",
+        "on-primary-container": "#3c2c00", "on-primary-fixed": "#251a00",
+        "secondary": "#5f5e5c", "secondary-container": "#e5e2de",
+        "outline": "#807664", "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
+      },
+      borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"], "label": ["Inter","sans-serif"] }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
+html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+/* Form inputs */
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #807664; }
+.form-input { background: #ffffff; border: 1px solid #d1c5b0; padding: 13px 16px; font-family: Inter, sans-serif; font-size: 0.875rem; color: #1a1c19; outline: none; transition: border-color 0.2s; width: 100%; }
+.form-input:focus { border-color: #785a00; }
+.form-input::placeholder { color: #c9c6c3; }
+html.dark .form-input { background: #1a1c19; color: #e8e8e0; border-color: rgba(232,232,224,0.15); }
+html.dark .form-input:focus { border-color: #b8902a; }
+/* Cal.com embed container */
+.cal-wrap { width: 100%; min-height: 600px; border: 1px solid #d1c5b0; background: #ffffff; overflow: hidden; }
+html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15); }
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<main class="pt-24">
+
+<!-- PAGE HEADER -->
+<section class="px-8 md:px-24 pt-24 pb-16 border-b border-outline-variant fade-up">
+  <span class="text-[0.75rem] font-bold uppercase tracking-widest text-primary block mb-6">Get in Touch</span>
+  <h1 class="text-[3rem] md:text-[5rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-6">
+    The first conversation<br>costs <span class="italic text-primary-container">nothing.</span>
+  </h1>
+  <p class="text-xl text-secondary max-w-2xl leading-relaxed">Book a 30-minute call or send your details below. We reply within one business day.</p>
+</section>
+
+<!-- MAIN CONTENT: CAL + FORM -->
+<section class="max-w-7xl mx-auto px-8 md:px-24 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+  <!-- LEFT: CALENDAR -->
+  <div class="fade-up">
+    <div class="mb-8">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-2">Preferred</span>
+      <h2 class="text-2xl font-extrabold tracking-tight text-on-surface mb-2">Book a 30-minute call.</h2>
+      <p class="text-sm text-secondary">Pick a time that works. The call is free. No obligation.</p>
+    </div>
+    <div class="cal-wrap">
+      <div id="cal-inline" style="width:100%;min-height:600px;overflow:scroll;"></div>
+      <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", { origin: "https://cal.com" });
+      Cal("inline", { elementOrSelector: "#cal-inline", calLink: "helm8/30min", layout: "month_view" });
+      </script>
+    </div>
+    <p class="mt-4 text-[0.7rem] text-secondary uppercase tracking-wider">Or message us on WhatsApp: <a href="https://wa.me/971541676707" class="text-primary underline hover:text-primary-container">+971 54 167 6707</a></p>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="fade-up">
+    <div class="mb-8">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-2">Alternative</span>
+      <h2 class="text-2xl font-extrabold tracking-tight text-on-surface mb-2">Send your details.</h2>
+      <p class="text-sm text-secondary">Tell us what you're trying to fix. We'll come back with a clear answer.</p>
+    </div>
+
+    <!-- Result card -->
+    <div class="border-l-2 border-primary-container pl-6 mb-10 space-y-1">
+      <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block">Accounts receivable — Freight company, UAE</span>
+      <p class="text-sm text-secondary leading-relaxed">52 days to collect. Now 19. AED 210,000 recovered in 90 days.</p>
+    </div>
+
+    <form
+      action="https://formspree.io/f/xreonqjw"
+      method="POST"
+      x-data="{ submitted: false }"
+      @submit.prevent="fetch('https://formspree.io/f/xreonqjw', { method: 'POST', headers: {'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(Object.fromEntries(new FormData($el))) }).then(r => { if(r.ok) submitted=true; })">
+
+      <div x-show="!submitted" class="space-y-6">
+        <div class="form-field">
+          <label class="form-label" for="fname">First name</label>
+          <input class="form-input" type="text" id="fname" name="first_name" placeholder="Your first name" required/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="email">Business email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@yourcompany.com" required/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="company">Company name</label>
+          <input class="form-input" type="text" id="company" name="company" placeholder="Your company" required/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="problem">What are you trying to fix?</label>
+          <textarea class="form-input" id="problem" name="problem" rows="5" placeholder="Describe the manual work that's costing you the most time or causing the most errors." required style="resize:vertical"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-widest text-[0.75rem] hover:bg-[#a37e22] transition-colors">
+          Send My Details →
+        </button>
+        <p class="text-[0.7rem] text-secondary text-center leading-relaxed">We reply within one business day. No sales scripts.</p>
+        <p class="text-[0.65rem] text-secondary text-center">We don't share your details. We don't add you to a mailing list.</p>
+      </div>
+
+      <div x-show="submitted" x-transition class="py-16 text-center border border-outline-variant bg-surface-container-low">
+        <span class="material-symbols-outlined text-primary mb-4" style="font-size:3rem">check_circle</span>
+        <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Details received.</h3>
+        <p class="text-secondary text-sm leading-relaxed max-w-sm mx-auto">We'll be in touch within one business day. If it's urgent, <a href="https://wa.me/971541676707" class="text-primary underline">WhatsApp us directly</a>.</p>
+      </div>
+    </form>
+
+    <!-- Trust signals -->
+    <div class="mt-10 pt-8 border-t border-outline-variant space-y-3">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.2rem">schedule</span>
+        <span class="text-sm text-secondary">We reply within one business day.</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.2rem">location_on</span>
+        <span class="text-sm text-secondary">Based in the UAE. Working across the region.</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.2rem">lock</span>
+        <span class="text-sm text-secondary">Your data stays yours. No sharing, no mailing lists.</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- BOTTOM CTA STRIP -->
+<section class="bg-primary-container py-16 px-8 text-center fade-up">
+  <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-on-primary-container mb-4">Not ready to talk? See what we've built.</h3>
+  <a href="case-studies.html" class="inline-block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold text-on-primary-container border border-on-primary-container px-8 py-3 hover:bg-on-primary-container hover:text-primary-container transition-all">View case studies →</a>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
+    <div class="col-span-1">
+      <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
+      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <ul class="space-y-4">
+        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <ul class="space-y-4">
+        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <ul class="space-y-4">
+        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
+    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>

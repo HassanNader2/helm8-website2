@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Services — HELM8</title>
+<meta name="description" content="28+ automation types for UAE SMEs. Finance, HR, operations. Built on tools your team already uses."/>
+<link rel="canonical" href="https://helm8.co/services.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Services — HELM8"/>
+<meta property="og:url" content="https://helm8.co/services.html"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#fafaf5", "surface-bright": "#fafaf5",
+        "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f4ef",
+        "surface-container": "#eeeee9", "surface-container-high": "#e8e8e3",
+        "surface-container-highest": "#e3e3de", "surface-dim": "#dadad5",
+        "on-surface": "#1a1c19", "on-background": "#1a1c19", "background": "#fafaf5",
+        "primary": "#785a00", "primary-container": "#b8902a",
+        "primary-fixed": "#ffdf9b", "on-primary": "#ffffff",
+        "on-primary-container": "#3c2c00", "on-primary-fixed": "#251a00",
+        "secondary": "#5f5e5c", "secondary-container": "#e5e2de",
+        "outline": "#807664", "outline-variant": "#d1c5b0",
+        "inverse-surface": "#2f312e", "inverse-primary": "#edc157",
+        "surface-variant": "#e3e3de", "tertiary": "#5f5f59",
+      },
+      borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+      fontFamily: { "headline": ["Inter","sans-serif"], "body": ["Inter","sans-serif"], "label": ["Inter","sans-serif"] }
+    }
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
+<style>
+body { background-color: #fafaf5; background-image: radial-gradient(#d1c5b0 0.5px, transparent 0.5px); background-size: 12px 12px; }
+html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rgba(232,232,224,0.08) 0.5px, transparent 0.5px); background-size: 12px 12px; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.italic-gold { font-style: italic; font-weight: 700; color: #b8902a; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.btn-hover { position: relative; overflow: hidden; z-index: 1; }
+.btn-hover::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0; background-color: rgba(0,0,0,0.07); transition: height 0.3s ease; z-index: -1; }
+.btn-hover:hover::after { height: 100%; }
+.wa-link { display: block; margin-top: 14px; font-size: 0.75rem; color: #807664; letter-spacing: 0.05em; }
+.wa-link a { color: #785a00; text-decoration: underline; }
+.wa-link a:hover { color: #b8902a; }
+</style>
+</head>
+
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- NAV -->
+<div x-data="{ open: false, dark: localStorage.getItem('theme')==='dark' }"
+     x-init="dark && document.documentElement.classList.add('dark')">
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></a>
+    <div class="hidden md:flex items-center space-x-10">
+      <a href="how-it-works.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
+      <a href="services.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold border-b border-primary text-primary">Services</a>
+      <a href="case-studies.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Case Studies</a>
+    </div>
+    <div class="hidden md:flex items-center gap-5">
+      <button @click="dark=!dark; document.documentElement.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light')" class="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-xl" x-text="dark?'dark_mode':'light_mode'">light_mode</span>
+      </button>
+      <a href="assessment.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-2 border border-primary text-primary hover:bg-zinc-100 transition-colors">Free Audit →</a>
+      <a href="contact.html" class="font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-2 bg-primary-container text-on-primary-container hover:bg-[#a37e22] transition-colors">Book a Call</a>
+    </div>
+    <button class="md:hidden text-zinc-600 dark:text-zinc-400" @click="open=!open">
+      <span class="material-symbols-outlined" x-text="open?'close':'menu'">menu</span>
+    </button>
+  </div>
+  <div x-show="open" x-transition class="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6 space-y-4">
+    <a href="how-it-works.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">How It Works</a>
+    <a href="services.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold text-primary py-2">Services</a>
+    <a href="case-studies.html" class="block font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium text-zinc-600 dark:text-zinc-400 py-2">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-3">
+      <a href="assessment.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-medium px-4 py-3 border border-primary text-primary">Free Audit →</a>
+      <a href="contact.html" class="block text-center font-['Inter'] uppercase tracking-widest text-[0.75rem] font-bold px-6 py-3 bg-primary-container text-on-primary-container">Book a Call</a>
+    </div>
+  </div>
+</nav>
+</div>
+
+<main class="pt-24">
+
+<!-- HERO -->
+<section class="px-8 md:px-24 py-24 md:py-[166px] grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-outline-variant/30">
+  <div class="md:col-span-8">
+    <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 text-[0.75rem] font-bold uppercase tracking-widest mb-8">The Automations</span>
+    <h1 class="text-[2.4rem] md:text-[4rem] font-extrabold leading-[1.1] tracking-tighter text-zinc-900 dark:text-white mb-8">
+      The work businesses actually need <span class="italic-gold">automated.</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+      Built on tools your team already uses. No new subscriptions. We architect the infrastructure, you own the results.
+    </p>
+  </div>
+  <div class="md:col-span-4 flex items-end">
+    <div class="w-full h-64 border border-outline bg-surface-container-low relative overflow-hidden"
+         style="background-image: linear-gradient(rgba(120,90,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(120,90,0,0.08) 1px, transparent 1px); background-size: 32px 32px;">
+      <div class="absolute inset-0 flex flex-col justify-end p-6">
+        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-outline block mb-1">Automation Stack</span>
+        <span class="text-sm font-bold text-on-surface uppercase tracking-tight">Gmail · Sheets · WhatsApp · n8n · Claude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="bg-zinc-900 text-white py-16 px-8 md:px-24 border-b border-zinc-800 overflow-x-auto">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-12">
+    <div class="flex flex-col">
+      <span class="text-primary-container text-[0.75rem] font-bold uppercase tracking-widest">Scale</span>
+      <span class="text-2xl font-bold uppercase">28+ automation types</span>
+    </div>
+    <div class="w-px h-12 bg-zinc-700 hidden md:block"></div>
+    <div class="flex flex-col">
+      <span class="text-primary-container text-[0.75rem] font-bold uppercase tracking-widest">Constraint</span>
+      <span class="text-2xl font-bold uppercase">Zero new software required</span>
+    </div>
+    <div class="w-px h-12 bg-zinc-700 hidden md:block"></div>
+    <div class="flex flex-col">
+      <span class="text-primary-container text-[0.75rem] font-bold uppercase tracking-widest">Compliance</span>
+      <span class="text-2xl font-bold uppercase">UAE data residency</span>
+    </div>
+    <div class="w-px h-12 bg-zinc-700 hidden md:block"></div>
+    <div class="flex flex-col">
+      <span class="text-primary-container text-[0.75rem] font-bold uppercase tracking-widest">Velocity</span>
+      <span class="text-2xl font-bold uppercase">2–4 weeks to live</span>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE & ACCOUNTING -->
+<section id="finance" class="bg-surface py-[166px] px-8 md:px-24 border-b border-outline-variant/20">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+    <div class="md:col-span-4 md:sticky md:top-32 h-fit fade-up">
+      <span class="text-primary font-bold uppercase tracking-[0.2em] text-[0.75rem] block mb-4">Internal Infrastructure</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white leading-tight">Finance &amp; <span class="italic-gold">Accounting</span></h2>
+      <div class="mt-12 h-px w-24 bg-primary"></div>
+      <p class="mt-12 text-zinc-500 leading-relaxed uppercase text-[0.75rem] tracking-wider">
+        Reducing manual data entry and human error through precision in financial workflows.
+      </p>
+    </div>
+    <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-t border-outline-variant/30">
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">40 sec/invoice</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Invoice Capture</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">OCR-powered extraction of supplier PDF invoices directly into your accounting records with 99% accuracy.</p>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">Auto-Reminders</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">AR Chaser</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">Systematic follow-ups on overdue invoices — polite at 3 days, firm at 7, escalation at 14.</p>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">Instant Sync</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Receipt Processing</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">WhatsApp photo of a receipt — automatically extracted, categorized, and logged. Zero manual entry.</p>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">Zero Drift</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Bank Reconciliation</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">Bank statements matched against invoice records daily. Discrepancies flagged before month-end.</p>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">FTA Compliant</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">VAT Return</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">Quarterly VAT data compiled automatically, formatted to FTA specifications. Ready for review and submission.</p>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-8 hover:bg-surface-container-low transition-colors duration-300 fade-up">
+        <span class="text-primary font-bold text-[0.75rem] mb-8 block italic-gold">Monday 7am</span>
+        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Business Snapshot</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">Weekly WhatsApp report: revenue, top 3 customers, outstanding invoices, overdue amounts. No manual prep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HR & COMPLIANCE -->
+<section id="hr" class="bg-surface-container-low py-[166px] px-8 md:px-24 border-b border-outline-variant/20">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+    <div class="md:col-span-4 md:sticky md:top-32 h-fit fade-up">
+      <span class="text-primary font-bold uppercase tracking-[0.2em] text-[0.75rem] block mb-4">Governance Pillar</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white leading-tight">HR &amp; <span class="italic-gold">Compliance</span></h2>
+      <div class="mt-12 h-px w-24 bg-primary"></div>
+      <p class="mt-12 text-zinc-500 leading-relaxed uppercase text-[0.75rem] tracking-wider">
+        Ensuring administrative rigor through persistent monitoring and payroll validation.
+      </p>
+    </div>
+    <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-t border-outline-variant/30">
+      <div class="border-r border-b border-outline-variant/30 p-12 bg-surface-container-lowest hover:bg-surface transition-colors duration-300 fade-up">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Document Expiry Tracker</h3>
+        <p class="text-zinc-500 text-sm mb-8 leading-relaxed">Visas, Emirates IDs, trade licences, and vehicle registrations tracked automatically. Alerts at 90, 60, 30, 7 days.</p>
+        <div class="w-12 h-1 bg-primary-container"></div>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-12 bg-surface-container-lowest hover:bg-surface transition-colors duration-300 fade-up">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">WPS Payroll</h3>
+        <p class="text-zinc-500 text-sm mb-8 leading-relaxed">Salary data in Google Sheets generates a Central Bank SIF file automatically. Zero late submissions.</p>
+        <div class="w-12 h-1 bg-primary-container"></div>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-12 bg-surface-container-lowest hover:bg-surface transition-colors duration-300 fade-up">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Timesheet Consolidation</h3>
+        <p class="text-zinc-500 text-sm mb-8 leading-relaxed">Staff timesheet submissions collected, validated, and consolidated. Discrepancies flagged before payroll runs.</p>
+        <div class="w-12 h-1 bg-primary-container"></div>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-12 bg-surface-container-lowest hover:bg-surface transition-colors duration-300 fade-up">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Tenancy Renewal Tracker</h3>
+        <p class="text-zinc-500 text-sm mb-8 leading-relaxed">Lease expiry dates tracked automatically. Tiered alerts to property manager at 90, 60, 30 days. Escalates if no action logged.</p>
+        <div class="w-12 h-1 bg-primary-container"></div>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-12 bg-surface-container-lowest hover:bg-surface transition-colors duration-300 fade-up">
+        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Employee Onboarding</h3>
+        <p class="text-zinc-500 text-sm mb-8 leading-relaxed">Document checklist tracked per new hire. Reminders at day 7 and day 14. Escalates on critical gaps.</p>
+        <div class="w-12 h-1 bg-primary-container"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS & REPORTING -->
+<section id="operations" class="bg-surface py-[166px] px-8 md:px-24">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+    <div class="md:col-span-4 md:sticky md:top-32 h-fit fade-up">
+      <span class="text-primary font-bold uppercase tracking-[0.2em] text-[0.75rem] block mb-4">Command &amp; Control</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white leading-tight">Operations &amp; <span class="italic-gold">Reporting</span></h2>
+      <div class="mt-12 h-px w-24 bg-primary"></div>
+      <p class="mt-12 text-zinc-500 leading-relaxed uppercase text-[0.75rem] tracking-wider">
+        Synthesizing data into actionable intelligence and frictionless customer touchpoints.
+      </p>
+    </div>
+    <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 border-l border-t border-outline-variant/30">
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">Speed to Lead</h3>
+          <p class="text-zinc-500 leading-relaxed">Inquiry arrives via WhatsApp or website — AI-drafted reply in 90 seconds, lead qualified, right person notified instantly.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">bolt</span>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">Live Operations Dashboard</h3>
+          <p class="text-zinc-500 leading-relaxed">Real-time Looker Studio dashboard: revenue, inventory, delivery status, outstanding invoices. Always current — no manual updates.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">monitoring</span>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">WhatsApp FAQ Bot</h3>
+          <p class="text-zinc-500 leading-relaxed">Context-aware conversational agent trained on your SOPs and service manuals. 24/7 first response. Unknown queries escalated with context.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">chat_bubble</span>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">Appointment Reminder</h3>
+          <p class="text-zinc-500 leading-relaxed">Reminders at 48 hours and 2 hours before each appointment. Patient confirms or cancels directly in WhatsApp. Slot flagged to reception on cancellation.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">calendar_month</span>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">Purchase Order Auto-Generator</h3>
+          <p class="text-zinc-500 leading-relaxed">Daily stock check vs reorder levels. Draft POs generated for items below threshold. WhatsApp to purchasing manager with summary.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">inventory_2</span>
+      </div>
+      <div class="border-r border-b border-outline-variant/30 p-10 flex flex-col justify-between min-h-[280px] hover:bg-surface-container transition-colors duration-500 fade-up">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter">Cash Flow Forecast</h3>
+          <p class="text-zinc-500 leading-relaxed">Weekly 30-day rolling cash projection from receivables and payables. Flags weeks where outflows exceed inflows. Delivered via WhatsApp every Monday.</p>
+        </div>
+        <span class="material-symbols-outlined text-4xl text-outline-variant">trending_up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-[166px] px-8 md:px-24 bg-zinc-950 text-white relative overflow-hidden fade-up">
+  <div class="absolute inset-0 opacity-10 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent"></div>
+  </div>
+  <div class="max-w-5xl mx-auto text-center relative z-10">
+    <h2 class="text-[3rem] md:text-[4.5rem] font-extrabold tracking-tighter leading-none mb-12">
+      Not sure which to build <span class="italic-gold">first?</span>
+    </h2>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+      <a href="assessment.html" class="bg-primary-container text-on-primary-container px-12 py-5 font-bold uppercase tracking-widest text-sm w-full md:w-auto hover:bg-primary transition-colors btn-hover">
+        Take the free audit →
+      </a>
+      <a href="contact.html" class="border border-zinc-700 text-zinc-300 px-12 py-5 font-bold uppercase tracking-widest text-sm w-full md:w-auto hover:bg-zinc-900 transition-colors btn-hover">
+        Talk to us instead
+      </a>
+    </div>
+    <p class="wa-link mt-8" style="color:rgba(255,255,255,0.4)">Prefer WhatsApp? <a href="https://wa.me/971541676707" style="color:#b8902a;text-decoration:underline">Message us directly.</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
+    <div class="col-span-1">
+      <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-8 w-auto dark:invert"/></div>
+      <p class="font-['Inter'] text-[0.75rem] leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Architecting operational freedom through precision automation.</p>
+      <a href="mailto:hello@helm8.co" class="block mt-4 font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">hello@helm8.co</a>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Navigate</h5>
+      <ul class="space-y-4">
+        <li><a href="how-it-works.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">How It Works</a></li>
+        <li><a href="services.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Services</a></li>
+        <li><a href="case-studies.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Case Studies</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Actions</h5>
+      <ul class="space-y-4">
+        <li><a href="assessment.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Free Audit</a></li>
+        <li><a href="contact.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Book a Call</a></li>
+        <li><a href="https://wa.me/971541676707" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-bold text-[0.75rem] uppercase tracking-widest mb-6 text-primary">Legal</h5>
+      <ul class="space-y-4">
+        <li><a href="privacy.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Privacy Policy</a></li>
+        <li><a href="terms.html" class="font-['Inter'] text-[0.75rem] uppercase tracking-wider text-zinc-500 hover:text-primary transition-colors">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="px-12 py-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
+    <p class="font-['Inter'] text-[0.65rem] uppercase tracking-[0.2em] text-zinc-400">© 2026 Helm8. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>
