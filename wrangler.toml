@@ -1,0 +1,6 @@
+name = "helm8-website2"
+compatibility_date = "2024-04-05"
+account_id = "b12b53640a95dad8aaa0a878ea827afd"
+
+[assets]
+directory = "./"
