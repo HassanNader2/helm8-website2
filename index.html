@@ -175,6 +175,11 @@ html.dark body {
    class toggle on CDN — these replace them.
    ============================================ */
 
+/* Outcome card glow */
+.outcome-card { transition: box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+.outcome-card:hover { box-shadow: 0 0 52px -8px rgba(184, 144, 42, 0.22); }
+html.dark .outcome-card:hover { box-shadow: 0 0 52px -8px rgba(237, 193, 87, 0.18); }
+
 /* Inline gold color override */
 html.dark [style*="#785a00"] { color: #edc157 !important; }
 html.dark .italic-gold { color: #edc157 !important; }
@@ -401,7 +406,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
     <h2 class="text-[2rem] font-extrabold leading-tight tracking-tight text-on-surface">Built for these outcomes.</h2>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+    <a href="case-studies.html" class="outcome-card border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
       <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
         <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Import Trading</span>
@@ -410,7 +415,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
     </a>
-    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+    <a href="case-studies.html" class="outcome-card border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
       <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
         <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Freight & Logistics</span>
@@ -419,7 +424,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
     </a>
-    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+    <a href="case-studies.html" class="outcome-card border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
       <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
         <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Healthcare</span>
