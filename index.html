@@ -111,10 +111,29 @@ html.dark body {
 }
 .headline-line:nth-child(1) { animation-delay: 0.1s; }
 .headline-line:nth-child(2) { animation-delay: 0.4s; }
-.headline-line:nth-child(3) { animation-delay: 0.7s; }
+.headline-line:nth-child(3) { animation-delay: 1.5s; }
 @keyframes headline-up {
   to { opacity: 1; transform: translateY(0); }
 }
+/* Typewriter cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  background-color: #b8902a;
+  margin-left: 1px;
+  vertical-align: baseline;
+  position: relative;
+  top: 0.08em;
+}
+.typing-cursor.blinking {
+  animation: cursor-blink 530ms step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+html.dark .typing-cursor { background-color: #edc157; }
 /* Scroll reveals */
 .fade-up {
   opacity: 0;
@@ -292,7 +311,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
     <span class="text-[0.75rem] font-medium uppercase tracking-[0.12em] text-primary block mb-6">Business Automation · UAE</span>
     <h1 class="text-[2.6rem] md:text-[4.8rem] font-extrabold leading-[1.05] tracking-tighter text-on-background mb-12">
       <span class="headline-line">Your business runs on</span>
-      <span class="headline-line italic" style="color:#785a00">manual work.</span>
+      <span class="headline-line italic" style="color:#785a00" aria-label="manual work."><span id="typed-text"></span><span id="typing-cursor" class="typing-cursor" aria-hidden="true"></span></span>
       <span class="headline-line">It doesn't have to.</span>
     </h1>
     <div class="flex flex-col sm:flex-row gap-4">
@@ -545,5 +564,76 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
 </script>
 
 <script>if(document.documentElement.classList.contains('dark'))document.querySelectorAll('.theme-icon').forEach(function(e){e.textContent='light_mode';});</script>
+
+<script>
+(function () {
+  var typedEl  = document.getElementById('typed-text');
+  var cursorEl = document.getElementById('typing-cursor');
+  if (!typedEl || !cursorEl) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    typedEl.textContent = 'manual work.';
+    cursorEl.style.display = 'none';
+    return;
+  }
+
+  var sequence = [
+    {type:'add',char:'m'},{type:'add',char:'a'},{type:'add',char:'n'},
+    {type:'add',char:'u'},{type:'add',char:'a'},{type:'add',char:'k'},
+    {type:'add',char:' '},{type:'add',char:'w'},{type:'add',char:'o'},
+    {type:'add',char:'r'},{type:'add',char:'k'},
+    {type:'pause',ms:450},
+    {type:'del'},{type:'del'},{type:'del'},
+    {type:'del'},{type:'del'},{type:'del'},
+    {type:'pause',ms:220},
+    {type:'add',char:'l'},{type:'add',char:' '},{type:'add',char:'w'},
+    {type:'add',char:'o'},{type:'add',char:'r'},{type:'add',char:'k'},
+    {type:'add',char:'.'},
+    {type:'done'}
+  ];
+
+  var chars = [];
+  var step  = 0;
+
+  function run() {
+    if (step >= sequence.length) return;
+    var s = sequence[step++];
+
+    if (s.type === 'done') {
+      cursorEl.classList.add('blinking');
+      setTimeout(function () {
+        cursorEl.style.transition = 'opacity 0.5s';
+        cursorEl.style.opacity = '0';
+      }, 2000);
+      return;
+    }
+
+    if (s.type === 'pause') {
+      cursorEl.classList.add('blinking');
+      setTimeout(function () {
+        cursorEl.classList.remove('blinking');
+        run();
+      }, s.ms);
+      return;
+    }
+
+    if (s.type === 'add') {
+      chars.push(s.char);
+      typedEl.textContent = chars.join('');
+      setTimeout(run, 70 + Math.floor(Math.random() * 50));
+      return;
+    }
+
+    if (s.type === 'del') {
+      chars.pop();
+      typedEl.textContent = chars.join('');
+      setTimeout(run, 45 + Math.floor(Math.random() * 25));
+      return;
+    }
+  }
+
+  setTimeout(run, 1050);
+})();
+</script>
 </body>
 </html>
