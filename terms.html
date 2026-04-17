@@ -11,9 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
-window.tailwind = {
-  config: {
+tailwind.config = {
   darkMode: "class",
   theme: {
     extend: {
@@ -30,9 +30,7 @@ window.tailwind = {
     }
   }
 }
-}
 </script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
 <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');
 function __toggleTheme(){var d=document.documentElement.classList.toggle('dark');localStorage.setItem('theme',d?'dark':'light');document.querySelectorAll('.theme-icon').forEach(function(e){e.textContent=d?'light_mode':'dark_mode';});}</script>
