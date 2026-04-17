@@ -99,6 +99,9 @@ html.dark body {
   from { transform: translate(-10%, -10%); }
   to   { transform: translate(30%, 20%); }
 }
+@media (max-width: 767px) {
+  .hero-blob { width: 220px; height: 220px; }
+}
 /* Hero headline stagger */
 .headline-line {
   display: block;
@@ -171,6 +174,9 @@ html.dark .btn-hover:hover { box-shadow: 0 0 28px -6px rgba(237, 193, 87, 0.22);
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Prevent horizontal overflow on mobile */
+html { overflow-x: hidden; }
 
 /* ============================================
    DARK MODE OVERRIDES
@@ -265,6 +271,10 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
     <div class="pt-2 flex flex-col gap-3">
       <a href="assessment.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-medium px-4 py-4 border border-primary text-primary text-center">Free Audit →</a>
       <a href="contact.html" class="block uppercase tracking-[0.12em] text-[0.75rem] font-bold px-6 py-4 bg-primary-container text-on-primary-container text-center">Book a Call</a>
+      <button onclick="__toggleTheme()" aria-label="Toggle dark mode" class="w-full flex items-center gap-3 py-3 text-zinc-500 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700 mt-1">
+        <span class="material-symbols-outlined theme-icon" style="font-size:1.1rem">dark_mode</span>
+        <span class="uppercase tracking-[0.12em] text-[0.75rem] font-medium">Dark mode</span>
+      </button>
     </div>
   </div>
 </nav>
@@ -285,13 +295,13 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
       <span class="headline-line italic" style="color:#785a00">manual work.</span>
       <span class="headline-line">It doesn't have to.</span>
     </h1>
-    <div class="flex flex-wrap gap-4">
-      <a href="contact.html" class="px-8 py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">Start the conversation →</a>
-      <a href="case-studies.html" class="px-8 py-4 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">See the work</a>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="contact.html" class="w-full sm:w-auto text-center px-8 py-4 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">Start the conversation →</a>
+      <a href="case-studies.html" class="w-full sm:w-auto text-center px-8 py-4 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-[0.75rem] btn-hover">See the work</a>
     </div>
     <p class="wa-link">Prefer WhatsApp? <a href="https://wa.me/971541676707">Message us directly.</a></p>
   </div>
-  <div class="md:w-1/3 flex flex-col justify-end pt-12 md:pt-48 relative z-10">
+  <div class="md:w-1/3 flex flex-col justify-end pt-6 md:pt-48 relative z-10">
     <p class="text-lg leading-relaxed text-secondary font-light pl-0">
       There is a smarter way to run your operations. We automate the repetitive, high-volume tasks that slow your team down.
     </p>
@@ -479,9 +489,9 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
       <h2 class="text-[2.4rem] md:text-[3.5rem] font-extrabold leading-[1.1] tracking-tighter text-on-background mb-12">
         Ready to stop running your business on <span class="italic" style="color:#785a00">manual work?</span>
       </h2>
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <a href="contact.html" class="px-12 py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-sm btn-hover">Start the conversation →</a>
-        <a href="case-studies.html" class="px-12 py-6 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-sm btn-hover">See real results</a>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-start gap-4">
+        <a href="contact.html" class="text-center px-8 py-5 md:px-12 md:py-6 bg-primary-container text-on-primary-container font-bold uppercase tracking-[0.12em] text-sm btn-hover">Start the conversation →</a>
+        <a href="case-studies.html" class="text-center px-8 py-5 md:px-12 md:py-6 border border-outline text-on-surface font-bold uppercase tracking-[0.12em] text-sm btn-hover">See real results</a>
       </div>
     </div>
   </div>
@@ -489,7 +499,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
 
 <!-- FOOTER -->
 <footer class="bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-24 w-full max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 md:px-12 py-16 md:py-24 w-full max-w-7xl mx-auto">
     <div class="col-span-1">
       <div class="mb-6"><img src="logo.png" alt="Helm8" class="h-10 w-auto dark:invert"/></div>
       <p class="text-[0.75rem] leading-relaxed uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">Automation for businesses that still run on manual work.</p>
