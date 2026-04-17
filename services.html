@@ -77,6 +77,10 @@ html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rg
    class toggle on CDN — these replace them.
    ============================================ */
 
+/* Inline gold color override */
+html.dark [style*="#785a00"] { color: #edc157 !important; }
+html.dark .italic-gold { color: #edc157 !important; }
+
 /* Text */
 html.dark .text-on-surface,
 html.dark .text-on-background { color: #e2e2db; }
@@ -169,24 +173,15 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
 <main class="pt-24">
 
 <!-- HERO -->
-<section class="px-8 md:px-24 py-24 md:py-44 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-outline-variant/30">
-  <div class="md:col-span-8">
+<section class="px-8 md:px-24 py-24 md:py-44 border-b border-outline-variant/30">
+  <div class="max-w-4xl">
     <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 text-[0.75rem] font-bold uppercase tracking-[0.12em] mb-8">The Automations</span>
-    <h1 class="text-[2.4rem] md:text-[4rem] font-extrabold leading-[1.1] tracking-tighter text-zinc-900 dark:text-white mb-8">
+    <h1 class="text-[2.4rem] md:text-[4rem] font-extrabold leading-[1.1] tracking-tighter text-zinc-900 mb-8">
       The work businesses actually need <span class="italic-gold">automated.</span>
     </h1>
-    <p class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+    <p class="text-xl md:text-2xl text-zinc-600 max-w-2xl leading-relaxed">
       Built on tools your team already uses. No new subscriptions. We architect the infrastructure, you own the results.
     </p>
-  </div>
-  <div class="md:col-span-4 flex items-end">
-    <div class="w-full h-64 border border-outline bg-surface-container-low relative overflow-hidden"
-         style="background-image: linear-gradient(rgba(120,90,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(120,90,0,0.08) 1px, transparent 1px); background-size: 32px 32px;">
-      <div class="absolute inset-0 flex flex-col justify-end p-6">
-        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-1">Built On</span>
-        <span class="text-sm font-bold text-on-surface uppercase tracking-tight">Gmail · Google Sheets · WhatsApp</span>
-      </div>
-    </div>
   </div>
 </section>
 

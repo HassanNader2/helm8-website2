@@ -81,6 +81,10 @@ html.dark body { background-color: #0d0d0d; background-image: radial-gradient(rg
    class toggle on CDN — these replace them.
    ============================================ */
 
+/* Inline gold color override */
+html.dark [style*="#785a00"] { color: #edc157 !important; }
+html.dark .italic-gold { color: #edc157 !important; }
+
 /* Text */
 html.dark .text-on-surface,
 html.dark .text-on-background { color: #e2e2db; }
@@ -239,9 +243,9 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
       <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-on-background leading-[1.1]">
         The retainer costs less than <span class="italic" style="color:#785a00">what you are already losing.</span>
       </h2>
-      <p class="mt-8 text-secondary text-lg">Automation builds from AED 5,000 · Monthly support from AED 1,500/month</p>
+      <p class="mt-8 text-secondary text-lg">Automation builds from AED 5,000 · Retainer from AED 1,800/month</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 max-w-4xl">
       <!-- Entry Scope -->
       <div class="border border-outline-variant p-12 bg-surface-container-lowest flex flex-col justify-between">
         <div>
@@ -249,54 +253,38 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
           <div class="mb-8">
             <span class="text-sm font-medium text-secondary">Starting from</span>
             <div class="text-4xl font-black mt-1">AED 5,000</div>
-            <span class="text-sm text-secondary mt-1 block">+ optional monthly support</span>
+            <span class="text-sm text-secondary mt-1 block">+ optional monthly retainer</span>
           </div>
           <ul class="space-y-4 text-sm text-secondary border-t border-outline-variant pt-8">
             <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Single core automation</li>
-            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Integration with existing tools</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Integration with your existing tools</li>
             <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Workflow audit report</li>
             <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Loom handover video</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>One live training session</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Monthly support if on retainer</li>
           </ul>
         </div>
         <a href="contact.html" class="mt-12 block w-full py-4 text-center border border-zinc-900 font-bold uppercase text-[0.75rem] tracking-[0.12em] hover:bg-zinc-900 hover:text-white transition-all btn-hover">Get Started</a>
       </div>
-      <!-- Primary: Full Build -->
-      <div class="border-y md:border-y-0 md:border-x border-primary p-12 bg-surface-container-lowest relative z-10 scale-105 shadow-2xl flex flex-col justify-between">
+      <!-- Full Build -->
+      <div class="border border-primary p-12 bg-surface-container-lowest relative flex flex-col justify-between">
         <div class="absolute top-0 right-0 bg-primary text-on-primary px-3 py-1 text-[0.6rem] font-black uppercase tracking-[0.12em]">Recommended</div>
         <div>
           <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight text-primary">Full Build + Support</h3>
           <div class="mb-8">
             <span class="text-sm font-medium text-secondary">Starting from</span>
             <div class="text-4xl font-black mt-1">AED 9,000</div>
-            <span class="text-sm text-secondary mt-1 block">+ AED 1,800/month support</span>
+            <span class="text-sm text-secondary mt-1 block">+ AED 1,800/month retainer</span>
           </div>
-          <ul class="space-y-4 text-sm text-secondary border-t border-outline-variant pt-8">
-            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>End-to-end system design</li>
-            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Unlimited integrations</li>
-            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Monthly support &amp; fixes</li>
-            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Team training sessions</li>
-            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>WhatsApp direct support line</li>
+          <ul class="space-y-4 text-sm border-t border-outline-variant pt-8">
+            <li class="flex items-center gap-2 text-secondary"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Everything in Entry Scope, plus:</li>
+            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>End-to-end multi-automation design</li>
+            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>All integrations across your workflow</li>
+            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Monthly support and fixes included</li>
+            <li class="flex items-center gap-2 font-bold text-on-background"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>24/7 priority support</li>
           </ul>
         </div>
         <a href="contact.html" class="mt-12 block w-full py-4 text-center bg-primary-container text-on-primary-container font-bold uppercase text-[0.75rem] tracking-[0.12em] hover:brightness-90 transition-all btn-hover">Get Started</a>
-      </div>
-      <!-- Standard Build -->
-      <div class="border border-outline-variant p-12 bg-surface-container-lowest flex flex-col justify-between">
-        <div>
-          <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight">Standard Build</h3>
-          <div class="mb-8">
-            <span class="text-sm font-medium text-secondary">Starting from</span>
-            <div class="text-4xl font-black mt-1">AED 7,000</div>
-            <span class="text-sm text-secondary mt-1 block">+ AED 1,500/month support</span>
-          </div>
-          <ul class="space-y-4 text-sm text-secondary border-t border-outline-variant pt-8">
-            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Dual core automations</li>
-            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Workflow documentation</li>
-            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>14 days post-launch support</li>
-            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:1rem">check</span>Loom handover video</li>
-          </ul>
-        </div>
-        <a href="contact.html" class="mt-12 block w-full py-4 text-center border border-zinc-900 font-bold uppercase text-[0.75rem] tracking-[0.12em] hover:bg-zinc-900 hover:text-white transition-all btn-hover">Get Started</a>
       </div>
     </div>
     <p class="mt-12 text-center text-sm text-secondary">50% deposit before work starts. Final payment on delivery. Retainer begins 1st of the month after go-live.</p>

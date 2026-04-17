@@ -175,6 +175,10 @@ html.dark body {
    class toggle on CDN — these replace them.
    ============================================ */
 
+/* Inline gold color override */
+html.dark [style*="#785a00"] { color: #edc157 !important; }
+html.dark .italic-gold { color: #edc157 !important; }
+
 /* Text */
 html.dark .text-on-surface,
 html.dark .text-on-background { color: #e2e2db; }
@@ -394,36 +398,36 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
 <section class="py-16 md:py-32 px-8 max-w-7xl mx-auto">
   <div class="mb-12 fade-up">
     <span class="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-primary block mb-4">The proof</span>
-    <h2 class="text-[2rem] font-extrabold leading-tight tracking-tight text-on-surface">Real results in real businesses.</h2>
+    <h2 class="text-[2rem] font-extrabold leading-tight tracking-tight text-on-surface">Built for these outcomes.</h2>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Import Trading" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4Cqe7fAPnbsXG_kw48TvNp7q5jEcKj-nvun8EWL96JxsTgt0XUAi7JHnwFPwywgBn8q0d34kQFNDU0ll3jL5bN-uxCpu9GP-sku3hnDe56ANQ-yjyIqwKOB0Or66Krxxjudxb6Fqo-dMdJJKFchWcdvyUizHFK6QAO209ix9SJbZgWm7TFZyW8SEDuQCh87-XXMMI-DUG5aGGnpOOqfCj1vRqjhJ4Hsd4wEAG57uHC6pIcAxT2jPRN16xFLH7BHWDAtcC9MweD8Z"/ loading="lazy">
+    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+      <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Import Trading · CS03</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Import Trading</span>
         <div class="text-3xl font-black text-primary mb-2">3 Days</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">Recovered every month</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
-    </div>
-    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Freight & Logistics" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQ7S5b-B9goAVbK5Nch2VKTp1stn0txmQdG4eK47EgcJo5cfW0CVwjOhKy4MY_RxP6dSLm8n1fPs0BW9ZZOwEjOpmcc7FwentdvNghjYVRCyE0w6ffN1bZsJcmmLdm5Wg2x7sAaHtTEZSf01MaUxtHsXXXpQhM1nZMR8IKVq85hzXNaqFXXxd-0rY6ueRcxAecmzXksIv86ssYwMDRiJTCWNmnGJXHIULQSdKC-gSXvmUNhuMLs3f3gTXXkbxcn4oQH9q3U5fTnkH"/ loading="lazy">
+    </a>
+    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+      <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Freight & Logistics · CS04</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Freight & Logistics</span>
         <div class="text-3xl font-black text-primary mb-2">52 → 19</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">Days to collect payment</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
-    </div>
-    <div class="border border-outline-variant p-8 bg-surface-container-lowest relative group cursor-pointer overflow-hidden fade-up">
-      <img alt="Healthcare" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-10 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRd_g0JPpqjUDN9-Vo5Az09D9itXp3ftNPF76fdrjYAphP85tzXUmH1Z6VOa_nlPGa5p_irSU2cN-2aOTqh2Ko1YV9UljQxX_iw0hC9JFtz4870PIb2VzqaDmvcvAmSF5HjOSE5jMMToyrrwFccBFAc2W1FvUMRfS6FZK-5aORsRQwDp_cxO08LOk0CGAGKDfFiqhc3ITgloGm-Ji5dWWslewZBj5UZGRVgPb_O4kwY3eBgFkKi0RDQJULzYPFWmIJ4EgoOpLeYMRq"/ loading="lazy">
+    </a>
+    <a href="case-studies.html" class="border border-outline-variant p-8 bg-surface-container-lowest relative group overflow-hidden fade-up block">
+      <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(120,90,0,0.15) 0.5px, transparent 0.5px); background-size: 12px 12px;"></div>
       <div class="relative z-10">
-        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Healthcare · CS08</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-4">Healthcare</span>
         <div class="text-3xl font-black text-primary mb-2">22% → 8%</div>
         <p class="text-sm font-bold uppercase mb-6 tracking-tight">No-show rate</p>
         <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
       </div>
-    </div>
+    </a>
   </div>
   <div class="mt-10 text-center fade-up">
     <a href="case-studies.html" class="uppercase tracking-[0.12em] text-[0.75rem] font-medium text-secondary hover:text-primary transition-colors">See all 8 case studies →</a>

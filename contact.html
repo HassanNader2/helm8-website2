@@ -81,6 +81,12 @@ html.dark .cal-wrap { background: #1a1c19; border-color: rgba(232,232,224,0.15);
    class toggle on CDN — these replace them.
    ============================================ */
 
+/* Inline gold color override */
+html.dark [style*="#785a00"] { color: #edc157 !important; }
+html.dark .italic-gold { color: #edc157 !important; }
+/* x-cloak: hide Alpine-controlled elements before Alpine initialises */
+[x-cloak] { display: none !important; }
+
 /* Text */
 html.dark .text-on-surface,
 html.dark .text-on-background { color: #e2e2db; }
@@ -194,8 +200,8 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
     <div class="cal-wrap">
       <div id="cal-inline" style="width:100%;min-height:600px;overflow:scroll;"></div>
       <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", { origin: "https://cal.com" });
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
+      Cal("init", { origin: "https://cal.eu" });
       Cal("inline", { elementOrSelector: "#cal-inline", calLink: "helm8/30min", layout: "month_view" });
       </script>
     </div>
@@ -208,12 +214,6 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
       <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block mb-2">Alternative</span>
       <h2 class="text-2xl font-extrabold tracking-tight text-on-surface mb-2">Send your details.</h2>
       <p class="text-sm text-secondary">Tell us what you're trying to fix. We'll come back with a clear answer.</p>
-    </div>
-
-    <!-- Result card -->
-    <div class="mb-10 space-y-1 bg-surface-container-low px-6 py-5">
-      <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-outline block">Accounts receivable — Freight company, UAE</span>
-      <p class="text-sm text-secondary leading-relaxed">52 days to collect. Now 19. AED 210,000 recovered in 90 days.</p>
     </div>
 
     <form
@@ -247,7 +247,7 @@ html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
         <p class="text-[0.65rem] text-secondary text-center">We don't share your details. We don't add you to a mailing list.</p>
       </div>
 
-      <div x-show="submitted" x-transition class="py-16 text-center border border-outline-variant bg-surface-container-low">
+      <div x-show="submitted" x-cloak x-transition class="py-16 text-center border border-outline-variant bg-surface-container-low">
         <span class="material-symbols-outlined text-primary mb-4" style="font-size:3rem">check_circle</span>
         <h3 class="text-xl font-bold mb-3 uppercase tracking-tight">Details received.</h3>
         <p class="text-secondary text-sm leading-relaxed max-w-sm mx-auto">We'll be in touch within one business day. If it's urgent, <a href="https://wa.me/971541676707" class="text-primary underline">WhatsApp us directly</a>.</p>
