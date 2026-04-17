@@ -86,6 +86,57 @@ html.dark .cs-quote { background: #1a1c19; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================
+   DARK MODE OVERRIDES
+   Tailwind dark: variants don't fire with manual
+   class toggle on CDN — these replace them.
+   ============================================ */
+
+/* Text */
+html.dark .text-on-surface,
+html.dark .text-on-background { color: #e2e2db; }
+html.dark .text-secondary { color: #a8a8a0; }
+html.dark .text-outline { color: #7a7870; }
+html.dark .text-outline-variant { color: #5a5850; }
+html.dark .text-primary { color: #edc157; }
+html.dark .text-primary-container { color: #f0ca74; }
+html.dark .text-zinc-900 { color: #f4f4f5; }
+html.dark .text-zinc-600 { color: #a1a1aa; }
+html.dark .text-zinc-500 { color: #71717a; }
+html.dark .text-zinc-400 { color: #a1a1aa; }
+html.dark .text-zinc-300 { color: #d4d4d8; }
+
+/* Backgrounds — surfaces */
+html.dark .bg-surface,
+html.dark .bg-white { background-color: #18181b; }
+html.dark .bg-surface-container-lowest { background-color: #141411; }
+html.dark .bg-surface-container-low { background-color: #1a1a17; }
+html.dark .bg-surface-container { background-color: #1f1f1c; }
+html.dark .bg-surface-container-high { background-color: #252521; }
+html.dark .bg-surface-container-highest { background-color: #2a2a26; }
+html.dark .bg-zinc-50 { background-color: #18181b; }
+html.dark .bg-zinc-100 { background-color: #27272a; }
+html.dark .bg-outline-variant { background-color: #2e2e28; }
+
+/* Borders */
+html.dark .border-zinc-200 { border-color: #27272a; }
+html.dark .border-zinc-800 { border-color: #27272a; }
+html.dark .border-outline-variant { border-color: #2e2e28; }
+html.dark .border-outline { border-color: #3a3a35; }
+html.dark .border-primary { border-color: #edc157; }
+
+/* Nav — override bg-white/90 */
+html.dark nav { background-color: rgba(9,9,11,0.92) !important; border-color: #27272a !important; }
+html.dark .bg-white\/90 { background-color: rgba(9,9,11,0.92); }
+html.dark .bg-zinc-950 { background-color: #09090b; }
+html.dark .bg-zinc-950\/90 { background-color: rgba(9,9,11,0.92); }
+
+/* Hover states */
+html.dark .hover\:text-zinc-900:hover,
+html.dark .hover\:text-on-surface:hover { color: #f4f4f5; }
+html.dark .hover\:bg-zinc-100:hover { background-color: #27272a; }
+html.dark .hover\:bg-zinc-50:hover { background-color: #1c1c1e; }
 </style>
 </head>
 
